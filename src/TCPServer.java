@@ -26,7 +26,8 @@ public class TCPServer {
             int bytes;
             while ((bytes = inputStream.read(buffer)) != -1) {
                 byte[] receivedBytes = Arrays.copyOf(buffer, bytes);
-                System.out.println("Received from client: " + bytesToHex(receivedBytes));
+                Packet packet = new Packet(bytesToHex(receivedBytes));
+                System.out.println("Received from client: " + packet);
                 // parse the incoming data
             }
 

@@ -1,12 +1,15 @@
-public class Packet {
+/**
+ * Decode the binary packet to Hex
+ */
+public class DecodingPacket implements ICDCommandDefinitions{
     private String ICDCommand;
     private int size;
     private String sequenceNumber;
     private String instructionID;
     private String parameter;
     private String crc;
-
-    public Packet(String ICDCommand){
+    private String tag="";
+    public DecodingPacket(String ICDCommand){
         this.ICDCommand = ICDCommand;
         parsePacket();
     }
@@ -38,20 +41,49 @@ public class Packet {
 
         // Instruction ID
         instructionID = parts[2];
+        if(instructionID.equals(DataConvert.hexToString(ICD_CMD_BLE_IN_SESSION))){
+            tag = "ack";
+        }
 
         // CRC
         crc = parts[fieldCount - 1];
+    }
 
+    public int getSize() {
+        return size;
+    }
 
+    public String getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    public String getInstructionID() {
+        return instructionID;
+    }
+
+    public String getParameter() {
+        return parameter.trim();
+    }
+
+    public String getCrc() {
+        return crc;
+    }
+    public String getTag() {
+        return tag;
     }
 
     public String toString(){
+        if(instructionID.equals(DataConvert.hexToString(ICD_CMD_BLE_IN_SESSION))){
+//            return "Are you still there?";
+            return "";
+        }
         // Create the output string
         String output = "Packet Length: " + size + ", " +
                 "Sequence Number: " + sequenceNumber + ", " +
                 "Parameters: " + parameter.trim() + ", " + // remove trailing space
                 "Instruction ID: " + instructionID + ", " +
                 "CRC: " + crc;
+
         return output;
     }
 }

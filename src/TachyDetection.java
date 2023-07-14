@@ -1,0 +1,2 @@
+public class TachyDetection {
+}

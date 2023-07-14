@@ -1,3 +1,5 @@
+import pgdata.*;
+
 public class ICDDevice {
 
     public BradyParameter bp_Local;
@@ -8,9 +10,9 @@ public class ICDDevice {
 
     public TachyShockTherapy shock_Local;
 
-    public DeviceResetLog   resetlog_Local;
+    public DeviceResetLog resetlog_Local;
 
-    public DeviceFaultLog   faultlog_Local;
+    public DeviceFaultLog faultlog_Local;
 
 
     // runtime status

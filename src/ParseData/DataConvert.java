@@ -1,7 +1,15 @@
+package ParseData;
+
 import java.util.Locale;
 
 public class DataConvert {
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+
+    /**
+     * Convert incoming byte[] buffer into Hex Strng
+     * @param bytes
+     * @return Hex String
+     */
     public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 3];
         for (int j = 0; j < bytes.length; j++) {
@@ -26,5 +34,18 @@ public class DataConvert {
             sb.append(String.format(Locale.US, "%02X ", b));
         }
         return sb.toString();
+    }
+
+    /**
+     * Convert Byte to 0x00 String
+     * @param num
+     * @return 0x00 Hex String
+     */
+    public static String byteToHex(byte num) {
+        char[] hexDigits = new char[2];
+        hexDigits[0] = Character.forDigit((num >> 4) & 0xF, 16);
+        hexDigits[1] = Character.forDigit((num & 0xF), 16);
+
+        return "0x" + new String(hexDigits).toUpperCase();
     }
 }

@@ -3,13 +3,13 @@ package ParseData;
 import java.io.*;
 
 public class PacketManager {
-    private static final String FILE_NAME = "DecodingPacket.ser";
+
 
     public PacketManager(){
 
     }
 
-    public static void serialize(DecodingPacket packet) {
+    public static void serialize(DecodingPacket packet, final String FILE_NAME) {
         try {
             FileOutputStream fileOut = new FileOutputStream(FILE_NAME);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -20,7 +20,7 @@ public class PacketManager {
             i.printStackTrace();
         }
     }
-    public static DecodingPacket deserialize() {
+    public static DecodingPacket deserialize(final String FILE_NAME) {
         DecodingPacket packet = null;
         try {
             FileInputStream fileIn = new FileInputStream(FILE_NAME);

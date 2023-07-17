@@ -1,8 +1,14 @@
+package Controller;
+
+import Constant.Constant;
 import ParseData.*;
 import pgdata.*;
 
-public class ICDDevice implements ICDCommandDefinitions {
+import java.io.File;
+
+public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     private byte[] byteArray;
+    private String folderName;
 
     public BradyParameter bp_Local;
 
@@ -37,9 +43,11 @@ public class ICDDevice implements ICDCommandDefinitions {
     // constructor
     // load from local XML document
     // initialize with specific value
-    public void initializeDevice(){
-
+    public ICDDevice(int clientID){
+        folderName = "src" + File.separator + "LocalData" + File.separator + "Device" + clientID + File.separator;
+        FilesHandler.creatFolder(folderName);
     }
+
 
     // export/save to local XML document
 
@@ -50,10 +58,12 @@ public class ICDDevice implements ICDCommandDefinitions {
         if (iCommandId != ICD_CMD_BLE_IN_SESSION) {
             System.out.println("Received from client: " + packet);
         }
-
+        // Initialize variable
         EncodingPacket encodingPacket = null;
         byteArray = null;
+        String fileName;
 
+        // Switch cases
         switch (iCommandId) {
             case ICD_CMD_BLE_IN_SESSION:
                 // Android sends you a keep alive signal.
@@ -62,7 +72,8 @@ public class ICDDevice implements ICDCommandDefinitions {
                 break;
             case ICD_CMD_READ_BRADY_PARAM:
                 // Construct return packet based on incoming packet's sequenceNumber, commandID, crc
-                encodingPacket = new EncodingPacket(packet,false);
+                fileName = folderName + Constant.BRADY_PARAMETERS;
+                encodingPacket = new EncodingPacket(packet,false, fileName);
                 byteArray = encodingPacket.getPacketData();
 
                 System.out.println("Sent to client: " + DataConvert.byteDataToHexString(byteArray));
@@ -70,8 +81,9 @@ public class ICDDevice implements ICDCommandDefinitions {
                 break;
 
             case ICD_CMD_SET_BRADY_PARAM:
-                PacketManager.serialize(packet);
-                encodingPacket = new EncodingPacket(packet,true);
+                fileName = folderName + Constant.BRADY_PARAMETERS;
+                PacketManager.serialize(packet, fileName);
+                encodingPacket = new EncodingPacket(packet,true, fileName);
                 byteArray = encodingPacket.getPacketData();
 
                 System.out.println("Sent to client: " + DataConvert.byteDataToHexString(byteArray));

@@ -14,7 +14,7 @@ By accessing or using this project, you agree to abide by the above terms.
 - Start
 - TCP Server Listens on port 8888
 - Client Connects -> Server creates new Thread
-- Thread Creates ICDDevice instance
+- Thread Creates Controller.ICDDevice instance
 - DecodingPacket class decodes incoming data
 - Perform Corresponding I/O operations
 - Process modules:

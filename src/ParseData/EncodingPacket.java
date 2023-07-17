@@ -7,9 +7,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.nio.ByteBuffer;
 
+/**
+ * To encoding a packet, you need 2 things
+ * 1. The packet header(CRC, sequence Number, size, commandID) which fetched from the packet belongs to TCP client.
+ * 2. The packet parameters. This needs the path name to locate the corresponding serialized packet.
+ * 简单来说，返回包应包含client packet的packet header等关键信息。而packet body，也就是parameter应该根据要获取的参数信息从本地序列化的包中获取
+ */
 public class EncodingPacket implements ICDCommandDefinitions {
     private static final long serialVersionUID = 1L;
-    private static final String FILE_NAME = "DecodingPacket.ser";
+    private String file_name;
     private byte sequenceNumber;
     private byte commandID;
     private byte[] parameter;
@@ -17,19 +23,28 @@ public class EncodingPacket implements ICDCommandDefinitions {
     private byte[] data;
     boolean needACK;
 
-    public EncodingPacket(DecodingPacket decodingPacket, boolean needACK) {
-        this.sequenceNumber = decodingPacket.getSequenceNumber();
-        this.commandID = decodingPacket.getCommandID();
-        this.crc = decodingPacket.getCrc();
-
-        DecodingPacket packet = PacketManager.deserialize();
-        this.parameter = packet.getParameter();
-
+    public EncodingPacket(DecodingPacket decodingPacket, boolean needACK, String file_name) {
         this.needACK = needACK;
+        if(!needACK){
+            this.sequenceNumber = decodingPacket.getSequenceNumber();
+            this.commandID = decodingPacket.getCommandID();
+            this.crc = decodingPacket.getCrc();
 
-        constructPacket();
+            this.file_name = file_name;
+            // By default, each retrieve operation should have corresponding serialized packet.
+            DecodingPacket packet = PacketManager.deserialize(file_name);
+            this.parameter = packet.getParameter();
+
+            constructPacket();
+        }
+
     }
 
+    /**
+     * If it's ACK signal, just send back hardcoding byte[] to bypass ACK check.
+     * Otherwise, send back the encoding packet.
+     * @return Packet data in the format of byte[]
+     */
     public byte[] getPacketData() {
         if (needACK){
             return new byte[] {

@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ParseData/PacketManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DecodingPacket.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParseData/PacketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/PacketManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TCPServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,29 +33,36 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2SUeayoTqHocjQH5W1gLCsC53pB" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/TCP_Server&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/TCP_Server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\TCP_Server\src\LocalData" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="" />
@@ -69,7 +79,7 @@
       <workItem from="1689205657644" duration="403000" />
       <workItem from="1689206082178" duration="38421000" />
       <workItem from="1689380232461" duration="28000" />
-      <workItem from="1689613382301" duration="2452000" />
+      <workItem from="1689613382301" duration="7843000" />
     </task>
     <servers />
   </component>

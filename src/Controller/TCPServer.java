@@ -1,6 +1,6 @@
-import ParseData.DataConvert;
+package Controller;
+
 import ParseData.DecodingPacket;
-import ParseData.EncodingPacket;
 import ParseData.ICDCommandDefinitions;
 
 import java.io.IOException;
@@ -35,6 +35,7 @@ public class TCPServer implements ICDCommandDefinitions {
 
     private class ClientHandler implements Runnable {
         private Socket clientSocket;
+        private static int clientID;
 
         public ClientHandler(Socket clientSocket) {
             this.clientSocket = clientSocket;
@@ -43,7 +44,7 @@ public class TCPServer implements ICDCommandDefinitions {
         @Override
         public void run() {
             try {
-                ICDDevice myDevice = new ICDDevice();
+                ICDDevice myDevice = new ICDDevice(clientID++);
                 InputStream inputStream = clientSocket.getInputStream();
                 OutputStream outputStream = clientSocket.getOutputStream();
 

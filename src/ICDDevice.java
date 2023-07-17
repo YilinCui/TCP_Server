@@ -1,6 +1,11 @@
+import ParseData.DataConvert;
+import ParseData.DecodingPacket;
+import ParseData.EncodingPacket;
+import ParseData.ICDCommandDefinitions;
 import pgdata.*;
 
-public class ICDDevice {
+public class ICDDevice implements ICDCommandDefinitions {
+    private byte[] byteArray;
 
     public BradyParameter bp_Local;
 
@@ -42,14 +47,48 @@ public class ICDDevice {
     // export/save to local XML document
 
 
-    public void process(byte[] incomingCommand){
+    public void process(DecodingPacket packet){
+        int iCommandId = packet.getCommandID() & 0xFF;
 
+        if (iCommandId != ICD_CMD_BLE_IN_SESSION) {
+            System.out.println("Received from client: " + packet);
+        }
 
+        EncodingPacket encodingPacket = null;
+        byteArray = null;
+
+        switch (iCommandId) {
+            case ICD_CMD_BLE_IN_SESSION:
+                // Android sends you a keep alive signal.
+                // No response needed.
+                //System.out.println(DataConvert.bytesToHex(receivedBytes));
+                break;
+            case ICD_CMD_READ_BRADY_PARAM:
+                // Construct return packet based on incoming packet's sequenceNumber, commandID, crc
+                encodingPacket = new EncodingPacket(packet,false);
+                byteArray = encodingPacket.getPacketData();
+
+                System.out.println("Sent to client: " + DataConvert.byteDataToHexString(byteArray));
+
+                break;
+
+            case ICD_CMD_SET_BRADY_PARAM:
+                packet.serialize();
+                encodingPacket = new EncodingPacket(packet,true);
+                byteArray = encodingPacket.getPacketData();
+
+                System.out.println("Sent to client: " + DataConvert.byteDataToHexString(byteArray));
+
+                break;
+            default:
+                break;
+            // Handle other commands
+        }
     }
 
-    //public byte[] getResponse(){
-//
-  //     return ;
-    //}
+    public byte[] getResponse(){
+
+       return byteArray;
+    }
 
 }

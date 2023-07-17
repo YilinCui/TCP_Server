@@ -53,45 +53,11 @@ public class TCPServer implements ICDCommandDefinitions {
                     byte[] receivedBytes = Arrays.copyOf(buffer, bytes);
                     DecodingPacket packet = new DecodingPacket(receivedBytes);
 
-
-                    int iCommandId = packet.getCommandID() & 0xFF;
                     // if command id is valid
-                    myDevice.process(receivedBytes);
-
-                    if (iCommandId != ICD_CMD_BLE_IN_SESSION) {
-                        System.out.println("Received from client: " + packet);
-                    }
-
-                    EncodingPacket encodingPacket = null;
-                    byte[] byteArray;
-
-                    switch (iCommandId) {
-                        case ICD_CMD_BLE_IN_SESSION:
-                            // Android sends you a keep alive signal.
-                            // No response needed.
-                            //System.out.println(DataConvert.bytesToHex(receivedBytes));
-                            break;
-                        case ICD_CMD_READ_BRADY_PARAM:
-                            // Construct return packet based on incoming packet's sequenceNumber, commandID, crc
-                            encodingPacket = new EncodingPacket(packet,false);
-                            byteArray = encodingPacket.getPacketData();
-
-                            System.out.println("Sent to client: " + DataConvert.byteDataToHexString(byteArray));
-                            outputStream.write(byteArray);
-                            break;
-
-                        case ICD_CMD_SET_BRADY_PARAM:
-                            packet.serialize();
-                            encodingPacket = new EncodingPacket(packet,true);
-                            byteArray = encodingPacket.getPacketData();
-
-                            System.out.println("Sent to client: " + DataConvert.byteDataToHexString(byteArray));
-                            outputStream.write(byteArray);
-                            break;
-                        default:
-                            break;
-                        // Handle other commands
-                    }
+                    myDevice.process(packet);
+                    byte[] response = myDevice.getResponse();
+                    if(response!=null)
+                    outputStream.write(myDevice.getResponse());
                 }
 
                 inputStream.close();

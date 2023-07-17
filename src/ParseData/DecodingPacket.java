@@ -8,7 +8,7 @@ import java.io.*;
  */
 public class DecodingPacket implements ICDCommandDefinitions, Serializable {
     private static final long serialVersionUID = 1L;
-    private static final String FILE_NAME = "DecodingPacket.ser";
+
     private byte[] receivedBuffer;
     private int size;
     private byte sequenceNumber;
@@ -54,36 +54,6 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
 
         // CRC
         crc = receivedBuffer[size - 1];
-    }
-
-    public void serialize() {
-        try {
-            FileOutputStream fileOut = new FileOutputStream(FILE_NAME);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(this);
-            out.close();
-            fileOut.close();
-        } catch (Exception i) {
-            i.printStackTrace();
-        }
-    }
-    public DecodingPacket deserialize() {
-        DecodingPacket packet = null;
-        try {
-            FileInputStream fileIn = new FileInputStream(FILE_NAME);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            packet = (DecodingPacket) in.readObject();
-            in.close();
-            fileIn.close();
-        } catch (IOException i) {
-            i.printStackTrace();
-            return null;
-        } catch (ClassNotFoundException c) {
-            System.out.println("DecodingPacket class not found");
-            c.printStackTrace();
-            return null;
-        }
-        return packet;
     }
 
 

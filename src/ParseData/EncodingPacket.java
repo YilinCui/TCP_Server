@@ -22,7 +22,7 @@ public class EncodingPacket implements ICDCommandDefinitions {
         this.commandID = decodingPacket.getCommandID();
         this.crc = decodingPacket.getCrc();
 
-        DecodingPacket packet = decodingPacket.deserialize();
+        DecodingPacket packet = PacketManager.deserialize();
         this.parameter = packet.getParameter();
 
         this.needACK = needACK;

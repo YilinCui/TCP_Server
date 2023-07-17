@@ -1,7 +1,4 @@
-import ParseData.DataConvert;
-import ParseData.DecodingPacket;
-import ParseData.EncodingPacket;
-import ParseData.ICDCommandDefinitions;
+import ParseData.*;
 import pgdata.*;
 
 public class ICDDevice implements ICDCommandDefinitions {
@@ -73,7 +70,7 @@ public class ICDDevice implements ICDCommandDefinitions {
                 break;
 
             case ICD_CMD_SET_BRADY_PARAM:
-                packet.serialize();
+                PacketManager.serialize(packet);
                 encodingPacket = new EncodingPacket(packet,true);
                 byteArray = encodingPacket.getPacketData();
 

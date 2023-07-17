@@ -1,37 +1,20 @@
 # TCP_Server
 TCP Server for Android app
 
-   Start
-     |
-     v
-TCP Server Listens on port 8888
-     |
-     v
-Client Connects -> Server creates new Thread
-     |
-     v
-Thread Creates ICDDevice instance
-     |
-     v
-DecodingPacket class decodes incoming data
-     |
-     v
-Perform Corresponding I/O operations
-     |
-     v
- +---Brady Parameters module processing---+
- |                                        |
- v                                        v
-Tachy Detection module processing <----> Tachy Therapy module processing
- |                                        |
- v                                        v
- +---EncodingPacket class encodes data for client---+
-     |
-     v
-Server sends data back to client
-     |
-     v
-  Repeat (until client disconnects)
-     |
-     v
-   End
+- Start
+- TCP Server Listens on port 8888
+- Client Connects -> Server creates new Thread
+- Thread Creates ICDDevice instance
+- DecodingPacket class decodes incoming data
+- Perform Corresponding I/O operations
+- Process modules:
+    - Brady Parameters module processing 
+        - EncodingPacket class encodes data for Brady Parameters
+    - Tachy Detection module processing
+        - EncodingPacket class encodes data for Tachy Detection
+    - Tachy Therapy module processing
+        - EncodingPacket class encodes data for Tachy Therapy
+- Server sends data back to client
+- Repeat (until client disconnects)
+- End
+

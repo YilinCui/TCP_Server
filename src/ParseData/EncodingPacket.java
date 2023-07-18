@@ -40,8 +40,9 @@ public class EncodingPacket implements ICDCommandDefinitions {
                 this.parameter = packet.getParameter();
                 constructPacket();
             }catch (NullPointerException c) {
-                System.out.println("Can't find the file you looking for!" + file_name);
+                System.out.println("Can't find the file you looking for!" + file_name + ". Sending back default value...");
 //                c.printStackTrace();
+                data = null;
             }
         }else{
             ConstructACK();
@@ -65,7 +66,7 @@ public class EncodingPacket implements ICDCommandDefinitions {
 
     public void constructPacket() {
         // 首先计算出新的byte数组的大小
-        int totalLength = 4 + parameter.length;  // 这里4是因为有4个byte变量
+        int totalLength = 3 + parameter.length;  // 这里4是因为有4个byte变量-1个冗余位
 
         // 初始化ByteBuffer
         ByteBuffer buffer = ByteBuffer.allocate(totalLength);
@@ -75,7 +76,7 @@ public class EncodingPacket implements ICDCommandDefinitions {
         buffer.put(sequenceNumber);
         buffer.put(commandID);
         buffer.put(parameter);
-        buffer.put(crc);
+        //buffer.put(crc);
 
         // 将ByteBuffer转化为byte数组
         data = buffer.array();

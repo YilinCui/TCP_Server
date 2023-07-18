@@ -13,8 +13,8 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
     private int size;
     private byte sequenceNumber;
     private byte commandID;
-    private byte[] parameter;
-    private byte crc;
+    private byte[] payload;
+    private byte[] crc32;
     public DecodingPacket(byte[] receivedBuffer){
         this.receivedBuffer = receivedBuffer;
         parsePacket();
@@ -23,7 +23,7 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
     private void parsePacket(){
         size = receivedBuffer[0];
 
-        // Check if the packet has at least 4 parts (length, sequence number, instruction id, CRC)
+        // Check if the packet has at least 4 parts (length, sequence number, instruction id, crc32)
         if (size < 4) {
             throw new IllegalArgumentException("Invalid packet , the packet length shouldn't be less than 4");
         }
@@ -39,21 +39,25 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
         // Sequence number
         sequenceNumber = receivedBuffer[1];
 
-        int parameterSize = size - 4;
-        parameter = new byte[parameterSize];
+        int payloadSize = size - 4;
+        payload = new byte[payloadSize];
 
-        // Parameters - the parameters are between sequence number and instruction id
-        if(parameterSize>0){
+        // payloads - the payloads are between sequence number and instruction id
+        if(payloadSize>0){
             for (int i = 3; i < size - 1; i++) {
-                parameter[i-3] = receivedBuffer[i];
+                payload[i-3] = receivedBuffer[i];
             }
         }
 
         // Instruction ID
         commandID = receivedBuffer[2];
 
-        // CRC
-        crc = receivedBuffer[size - 1];
+        // crc32
+        if (payloadSize > 3) { // Ensure we have at least 4 bytes
+            crc32 = new byte[4];
+            System.arraycopy(receivedBuffer, size - 5, crc32, 0, 4);
+        }
+
     }
 
 
@@ -69,20 +73,20 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
         return commandID;
     }
 
-    public byte[] getParameter() {
-        return parameter;
+    public byte[] getpayload() {
+        return payload;
     }
 
-    public byte getCrc() {
-        return crc;
+    public byte[] getcrc32() {
+        return crc32;
     }
     public String toString(){
         // Create the output string
         String output = "Command ID: " + DataConvert.byteToHex(commandID) + ", " +
                 "Packet Length: " + size + ", " +
                 "Sequence Number: " + DataConvert.byteToHex(sequenceNumber) + ", " +
-                "Parameters: " + DataConvert.bytesToHex(parameter) + ", " + // remove trailing space
-                "CRC: " + DataConvert.byteToHex(crc);
+                "payloads: " + DataConvert.bytesToHex(payload) + ", " + // remove trailing space
+                "crc32: " + DataConvert.byteArrayToHexString(crc32);
         return output;
     }
 }

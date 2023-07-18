@@ -20,8 +20,8 @@ public class EncodingPacket implements ICDCommandDefinitions {
     private String file_name;
     private byte sequenceNumber;
     private byte commandID;
-    private byte[] parameter;
-    private byte crc;
+    private byte[] payload;
+    private byte crc32[];
     private byte[] data;
     private byte[] ACK;
     boolean needACK;
@@ -31,13 +31,12 @@ public class EncodingPacket implements ICDCommandDefinitions {
         this.commandID = decodingPacket.getCommandID();
         this.sequenceNumber = decodingPacket.getSequenceNumber();
         if(!needACK){
-            this.crc = decodingPacket.getCrc();
-
             this.file_name = file_name;
             // By default, each retrieve operation should have corresponding serialized packet.
             try{
                 DecodingPacket packet = PacketManager.deserialize(file_name);
-                this.parameter = packet.getParameter();
+                this.payload = packet.getpayload();
+                this.crc32 = packet.getcrc32();
                 constructPacket();
             }catch (NullPointerException c) {
                 System.out.println("Can't find the file you looking for!" + file_name + ". Sending back default value...");
@@ -66,7 +65,7 @@ public class EncodingPacket implements ICDCommandDefinitions {
 
     public void constructPacket() {
         // 首先计算出新的byte数组的大小
-        int totalLength = 3 + parameter.length;  // 这里4是因为有4个byte变量-1个冗余位
+        int totalLength = 3 + payload.length + crc32.length;  // 3->size, sequenceID, CommandID
 
         // 初始化ByteBuffer
         ByteBuffer buffer = ByteBuffer.allocate(totalLength);
@@ -75,8 +74,8 @@ public class EncodingPacket implements ICDCommandDefinitions {
         buffer.put((byte) totalLength);
         buffer.put(sequenceNumber);
         buffer.put(commandID);
-        buffer.put(parameter);
-        //buffer.put(crc);
+        buffer.put(payload);
+        buffer.put(crc32);
 
         // 将ByteBuffer转化为byte数组
         data = buffer.array();

@@ -22,6 +22,19 @@ public class DataConvert {
         }
         return new String(hexChars).trim(); // remove trailing space
     }
+
+    public static String byteArrayToHexString(byte[] bytes){
+        if(bytes==null){
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02X ", b));
+        }
+        String result = sb.toString().trim(); // Remove the trailing space
+        return result;
+    }
+
     public static String hexToString(int hexNumber) {
         // 这会移除 "0x" 前缀并将数值转换为字符串
         return Integer.toHexString(hexNumber).toUpperCase();

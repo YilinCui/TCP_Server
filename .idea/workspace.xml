@@ -6,13 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeOnOff.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeOnOff.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameters.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeOnOff.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapy.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameters.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachyModeOnOff.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachyTherapy.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParseData/DataConvert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/DataConvert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,23 +52,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/TCP_Server",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/TCP_Server&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -81,7 +91,7 @@
       <workItem from="1689205657644" duration="403000" />
       <workItem from="1689206082178" duration="38421000" />
       <workItem from="1689380232461" duration="28000" />
-      <workItem from="1689613382301" duration="39051000" />
+      <workItem from="1689613382301" duration="41929000" />
     </task>
     <servers />
   </component>

@@ -25,17 +25,22 @@ public class EncodingPacket implements ICDCommandDefinitions {
 
     public EncodingPacket(DecodingPacket decodingPacket, boolean needACK, String file_name) {
         this.needACK = needACK;
+        this.commandID = decodingPacket.getCommandID();
         if(!needACK){
             this.sequenceNumber = decodingPacket.getSequenceNumber();
-            this.commandID = decodingPacket.getCommandID();
+
             this.crc = decodingPacket.getCrc();
 
             this.file_name = file_name;
             // By default, each retrieve operation should have corresponding serialized packet.
-            DecodingPacket packet = PacketManager.deserialize(file_name);
-            this.parameter = packet.getParameter();
-
-            constructPacket();
+            try{
+                DecodingPacket packet = PacketManager.deserialize(file_name);
+                this.parameter = packet.getParameter();
+                constructPacket();
+            }catch (NullPointerException c) {
+                System.out.println("Can't find the file you looking for!" + file_name);
+//                c.printStackTrace();
+            }
         }
 
     }
@@ -47,10 +52,19 @@ public class EncodingPacket implements ICDCommandDefinitions {
      */
     public byte[] getPacketData() {
         if (needACK){
-            return new byte[] {
-                    0x0C, 0x60, (byte)0xBF, 0x48, 0x00, 0x74, 0x00, 0x00,
-                    0x00, 0x00, 0x00, (byte)0xE6, 0x49, (byte)0xE9, 0x0F
-            };
+            switch(commandID){
+                case 0x48:
+                    return new byte[] {
+                            0x0C, 0x60, (byte)0xBF, commandID, 0x00, 0x74, 0x00, 0x00,
+                            0x00, 0x00, 0x00, (byte)0xE6, 0x49, (byte)0xE9, 0x0F
+                    };
+                case 0x76:
+                    return new byte[] {
+                            0x0C, 0x60, (byte)0xBF, commandID, 0x00, 0x74, 0x00, 0x00,
+                            0x00, 0x00, 0x00, (byte)0xE6, 0x49, (byte)0xE9, 0x0F
+                    };
+            }
+
         }
         return data;
     }

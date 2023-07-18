@@ -16,15 +16,15 @@ public interface FilesHandler {
             // 检查目录是否存在
             if (Files.exists(dirPath)) {
                 // 如果目录存在，删除它
-                Files.walk(dirPath)
-                        .sorted(Comparator.reverseOrder())
-                        .forEach(path -> {
-                            try {
-                                Files.delete(path);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        });
+//                Files.walk(dirPath)
+//                        .sorted(Comparator.reverseOrder())
+//                        .forEach(path -> {
+//                            try {
+//                                Files.delete(path);
+//                            } catch (IOException e) {
+//                                throw new RuntimeException(e);
+//                            }
+//                        });
             }
             // 创建新的目录，包括所有不存在的父目录
             Files.createDirectories(dirPath);

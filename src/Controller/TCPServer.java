@@ -1,5 +1,6 @@
 package Controller;
 
+import ParseData.DataConvert;
 import ParseData.DecodingPacket;
 import ParseData.ICDCommandDefinitions;
 
@@ -52,13 +53,19 @@ public class TCPServer implements ICDCommandDefinitions {
                 int bytes;
                 while ((bytes = inputStream.read(buffer)) != -1) {
                     byte[] receivedBytes = Arrays.copyOf(buffer, bytes);
-                    DecodingPacket packet = new DecodingPacket(receivedBytes);
+                    try{
+                        DecodingPacket packet = new DecodingPacket(receivedBytes);
 
-                    // if command id is valid
-                    myDevice.process(packet);
-                    byte[] response = myDevice.getResponse();
-                    if(response!=null)
-                    outputStream.write(myDevice.getResponse());
+                        // if command id is valid
+                        myDevice.process(packet);
+                        byte[] response = myDevice.getResponse();
+                        if(response!=null){
+                            outputStream.write(myDevice.getResponse());
+                            System.out.println("Sent to client: " + DataConvert.byteDataToHexString(response) + "\n");
+                        }
+                    }catch (IllegalArgumentException e){
+                        System.out.println(e.getMessage());
+                    }
                 }
 
                 inputStream.close();

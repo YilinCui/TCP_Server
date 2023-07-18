@@ -29,11 +29,11 @@ public class PacketManager {
             in.close();
             fileIn.close();
         } catch (IOException i) {
-            i.printStackTrace();
+            //i.printStackTrace();
             return null;
         } catch (ClassNotFoundException c) {
             System.out.println("DecodingPacket class not found");
-            c.printStackTrace();
+            //c.printStackTrace();
             return null;
         }
         return packet;

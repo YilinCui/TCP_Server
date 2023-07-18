@@ -78,10 +78,10 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
     }
     public String toString(){
         // Create the output string
-        String output = "Packet Length: " + size + ", " +
+        String output = "Command ID: " + DataConvert.byteToHex(commandID) + ", " +
+                "Packet Length: " + size + ", " +
                 "Sequence Number: " + DataConvert.byteToHex(sequenceNumber) + ", " +
                 "Parameters: " + DataConvert.bytesToHex(parameter) + ", " + // remove trailing space
-                "Command ID: " + DataConvert.byteToHex(commandID) + ", " +
                 "CRC: " + DataConvert.byteToHex(crc);
         return output;
     }

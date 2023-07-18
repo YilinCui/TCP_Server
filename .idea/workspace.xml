@@ -6,12 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DecodingPacket.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FilesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FilesHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TCPServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameters.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameters.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameters.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameters.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ParseData/PacketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/PacketManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TCPServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rawDataScratch" beforeDir="false" afterPath="$PROJECT_DIR$/src/rawDataScratch" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +83,7 @@
       <workItem from="1689205657644" duration="403000" />
       <workItem from="1689206082178" duration="38421000" />
       <workItem from="1689380232461" duration="28000" />
-      <workItem from="1689613382301" duration="7843000" />
+      <workItem from="1689613382301" duration="20468000" />
     </task>
     <servers />
   </component>

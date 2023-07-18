@@ -10,7 +10,7 @@ This project is intended for use solely by authorized individuals or entities, a
 
 By accessing or using this project, you agree to abide by the above terms.
 
-
+### TCP Server-Client Interaction and Data Processing Workflow
 - Start
 - TCP Server Listens on port 8888
 - Client Connects -> Server creates new Thread

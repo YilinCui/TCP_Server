@@ -66,61 +66,61 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
         // Switch cases
         switch (iCommandId) {
-            case ICD_CMD_READ_TACHY_DETECT_PARAM: //0x04
+            case ICD_CMD_READ_TACHY_DETECT_PARAM: //0x04 Read Tachy Mode Parameter
                 fileName = folderName + Constant.TACHY_MODE_PARAMETER;
                 IOCommand(fileName, 1, packet);
 
                 break;
 
-            case ICD_CMD_READ_TACHY_MODE: //0x15
+            case ICD_CMD_READ_TACHY_MODE: //0x15 Read Tachy Mode OnOff
                 fileName = folderName + Constant.TACHY_MODE_ONOFF;
                 IOCommand(fileName, 1, packet);
 
                 break;
 
-            case ICD_CMD_READ_TACHY_SVT_PARAM: //0x26
+            case ICD_CMD_READ_TACHY_SVT_PARAM: //0x26 Read Tachy SVT Parameters
                 fileName = folderName + Constant.TACHY_SVT_DETECTION;
                 IOCommand(fileName, 1, packet);
 
                 break;
 
-            case ICD_CMD_SET_BRADY_PARAM: // 0x48
+            case ICD_CMD_SET_BRADY_PARAM: // 0x48 Program Brady Parameters
                 fileName = folderName + Constant.BRADY_PARAMETER;
                 IOCommand(fileName, 2, packet);
 
                 break;
 
-            case ICD_CMD_READ_BRADY_PARAM: // 0x4A
+            case ICD_CMD_READ_BRADY_PARAM: // 0x4A Read Brady Parameters
                 fileName = folderName + Constant.BRADY_PARAMETER;
                 IOCommand(fileName, 1, packet);
 
                 break;
 
-            case ICD_CMD_SET_TACHY_DETECT_PARAM : //0x52
+            case ICD_CMD_SET_TACHY_DETECT_PARAM : //0x52 Set Tachy Mode Parameters
                 fileName = folderName + Constant.TACHY_MODE_PARAMETER;
                 IOCommand(fileName, 2, packet);
 
                 break;
 
-            case ICD_CMD_SET_TACHY_THERAPY_PARAM : //0x53
+            case ICD_CMD_SET_TACHY_THERAPY_PARAM : //0x53 Set Tachy Therapy Parameters
                 fileName = folderName + Constant.TACHY_THERAPY_PARAMETER;
                 IOCommand(fileName, 2, packet);
 
                 break;
 
-            case ICD_CMD_READ_TACHY_THERAPY_PARAM : //0x54
+            case ICD_CMD_READ_TACHY_THERAPY_PARAM : //0x54 Read Tachy Therapy Parameters
                 fileName = folderName + Constant.TACHY_THERAPY_PARAMETER;
                 IOCommand(fileName, 1, packet);
 
                 break;
 
-            case ICD_CMD_SET_TACHY_MODE : //0x75
+            case ICD_CMD_SET_TACHY_MODE : //0x75 Set Tachy Mode OnOFF
                 fileName = folderName + Constant.TACHY_MODE_ONOFF;
                 IOCommand(fileName, 2, packet);
 
                 break;
 
-            case ICD_CMD_SET_TACHY_SVT_PARAM : //0x76
+            case ICD_CMD_SET_TACHY_SVT_PARAM : //0x76 Set Tachy SVT Parameters
                 fileName = folderName + Constant.TACHY_SVT_DETECTION;
                 IOCommand(fileName, 2, packet);
 

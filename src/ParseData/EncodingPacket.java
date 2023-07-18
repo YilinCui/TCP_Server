@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.zip.CRC32;
 
 /**
  * To encoding a packet, you need 2 things
@@ -21,14 +23,14 @@ public class EncodingPacket implements ICDCommandDefinitions {
     private byte[] parameter;
     private byte crc;
     private byte[] data;
+    private byte[] ACK;
     boolean needACK;
 
     public EncodingPacket(DecodingPacket decodingPacket, boolean needACK, String file_name) {
         this.needACK = needACK;
         this.commandID = decodingPacket.getCommandID();
+        this.sequenceNumber = decodingPacket.getSequenceNumber();
         if(!needACK){
-            this.sequenceNumber = decodingPacket.getSequenceNumber();
-
             this.crc = decodingPacket.getCrc();
 
             this.file_name = file_name;
@@ -41,9 +43,13 @@ public class EncodingPacket implements ICDCommandDefinitions {
                 System.out.println("Can't find the file you looking for!" + file_name);
 //                c.printStackTrace();
             }
+        }else{
+            ConstructACK();
         }
 
     }
+
+
 
     /**
      * If it's ACK signal, just send back hardcoding byte[] to bypass ACK check.
@@ -52,19 +58,7 @@ public class EncodingPacket implements ICDCommandDefinitions {
      */
     public byte[] getPacketData() {
         if (needACK){
-            switch(commandID){
-                case 0x48:
-                    return new byte[] {
-                            0x0C, 0x60, (byte)0xBF, commandID, 0x00, 0x74, 0x00, 0x00,
-                            0x00, 0x00, 0x00, (byte)0xE6, 0x49, (byte)0xE9, 0x0F
-                    };
-                case 0x76:
-                    return new byte[] {
-                            0x0C, 0x60, (byte)0xBF, commandID, 0x00, 0x74, 0x00, 0x00,
-                            0x00, 0x00, 0x00, (byte)0xE6, 0x49, (byte)0xE9, 0x0F
-                    };
-            }
-
+            return ACK;
         }
         return data;
     }
@@ -85,6 +79,44 @@ public class EncodingPacket implements ICDCommandDefinitions {
 
         // 将ByteBuffer转化为byte数组
         data = buffer.array();
+    }
+
+    private void ConstructACK() {
+        ByteBuffer buffer = ByteBuffer.allocate(11);
+        buffer.put((byte) 0x0C);  // Starts with 0x0C
+        buffer.put(sequenceNumber);  // Followed by parameter
+        buffer.put((byte) 0xBF);  // Then 0xBF
+        buffer.put(commandID);  // Then commandID
+        buffer.put((byte) 0x00);  // Then 0x00 means success
+        buffer.put(sequenceNumber);  // Then sequenceNumber
+        buffer.put(new byte[]{0x00, 0x00, 0x00, 0x00, 0x00});  // Ends with five 0x00s
+
+        // Now you can use the buffer for your purposes.
+        // For example, you can get the array of bytes:
+        byte[] array = buffer.array();
+        byte[] crc32 = calculateCRC32(array, 3, array.length - 3);
+        ACK = new byte[array.length + crc32.length];
+        System.arraycopy(array, 0, ACK, 0, array.length);
+        System.arraycopy(crc32, 0, ACK, array.length, crc32.length);
+
+        // print the ack to console in hexadecimal form
+//        for (byte b : ack) {
+//            System.out.print(String.format("%02X ", b));
+//        }
+    }
+
+    public static byte[] calculateCRC32(byte[] data, int start, int length) {
+        CRC32 crc = new CRC32();
+        crc.update(data, start, length);
+
+        long checksum = crc.getValue();
+
+        // Convert to byte array in little endian order
+        ByteBuffer bb = ByteBuffer.allocate(Integer.BYTES);
+        bb.order(ByteOrder.LITTLE_ENDIAN);  // Use little endian byte order
+        bb.putInt((int) checksum);
+
+        return bb.array();
     }
 
 }

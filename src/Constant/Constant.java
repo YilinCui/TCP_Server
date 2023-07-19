@@ -16,6 +16,8 @@ public class Constant {
     public static final String TACHY_MODE_ONOFF = "TachyModeOnOff.per";
     public static final String LEAD_INFO = "LeadInfo.per";
     public static final String CLINICIAN_NOTE = "ClinicianNote.per";
+    public static final String PATIENT_INFO1 = "PatientInfo1.per";
+    public static final String PATIENT_INFO2 = "PatientInfo2.per";
     public static final byte[] FIRMWARE_VERSION = new byte[]{
             0x1C, 0x48, 0x27, 0x01, 0x00, 0x12, 0x01, 0x12, 0x00, 0x12, 0x00, 0x12, 0x00,
             0x20, 0x20, 0x20, 0x20, 0x31, 0x2E, 0x30, 0x2E, 0x31, 0x39, 0x1A, 0x2B, 0x3C,

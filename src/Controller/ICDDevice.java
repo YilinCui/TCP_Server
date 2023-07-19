@@ -8,6 +8,7 @@ import java.io.File;
 
 public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     private int chargeLogCnt = 1;
+    private int patienInfoIndex = 1;
     private byte[] byteArray;
     private String folderName;
     private EncodingPacket encodingPacket;
@@ -252,8 +253,31 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
                 break;
 
-            case ICD_CMD_READ_PATIENT_INFO: //0x69 Read Patient Info
+            case ICD_CMD_SET_PATIENT_INFO: //0x68 Set Patient Info
+                if(patienInfoIndex==1){
+                    fileName = folderName + Constant.PATIENT_INFO1;
+                    IOCommand(fileName, 2, packet);
+                    patienInfoIndex = 2;
+                }else if(patienInfoIndex==2){
+                    fileName = folderName + Constant.PATIENT_INFO2;
+                    IOCommand(fileName, 2, packet);
+                    patienInfoIndex = 1;
+                }
 
+                break;
+
+            case ICD_CMD_READ_PATIENT_INFO: //0x69 Read Patient Info
+                if(patienInfoIndex==1){
+                    fileName = folderName + Constant.PATIENT_INFO1;
+                    IOCommand(fileName, 1, packet);
+                    patienInfoIndex = 2;
+                }else if(patienInfoIndex==2){
+                    fileName = folderName + Constant.PATIENT_INFO2;
+                    IOCommand(fileName, 1, packet);
+                    patienInfoIndex = 1;
+                }
+
+                if(byteArray==null)
                 byteArray = Constant.READ_PATIENT_INFO;
 
                 break;

@@ -17,14 +17,8 @@ By accessing or using this project, you agree to abide by the above terms.
 - Thread Creates Controller.ICDDevice instance
 - DecodingPacket class decodes incoming data
 - Perform Corresponding I/O operations
-- Process modules:
-    - Brady Parameters module processing 
-        - EncodingPacket class encodes data for Brady Parameters
-    - Tachy Detection module processing
-        - EncodingPacket class encodes data for Tachy Detection
-    - Tachy Therapy module processing
-        - EncodingPacket class encodes data for Tachy Therapy
-- Server sends data back to client
+- Process data
+- Server sends encoded packet back to client
 - Repeat (until client disconnects)
 - End
 

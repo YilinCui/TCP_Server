@@ -80,12 +80,15 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
 
-                byteArray = Constant.READ_EPESODE_HEADER;
+                //byteArray = Constant.READ_EPESODE_HEADER;
 
                 break;
 
             case ICD_CMD_READ_PATIENT_LEADS_INFO: //0x0C Read Patient Lead Info
+                fileName = folderName + Constant.LEAD_INFO;
+                IOCommand(fileName, 1, packet);
 
+                if(byteArray==null)
                 byteArray = Constant.PATIENT_LEAD_INFO;
 
                 break;
@@ -103,7 +106,10 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 break;
 
             case ICD_CMD_READ_CLINICIAN_NOTE: //0x0F Read Clinician Note
+                fileName = folderName + Constant.CLINICIAN_NOTE;
+                IOCommand(fileName, 1, packet);
 
+                if(byteArray==null)
                 byteArray = Constant.READ_CLINICIAN_NOTE;
 
                 break;
@@ -249,6 +255,20 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
             case ICD_CMD_READ_PATIENT_INFO: //0x69 Read Patient Info
 
                 byteArray = Constant.READ_PATIENT_INFO;
+
+                break;
+
+            case ICD_CMD_SET_PATIENT_LEADS_INFO: //0x6A Set Lead Info
+
+                fileName = folderName + Constant.LEAD_INFO;
+                IOCommand(fileName, 2, packet);
+
+                break;
+
+            case ICD_CMD_SET_CLINICIAN_NOTE: //0x6C Set Clinician Note
+
+                fileName = folderName + Constant.CLINICIAN_NOTE;
+                IOCommand(fileName, 2, packet);
 
                 break;
 

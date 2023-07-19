@@ -21,10 +21,10 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
     }
 
     private void parsePacket(){
-        size = receivedBuffer[0];
+        size = receivedBuffer[0] & 0xFF;
 
         // Check if the packet has at least 4 parts (length, sequence number, instruction id, crc32)
-        if (size < 4) {
+        if (receivedBuffer.length < 4) {
             throw new IllegalArgumentException("Invalid packet , the packet length shouldn't be less than 4");
         }
 
@@ -32,7 +32,7 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
         int fieldCount = receivedBuffer.length;
 
         if(fieldCount!=size){
-            throw new IllegalArgumentException("Invalid packet , the packet format does not fit ICDCommand rule \n" +
+            throw new IllegalArgumentException("Invalid packet , the packet format does not fit ICDCommand rule because the length of the byte[]!= claimed packet length \n" +
                     "The invalid packet is: " + DataConvert.bytesToHex(receivedBuffer));
         }
 
@@ -84,9 +84,9 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
     public String toString(){
         // Create the output string
         String output = "Command ID: " + DataConvert.byteToHex(commandID) + ", " +
-                "Packet Length: " + size + ", " +
+                "Packet Length(int): " + size + ", " +
                 "Sequence Number: " + DataConvert.byteToHex(sequenceNumber) + ", " +
-                "payloads: " + DataConvert.bytesToHex(payload) + ", " + // remove trailing space
+                "payloads(Hex): " + DataConvert.bytesToHex(payload) + ", " +
                 "crc32: " + DataConvert.byteArrayToHexString(crc32);
         return output;
     }

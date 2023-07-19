@@ -39,12 +39,13 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
         // Sequence number
         sequenceNumber = receivedBuffer[1];
 
-        int payloadSize = size - 4;
+        // the size of payload should be either 0, or larger or equals to 4
+        int payloadSize = size - 4==0?0:size-8;
         payload = new byte[payloadSize];
 
         // payloads - the payloads are between sequence number and instruction id
         if(payloadSize>0){
-            for (int i = 3; i < size - 1; i++) {
+            for (int i = 3; i < size - 5; i++) {
                 payload[i-3] = receivedBuffer[i];
             }
         }

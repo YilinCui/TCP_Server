@@ -58,10 +58,10 @@ public class TCPServer implements ICDCommandDefinitions {
 
                         // if command id is valid
                         myDevice.process(packet);
-                        byte[] response = myDevice.getResponse();
-                        if(response!=null){
-                            outputStream.write(myDevice.getResponse());
-                            System.out.println("Sent to client: " + DataConvert.byteDataToHexString(response) + "\n");
+                        byte[] TCPServerResponse = myDevice.getResponse();
+                        if(TCPServerResponse!=null){
+                            outputStream.write(TCPServerResponse);
+                            System.out.println("Sent to client: " + DataConvert.byteDataToHexString(TCPServerResponse) + "\n");
                         }
                     }catch (IllegalArgumentException e){
                         System.out.println(e.getMessage());

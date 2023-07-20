@@ -9,21 +9,20 @@ import java.io.File;
 public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     private int chargeLogCnt = 1;
     private int patienInfoIndex = 1;
-    private byte[] byteArray;
+    private byte[] bResponseArray;
     private String folderName;
     private EncodingPacket encodingPacket;
-
     public BradyParameter bp_Local;
-
     public TachyDetection td_Local;
-
     public TachyATPTherapy atp_Local;
-
     public TachyShockTherapy shock_Local;
-
     public DeviceResetLog resetlog_Local;
-
     public DeviceFaultLog faultlog_Local;
+    public LeadInfo di_Local;
+    public PatientInformation pi_Local;
+    public ClinicianNote cn_Local;
+    public DeviceLog dl_Local;
+
 
 
     // runtime status
@@ -49,8 +48,21 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     public ICDDevice(int clientID){
         folderName = "src" + File.separator + "LocalData" + File.separator + "Device" + clientID + File.separator;
         FilesHandler.creatFolder(folderName);
+        initializeDevice();
     }
 
+    private void initializeDevice(){
+        bp_Local = new BradyParameter();
+        td_Local = new TachyDetection();
+        atp_Local = new TachyATPTherapy();
+        shock_Local = new TachyShockTherapy();
+        resetlog_Local = new DeviceResetLog();
+        faultlog_Local = new DeviceFaultLog();
+        di_Local = new LeadInfo(folderName);
+        pi_Local = new PatientInformation();
+        cn_Local = new ClinicianNote(folderName);
+        dl_Local = new DeviceLog();
+    }
 
     // export/save to local XML document
 
@@ -63,13 +75,13 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         }
         // Initialize variable
         encodingPacket = null;
-        byteArray = null;
+        bResponseArray = null;
         String fileName = null;
         // Switch cases
         switch (iCommandId) {
             case ICD_CMD_READ_ALERT_PARAM: //0x02 Read Alert Parameter
 
-                byteArray = Constant.READ_ALERT_PARAMETER;
+                bResponseArray = Constant.READ_ALERT_PARAMETER;
 
                 break;
 
@@ -81,7 +93,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
 
-                //byteArray = Constant.READ_EPESODE_HEADER;
+                //bResponseArray = Constant.READ_EPESODE_HEADER;
 
                 break;
 
@@ -89,47 +101,45 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 fileName = folderName + Constant.LEAD_INFO;
                 IOCommand(fileName, 1, packet);
 
-                if(byteArray==null)
-                byteArray = Constant.PATIENT_LEAD_INFO;
+                if(bResponseArray==null)
+                bResponseArray = Constant.PATIENT_LEAD_INFO;
 
                 break;
 
             case ICD_CMD_READ_SERIAL_MODEL_NUM: //0x0D Read Device Serial Number
 
-                byteArray = Constant.DEVICE_SERIAL_NUMBER;
+                bResponseArray = Constant.DEVICE_SERIAL_NUMBER;
 
                 break;
 
             case ICD_CMD_READ_DAILY_MMT_HEADER: //0x0E Read Daily Measurement Header
 
-                byteArray = Constant.READ_DAILY_MEASUREMENT_HEADER;
+                bResponseArray = Constant.READ_DAILY_MEASUREMENT_HEADER;
 
                 break;
 
             case ICD_CMD_READ_CLINICIAN_NOTE: //0x0F Read Clinician Note
-                fileName = folderName + Constant.CLINICIAN_NOTE;
-                IOCommand(fileName, 1, packet);
+                cn_Local.process(packet, 1);
 
-                if(byteArray==null)
-                byteArray = Constant.READ_CLINICIAN_NOTE;
+                bResponseArray = cn_Local.getbRetrunData();
 
                 break;
 
             case ICD_CMD_READ_TACHY_LOG: //0x10 Read Tachy Log
 
-                byteArray = Constant.READ_TACHY_LOG;
+                bResponseArray = Constant.READ_TACHY_LOG;
 
                 break;
 
             case ICD_CMD_READ_DEVICE_RESET_LOG: //0x11 Read Device Reset Log
 
-                byteArray = Constant.READ_DEVICE_RESET_LOG;
+                bResponseArray = Constant.READ_DEVICE_RESET_LOG;
 
                 break;
 
             case ICD_CMD_READ_DEVICE_FAULT_LOG: //0x14 Read Device Fault Log
 
-                byteArray = Constant.READ_DEVICE_FAULT_LOG;
+                bResponseArray = Constant.READ_DEVICE_FAULT_LOG;
 
                 break;
 
@@ -141,31 +151,31 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_RETRIEVE_PG_TIMER_AND_RTC_DELTA: //0x19 Retrieve M2 Timer and RTC Timer
 
-                byteArray = Constant.READ_M2_RTC_TIMER;
+                bResponseArray = Constant.READ_M2_RTC_TIMER;
 
                 break;
 
             case ICD_CMD_RETRIEVE_RATE_HISTOGRAM: //0x1B RETRIEVE RATE HISTOGRAM
 
-                byteArray = Constant.RETRIEVE_RATE_HISTOGRAM;
+                bResponseArray = Constant.RETRIEVE_RATE_HISTOGRAM;
 
                 break;
 
             case ICD_CMD_RETRIEVE_RATE_HISTOGRAM_LIFETIME: //0x1C RETRIEVE RATE HISTOGRAM LIFETIME
 
-                byteArray = Constant.RETRIEVE_RATE_HISTOGRAM_LIFETIME;
+                bResponseArray = Constant.RETRIEVE_RATE_HISTOGRAM_LIFETIME;
 
                 break;
 
             case ICD_CMD_READ_CAPACITOR_REFORM: //0x20 Read Cap Reform Log
 
-                byteArray = Constant.READ_CAP_REFORM_LOG;
+                bResponseArray = Constant.READ_CAP_REFORM_LOG;
 
                 break;
 
             case ICD_CMD_READ_GLOBAL_CONSTANTS: //0x24 Read Global Constants
 
-                byteArray = Constant.READ_GLOBAL_CONSTANTS;
+                bResponseArray = Constant.READ_GLOBAL_CONSTANTS;
 
                 break;
 
@@ -177,43 +187,43 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_FIRMWARE_VERSION: //0x27 Read FW Revision
 
-                byteArray = Constant.FIRMWARE_VERSION;
+                bResponseArray = Constant.FIRMWARE_VERSION;
 
                 break;
 
             case ICD_CMD_READ_PACE_THRESHOLD_LOG: //0x29 Read Pace Threshold Log
 
-                byteArray = Constant.READ_PACE_THRESHOLD_LOG;
+                bResponseArray = Constant.READ_PACE_THRESHOLD_LOG;
 
                 break;
 
             case ICD_CMD_READ_LAST_MEASUREMENTS: //0x2A Read Most Recent Measurement
 
-                byteArray = Constant.READ_MOST_RECENT_MEASUREMENT;
+                bResponseArray = Constant.READ_MOST_RECENT_MEASUREMENT;
 
                 break;
 
             case ICD_CMD_READ_GLOBAL_COUNTERS: //0x2B Read Global COUNTERS
 
-                byteArray = Constant.READ_GLOBAL_COUNTERS;
+                bResponseArray = Constant.READ_GLOBAL_COUNTERS;
 
                 break;
 
             case ICD_CMD_READ_ALARM_LOG: //0x2E Read Alarm Log
 
-                byteArray = Constant.READ_ALARM_LOG;
+                bResponseArray = Constant.READ_ALARM_LOG;
 
                 break;
 
             case ICD_CMD_READ_BRADY_COUNTERS: //0x2F Read Brady COUNTERS
 
-                byteArray = Constant.READ_BRADY_COUNTERS;
+                bResponseArray = Constant.READ_BRADY_COUNTERS;
 
                 break;
 
             case ICD_CMD_READ_BATTERY_LOG: //0x30 Read Battery Log
 
-                byteArray = Constant.READ_BATTERY_LOG;
+                bResponseArray = Constant.READ_BATTERY_LOG;
 
                 break;
 
@@ -249,7 +259,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
 
-                byteArray = Constant.READ_SINGLE_EPISODE;
+                bResponseArray = Constant.READ_SINGLE_EPISODE;
 
                 break;
 
@@ -277,8 +287,8 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                     patienInfoIndex = 1;
                 }
 
-                if(byteArray==null)
-                byteArray = Constant.READ_PATIENT_INFO;
+                if(bResponseArray==null)
+                bResponseArray = Constant.READ_PATIENT_INFO;
 
                 break;
 
@@ -291,22 +301,29 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_SET_CLINICIAN_NOTE: //0x6C Set Clinician Note
 
-                fileName = folderName + Constant.CLINICIAN_NOTE;
-                IOCommand(fileName, 2, packet);
+                cn_Local.process(packet, 2);
+
+                bResponseArray = cn_Local.getbRetrunData();
+
+                break;
+            case ICD_CMD_PROGRAM_RTC_DELTA: //0x6D Program RTC Delta
+
+                bResponseArray = Constant.PROGRAM_RTC_DELTA;
 
                 break;
 
+
             case ICD_CMD_SET_MAGNET_MODE: //0x6E Set Magnet Mode
 
-                byteArray = Constant.SET_MAGNET_MODE;
+                bResponseArray = Constant.SET_MAGNET_MODE;
 
                 break;
 
             case ICD_CMD_READ_CHARGE_LOG: //0x74 Read Charge Log
                 if(chargeLogCnt==1){
-                    byteArray = Constant.READ_CHARGE_LOG1;
+                    bResponseArray = Constant.READ_CHARGE_LOG1;
                     chargeLogCnt++;
-                }else byteArray = Constant.READ_CHARGE_LOG2;
+                }else bResponseArray = Constant.READ_CHARGE_LOG2;
 
 
                 break;
@@ -333,13 +350,13 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_SAFETY_CORE_PARAM: // 0x87 Safty Core Parameter
 
-                byteArray = Constant.SAFTY_CORE_PARAMETERS;
+                bResponseArray = Constant.SAFTY_CORE_PARAMETERS;
 
                 break;
 
             case ICD_CMD_READ_BATTERY_DETAIL: // 0x88 Read Battery Detail
 
-                byteArray = Constant.READ_BATTERY_DETAIL;
+                bResponseArray = Constant.READ_BATTERY_DETAIL;
 
                 break;
 
@@ -351,7 +368,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
     public byte[] getResponse(){
 
-       return byteArray;
+       return bResponseArray;
     }
 
     /**
@@ -363,13 +380,13 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         // Read
         if(mode==1){
             encodingPacket = new EncodingPacket(packet,false, fileName);
-            byteArray = encodingPacket.getPacketData();
+            bResponseArray = encodingPacket.getPacketData();
         }
         // Write
         else if(mode==2){
             PacketManager.serialize(packet, fileName);
             encodingPacket = new EncodingPacket(packet,true, fileName);
-            byteArray = encodingPacket.getPacketData();
+            bResponseArray = encodingPacket.getPacketData();
         }
     }
 }

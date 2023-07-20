@@ -74,6 +74,26 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
         return commandID;
     }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public void setSequenceNumber(byte sequenceNumber) {
+        this.sequenceNumber = sequenceNumber;
+    }
+
+    public void setCommandID(byte commandID) {
+        this.commandID = commandID;
+    }
+
+    public void setPayload(byte[] payload) {
+        this.payload = payload;
+    }
+
+    public void setCrc32(byte[] crc32) {
+        this.crc32 = crc32;
+    }
+
     public byte[] getpayload() {
         return payload;
     }

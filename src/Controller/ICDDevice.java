@@ -6,6 +6,13 @@ import pgdata.*;
 
 import java.io.File;
 
+/**
+ * Program的时候直接写入
+ * Retrieve时则可能手动返回假数据。
+ * Send packet to seperate Class to handle if we wish to fake the data.
+ * Otherwise, use ICDCommand method directly for simple I/O
+ */
+
 public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     private int chargeLogCnt = 1;
     private int patienInfoIndex = 1;
@@ -18,7 +25,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     public TachyShockTherapy shock_Local;
     public DeviceResetLog resetlog_Local;
     public DeviceFaultLog faultlog_Local;
-    public LeadInfo di_Local;
+    public LeadInfo li_Local;
     public PatientInformation pi_Local;
     public ClinicianNote cn_Local;
     public DeviceLog dl_Local;
@@ -58,7 +65,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         shock_Local = new TachyShockTherapy();
         resetlog_Local = new DeviceResetLog();
         faultlog_Local = new DeviceFaultLog();
-        di_Local = new LeadInfo(folderName);
+        li_Local = new LeadInfo(folderName);
         pi_Local = new PatientInformation();
         cn_Local = new ClinicianNote(folderName);
         dl_Local = new DeviceLog();
@@ -98,11 +105,13 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 break;
 
             case ICD_CMD_READ_PATIENT_LEADS_INFO: //0x0C Read Patient Lead Info
+
                 fileName = folderName + Constant.LEAD_INFO;
                 IOCommand(fileName, 1, packet);
 
-                if(bResponseArray==null)
-                bResponseArray = Constant.PATIENT_LEAD_INFO;
+                if(bResponseArray==null){
+                    bResponseArray = Constant.PATIENT_LEAD_INFO;
+                }
 
                 break;
 
@@ -119,9 +128,12 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 break;
 
             case ICD_CMD_READ_CLINICIAN_NOTE: //0x0F Read Clinician Note
-                cn_Local.process(packet, 1);
+                fileName = folderName + Constant.CLINICIAN_NOTE;
+                IOCommand(fileName, 1, packet);
 
-                bResponseArray = cn_Local.getbRetrunData();
+                if(bResponseArray==null){
+                    bResponseArray = Constant.READ_CLINICIAN_NOTE;
+                }
 
                 break;
 
@@ -237,6 +249,9 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 fileName = folderName + Constant.BRADY_PARAMETER;
                 IOCommand(fileName, 1, packet);
 
+                if(bResponseArray==null){
+                    bResponseArray = Constant.READ_BRADY_PARAMETERS;
+                }
                 break;
 
             case ICD_CMD_SET_TACHY_DETECT_PARAM : //0x52 Set Tachy Mode Parameters
@@ -281,14 +296,18 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                     fileName = folderName + Constant.PATIENT_INFO1;
                     IOCommand(fileName, 1, packet);
                     patienInfoIndex = 2;
+                    if(bResponseArray==null){
+                        bResponseArray = Constant.READ_PATIENT_INFO1;
+                    }
+
                 }else if(patienInfoIndex==2){
                     fileName = folderName + Constant.PATIENT_INFO2;
                     IOCommand(fileName, 1, packet);
                     patienInfoIndex = 1;
+                    if(bResponseArray==null){
+                        bResponseArray = Constant.READ_PATIENT_INFO2;
+                    }
                 }
-
-                if(bResponseArray==null)
-                bResponseArray = Constant.READ_PATIENT_INFO;
 
                 break;
 
@@ -301,9 +320,8 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_SET_CLINICIAN_NOTE: //0x6C Set Clinician Note
 
-                cn_Local.process(packet, 2);
-
-                bResponseArray = cn_Local.getbRetrunData();
+                fileName = folderName + Constant.CLINICIAN_NOTE;
+                IOCommand(fileName, 2, packet);
 
                 break;
             case ICD_CMD_PROGRAM_RTC_DELTA: //0x6D Program RTC Delta
@@ -373,6 +391,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
     /**
      * Files I/O and serialization
+     * If we don't wish to fake the data, use this method.
      * @param fileName name of the serialized packet. eg. packet.per
      * @param mode mode 1 == Read; mode 2 == Write
      */

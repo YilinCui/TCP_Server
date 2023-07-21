@@ -8,14 +8,17 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/Constant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TCPServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameter.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameter.per" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/ClinicianNote.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/BradyParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/BradyParameter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/LeadInfo.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/PatientInfo1.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/PatientInfo2.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeOnOff.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/ClinicianNote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/ClinicianNote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

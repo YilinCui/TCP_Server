@@ -80,9 +80,7 @@ public class TCPServer implements ICDCommandDefinitions {
     }
 
     public static void main(String[] args) throws IOException {
-        TCPServer server = new TCPServer(8888);
-        server.start();
-
+        new TCPServer(8888).start();
     }
 
 }

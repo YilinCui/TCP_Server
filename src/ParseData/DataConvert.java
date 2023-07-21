@@ -2,6 +2,8 @@ package ParseData;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.zip.CRC32;
 
@@ -88,5 +90,23 @@ public class DataConvert {
 
         return bb.array();
     }
+
+    public static byte[] stringToByteArray(String input, int length) {
+        byte[] bytes = new byte[length];
+        byte[] inputBytes = input.getBytes(StandardCharsets.UTF_8);
+
+        // 如果输入字符串转换为的byte[]长度超过length，那么只拷贝前length个字节
+        if (inputBytes.length > length) {
+            System.arraycopy(inputBytes, 0, bytes, 0, length);
+        }
+        // 如果输入字符串转换为的byte[]长度小于或等于length，那么将整个inputBytes拷贝到bytes，并将剩余位置填充为0
+        else {
+            System.arraycopy(inputBytes, 0, bytes, 0, inputBytes.length);
+            Arrays.fill(bytes, inputBytes.length, length, (byte) 0);
+        }
+
+        return bytes;
+    }
+
 
 }

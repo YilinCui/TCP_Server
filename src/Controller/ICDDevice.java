@@ -5,6 +5,7 @@ import ParseData.*;
 import pgdata.*;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 /**
@@ -108,8 +109,8 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
             case ICD_CMD_READ_PATIENT_LEADS_INFO: //0x0C Read Patient Lead Info
 
                 li_Local.process(packet);
-                li_Local.setManufacturer(generateRandomBytes(16));
-
+                li_Local.setManufacturer(RandomData.generateRandomBytes(16));
+                //li_Local.setManufacturer("自定义");
                 bResponseArray = li_Local.getbRetrunData();
 //                fileName = folderName + Constant.LEAD_INFO;
 //                IOCommand(fileName, 1, packet);
@@ -414,9 +415,6 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         }
     }
 
-    public byte[] generateRandomBytes(int length) {
-        byte[] array = new byte[length];
-        new Random().nextBytes(array);
-        return array;
-    }
+
+
 }

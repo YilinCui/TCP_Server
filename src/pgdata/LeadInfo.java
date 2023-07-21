@@ -145,6 +145,10 @@ public class LeadInfo extends BaseFakeDataGenerator{
         Manufacturer = manufacturer;
     }
 
+    public void setManufacturer(String manufacturer) {
+        Manufacturer = DataConvert.stringToByteArray(manufacturer, Manufacturer.length);
+    }
+
     public byte[] getModelNumber() {
         return ModelNumber;
     }

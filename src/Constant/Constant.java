@@ -8,7 +8,8 @@ import ParseData.DataConvert;
  * Thus, I am currently using Hex->Byte[] conversion method.
  */
 public class Constant {
-    public static final String BRADY_PARAMETER = "BradyParameter.per";
+    public static final String BRADY_PARAMETER_POSTSHOCK = "BradyParameterPostShock.per";
+    public static final String BRADY_PARAMETER_NORM = "BradyParameterNormal.per";
     public static final String TACHY_SVT_DETECTION = "TachySVTDetection.per";
     public static final String TACHY_THERAPY_PARAMETER = "TachyTherapyParameter.per";
     public static final String TACHY_MODE_PARAMETER = "TachyModeParameter.per";
@@ -58,5 +59,7 @@ public class Constant {
     public static final byte[] READ_ALARM_LOG = DataConvert.hexStringToByteArray("58 23 2E 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 01 D8 20 A3 04 0B 00 03 11 D8 20 A3 04 0B 00 04 11 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 01 B2 B4 58 F7 1C DF 44 21");
     public static final byte[] READ_M2_RTC_TIMER = DataConvert.hexStringToByteArray("10 39 19 2D 31 01 00 B2 75 1E 05 57 32 73 83 1C DF 44 21");
     public static final byte[] PROGRAM_RTC_DELTA = DataConvert.hexStringToByteArray("10 36 6D 67 95 02 00 79 4C C9 04 F7 BD D6 3D 1C DF 44 21");
-    public static final byte[] READ_BRADY_PARAMETERS = DataConvert.hexStringToByteArray("23 51 4A 04 01 17 1F 0D 01 00 00 00 00 F4 01 64 0C 00 00 03 0A 0D 0E 00 02 1C 25 72 B6 16 F0 1C DF 44 21");
+    public static final byte[] READ_BRADY_PARAMETERS_POSTSHOCK = DataConvert.hexStringToByteArray("20 2F 4A 03 03 0A 27 0E 00 03 00 00 00 FA 00 78 00 00 00 03 1E 08 02 07 02 14 00 F9 FB 15 11 1C DF 44 21");
+    public static final byte[] READ_BRADY_PARAMETERS_NORM = DataConvert.hexStringToByteArray("20 33 4A 03 01 02 22 03 00 03 00 00 00 FA 00 78 00 00 00 03 1E 08 02 07 02 14 00 98 8F B2 7E 1C DF 44 21");
+    public static final String DEVICE_RESET_LOG = "DeviceResetLog.per";
 }

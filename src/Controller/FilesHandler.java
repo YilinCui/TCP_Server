@@ -33,4 +33,18 @@ public interface FilesHandler {
             System.out.println("Error creating directory: " + e.getMessage());
         }
     }
+
+    static void deleteFile(String filePath){
+        Path path = Paths.get(filePath);
+        if (Files.exists(path)) {
+            try{
+                Files.delete(path);
+            } catch (Exception e){
+                System.out.println("Deleting file operation failed!!");
+            }
+
+        } else {
+            System.out.println(filePath + " non-exists!!");
+        }
+    }
 }

@@ -18,6 +18,7 @@ import java.util.Random;
 public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     private int chargeLogCnt = 1;
     private int patienInfoIndex = 1;
+    private int BradyParameterIndex = 1;
     private byte[] bResponseArray;
     private String folderName;
     private EncodingPacket encodingPacket;
@@ -86,6 +87,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         encodingPacket = null;
         bResponseArray = null;
         String fileName = null;
+        int BradyState = 1;
         // Switch cases
         switch (iCommandId) {
             case ICD_CMD_READ_ALERT_PARAM: //0x02 Read Alert Parameter
@@ -152,6 +154,13 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
             case ICD_CMD_READ_DEVICE_RESET_LOG: //0x11 Read Device Reset Log
 
                 bResponseArray = Constant.READ_DEVICE_RESET_LOG;
+
+                break;
+
+            case ICD_CMD_CLEAR_RESET_LOG: //0x13 Clear Device Reset Log
+
+                fileName = folderName + Constant.DEVICE_RESET_LOG;
+                IOCommand(fileName, 3, packet);
 
                 break;
 
@@ -246,17 +255,44 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 break;
 
             case ICD_CMD_SET_BRADY_PARAM: // 0x48 Program Brady Parameters
-                fileName = folderName + Constant.BRADY_PARAMETER;
-                IOCommand(fileName, 2, packet);
+                BradyState = packet.getpayload()[1] & 0xFF; // Get BradyState code : 0->9
+                switch (BradyState){
+                    case 1:
+                        fileName = folderName + Constant.BRADY_PARAMETER_NORM;
+                        IOCommand(fileName, 2, packet);
+                        break;
+                    case 3:
+                        fileName = folderName + Constant.BRADY_PARAMETER_POSTSHOCK;
+                        IOCommand(fileName, 2, packet);
+                        break;
+                    default:
+                        break;
+                }
+
+                if(bResponseArray==null){
+                    bResponseArray = Constant.READ_BRADY_PARAMETERS_NORM;
+                }
 
                 break;
 
             case ICD_CMD_READ_BRADY_PARAM: // 0x4A Read Brady Parameters
-                fileName = folderName + Constant.BRADY_PARAMETER;
-                IOCommand(fileName, 1, packet);
+                BradyState = packet.getpayload()[0] & 0xFF;
+                switch (BradyState){
+                    case 1:
+                        fileName = folderName + Constant.BRADY_PARAMETER_NORM;
+                        IOCommand(fileName, 1, packet);
+                        break;
+                    case 3:
+                        fileName = folderName + Constant.BRADY_PARAMETER_POSTSHOCK;
+                        IOCommand(fileName, 1, packet);
+                        break;
+                    default:
+
+                        break;
+                }
 
                 if(bResponseArray==null){
-                    bResponseArray = Constant.READ_BRADY_PARAMETERS;
+                    bResponseArray = Constant.READ_BRADY_PARAMETERS_NORM;
                 }
                 break;
 
@@ -410,6 +446,11 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         // Write
         else if(mode==2){
             PacketManager.serialize(packet, fileName);
+            encodingPacket = new EncodingPacket(packet,true, fileName);
+            bResponseArray = encodingPacket.getPacketData();
+        }
+        else if(mode==3){
+            FilesHandler.deleteFile(fileName);
             encodingPacket = new EncodingPacket(packet,true, fileName);
             bResponseArray = encodingPacket.getPacketData();
         }

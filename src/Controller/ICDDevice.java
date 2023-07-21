@@ -5,6 +5,7 @@ import ParseData.*;
 import pgdata.*;
 
 import java.io.File;
+import java.util.Random;
 
 /**
  * Program的时候直接写入
@@ -106,12 +107,16 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_PATIENT_LEADS_INFO: //0x0C Read Patient Lead Info
 
-                fileName = folderName + Constant.LEAD_INFO;
-                IOCommand(fileName, 1, packet);
+                li_Local.process(packet);
+                li_Local.setManufacturer(generateRandomBytes(16));
 
-                if(bResponseArray==null){
-                    bResponseArray = Constant.PATIENT_LEAD_INFO;
-                }
+                bResponseArray = li_Local.getbRetrunData();
+//                fileName = folderName + Constant.LEAD_INFO;
+//                IOCommand(fileName, 1, packet);
+//
+//                if(bResponseArray==null){
+//                    bResponseArray = Constant.PATIENT_LEAD_INFO;
+//                }
 
                 break;
 
@@ -407,5 +412,11 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
             encodingPacket = new EncodingPacket(packet,true, fileName);
             bResponseArray = encodingPacket.getPacketData();
         }
+    }
+
+    public byte[] generateRandomBytes(int length) {
+        byte[] array = new byte[length];
+        new Random().nextBytes(array);
+        return array;
     }
 }

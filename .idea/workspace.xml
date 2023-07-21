@@ -6,18 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/Constant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/ClinicianNote.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/LeadInfo.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/PatientInfo1.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/PatientInfo2.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeOnOff.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/ClinicianNote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/ClinicianNote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/LeadInfo.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/LeadInfo.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParseData/DataConvert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/DataConvert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/BaseFakeDataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/BaseFakeDataGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

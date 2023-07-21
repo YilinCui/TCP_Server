@@ -4,11 +4,14 @@ import ParseData.DecodingPacket;
 import ParseData.EncodingPacket;
 import ParseData.PacketManager;
 
+import java.util.Random;
+
 public abstract class BaseFakeDataGenerator {
     protected String fileName;
     protected byte[] bRetrunData;
 
     protected DecodingPacket packet;
+    protected byte[] packetHeader = new byte[3];
 
     public BaseFakeDataGenerator(){
 
@@ -25,5 +28,7 @@ public abstract class BaseFakeDataGenerator {
         // payload = ...;
         //packet.setPayload(note);
     }
+
+
 
 }

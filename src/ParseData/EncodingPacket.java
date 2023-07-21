@@ -94,7 +94,7 @@ public class EncodingPacket implements ICDCommandDefinitions {
         // Now you can use the buffer for your purposes.
         // For example, you can get the array of bytes:
         byte[] array = buffer.array();
-        byte[] crc32 = calculateCRC32(array, 3, array.length - 3);
+        byte[] crc32 = DataConvert.calculateCRC32(array, 3, array.length - 3);
         ACK = new byte[array.length + crc32.length];
         System.arraycopy(array, 0, ACK, 0, array.length);
         System.arraycopy(crc32, 0, ACK, array.length, crc32.length);
@@ -105,18 +105,6 @@ public class EncodingPacket implements ICDCommandDefinitions {
 //        }
     }
 
-    public static byte[] calculateCRC32(byte[] data, int start, int length) {
-        CRC32 crc = new CRC32();
-        crc.update(data, start, length);
 
-        long checksum = crc.getValue();
-
-        // Convert to byte array in little endian order
-        ByteBuffer bb = ByteBuffer.allocate(Integer.BYTES);
-        bb.order(ByteOrder.LITTLE_ENDIAN);  // Use little endian byte order
-        bb.putInt((int) checksum);
-
-        return bb.array();
-    }
 
 }

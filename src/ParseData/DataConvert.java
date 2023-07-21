@@ -1,6 +1,9 @@
 package ParseData;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Locale;
+import java.util.zip.CRC32;
 
 public class DataConvert {
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
@@ -70,6 +73,20 @@ public class DataConvert {
                     + Character.digit(s.charAt(i+1), 16));
         }
         return data;
+    }
+
+    public static byte[] calculateCRC32(byte[] data, int start, int length) {
+        CRC32 crc = new CRC32();
+        crc.update(data, start, length);
+
+        long checksum = crc.getValue();
+
+        // Convert to byte array in little endian order
+        ByteBuffer bb = ByteBuffer.allocate(Integer.BYTES);
+        bb.order(ByteOrder.LITTLE_ENDIAN);  // Use little endian byte order
+        bb.putInt((int) checksum);
+
+        return bb.array();
     }
 
 }

@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.zip.CRC32;
 
+/**
+ * Utility Class used to do data conversion
+ */
 public class DataConvert {
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
 

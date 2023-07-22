@@ -11,6 +11,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 
+/**
+ * Entrance of the program
+ */
 public class TCPServer implements ICDCommandDefinitions {
 
     private ServerSocket serverSocket;

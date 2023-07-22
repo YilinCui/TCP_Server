@@ -11,7 +11,7 @@ import javax.xml.crypto.Data;
 import java.nio.ByteBuffer;
 
 /**
- * Y Parameter CRC32 check
+ * This module needs Parameter CRC32 check
  */
 public class LeadInfo extends BaseFakeDataGenerator{
     // Payload could contain CRC32, or doesn't.
@@ -49,53 +49,6 @@ public class LeadInfo extends BaseFakeDataGenerator{
         }
 
     }
-
-
-
-//    public byte[] getbRetrunData(){
-//        // Construct Payload. Need to recalculate CRC32
-//        // 长度计算方式见文档
-//        int totalLength = (Manufacturer.length + ModelNumber.length + SerialNumber.length + ImplantedDate.length + 4)*2;  // length of packet payload(not including CRC32)
-//
-//        // 初始化ByteBuffer
-//        ByteBuffer buffer = ByteBuffer.allocate(totalLength);
-//
-//        // 将变量按照顺序添加到ByteBuffer中
-//        buffer.put(Manufacturer);
-//        buffer.put(ModelNumber);
-//        buffer.put(SerialNumber);
-//        buffer.put(ImplantedDate);
-//        buffer.put(ImplantedPart);
-//        buffer.put(Reserved);
-//        // idk why they duplicate these
-//        buffer.put(Manufacturer);
-//        buffer.put(ModelNumber);
-//        buffer.put(SerialNumber);
-//        buffer.put(ImplantedDate);
-//        buffer.put(ImplantedPart);
-//        buffer.put(Reserved);
-//
-//        // 将ByteBuffer转化为byte数组
-//        payload = buffer.array();
-//
-//        byte[] parameterCRC32 = DataConvert.calculateCRC32(payload, 0, payload.length);
-//
-//        ByteBuffer buffer2 = ByteBuffer.allocate(payload.length + parameterCRC32.length);
-//        buffer2.put(payload);
-//        buffer2.put(parameterCRC32);
-//
-//        byte[] packetBody = buffer2.array();
-//        byte[] CRC32 = DataConvert.calculateCRC32(packetBody, 0, packetBody.length);
-//
-//        ByteBuffer buffer3 = ByteBuffer.allocate(3 + packetBody.length + CRC32.length);
-//        buffer3.put(packetHeader);
-//        buffer3.put(packetBody);
-//        buffer3.put(CRC32);
-//
-//        bRetrunData = buffer3.array();
-//
-//        return bRetrunData;
-//    }
 
     public byte[] getbRetrunData(){
         // Construct Payload. Need to recalculate CRC32

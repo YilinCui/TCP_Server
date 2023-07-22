@@ -9,8 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 /**
- * Program的时候直接写入
- * Retrieve时则可能手动返回假数据。
+ * Every Device connected to TCP Server would instantiate an ICDDevice
+ * packet will be delivered as following logic TCP Server -> ICDDevice -> Modules -> process -> return to ICDDevice -> TCP Server -> TCP Client
  * Send packet to seperate Class to handle if we wish to fake the data.
  * Otherwise, use ICDCommand method directly for simple I/O
  */

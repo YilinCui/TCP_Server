@@ -3,6 +3,7 @@ package Constant;
 import ParseData.DataConvert;
 
 /**
+ * Constant/Default Values
  * I used to convert Hex String to byte[], and assign the byte array to Constant directly
  * However, I used GPT for the data transition, which often came with data loss.
  * Thus, I am currently using Hex->Byte[] conversion method.

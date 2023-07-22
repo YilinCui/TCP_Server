@@ -3,6 +3,10 @@ package Controller;
 import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
+/**
+ * Generate Random Data
+ * All the methods in this class should be public static
+ */
 public class RandomData {
     public static byte[] generateRandomBytes(int length) {
         byte[] array = new byte[length];

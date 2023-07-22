@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FilesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FilesHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/LeadInfo.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/LeadInfo.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RandomData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RandomData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TCPServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataStructure/DynamicByteBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataStructure/DynamicByteBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParseData/DataConvert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/DataConvert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParseData/ICDCommandDefinitions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/ICDCommandDefinitions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +35,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2SUeayoTqHocjQH5W1gLCsC53pB" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -45,6 +52,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ToolWindowRun.ShowToolbar": "false",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "D:/TCP_Server",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -53,7 +61,8 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -80,6 +89,7 @@
       <workItem from="1689206082178" duration="38421000" />
       <workItem from="1689380232461" duration="28000" />
       <workItem from="1689613382301" duration="41929000" />
+      <workItem from="1689984178053" duration="524000" />
     </task>
     <servers />
   </component>

@@ -3,6 +3,10 @@ package DataStructure;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+/**
+ * Customized Data Structure based on ByteBuffer
+ *
+ */
 public class DynamicByteBuffer {
     private ByteBuffer buffer;
     private int capacity = 64;

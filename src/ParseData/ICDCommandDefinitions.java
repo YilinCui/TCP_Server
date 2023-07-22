@@ -1,5 +1,8 @@
 package ParseData;
 
+/**
+ * ICD Command Definitions
+ */
 public interface ICDCommandDefinitions {
     // ICD Command Definitions
     public static final int

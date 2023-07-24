@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"Constant"},{"l":"Controller"},{"l":"DataStructure"},{"l":"ParseData"},{"l":"pgdata"}];updateSearchResults();

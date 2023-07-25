@@ -5,6 +5,7 @@ import ParseData.*;
 import pgdata.*;
 import pgdata.DeviceLog.DeviceFaultLog;
 import pgdata.DeviceLog.DeviceResetLog;
+import pgdata.DeviceLog.DeviceTachyLog;
 
 import java.io.File;
 
@@ -28,6 +29,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     public TachyShockTherapy shock_Local;
     public DeviceResetLog resetlog_Local;
     public DeviceFaultLog faultlog_Local;
+    public DeviceTachyLog tachylog_local;
 
     public LeadInfo li_Local;
     public PatientInformation pi_Local;
@@ -66,11 +68,16 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         td_Local = new TachyDetection();
         atp_Local = new TachyATPTherapy();
         shock_Local = new TachyShockTherapy();
+
+        // Device Log Randomized Generating.
         resetlog_Local = new DeviceResetLog();
+        tachylog_local = new DeviceTachyLog();
         faultlog_Local = new DeviceFaultLog();
+
         li_Local = new LeadInfo(folderName);
         pi_Local = new PatientInformation();
         cn_Local = new ClinicianNote(folderName);
+
     }
 
     // export/save to local XML document
@@ -166,7 +173,9 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_TACHY_LOG: //0x10 Read Tachy Log
 
-                bResponseArray = Constant.READ_TACHY_LOG;
+                bResponseArray = tachylog_local.getbRetrunData();
+
+                //bResponseArray = Constant.READ_TACHY_LOG;
 
                 break;
 
@@ -411,8 +420,11 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
             case ICD_CMD_READ_CHARGE_LOG: //0x74 Read Charge Log
                 if(chargeLogCnt==1){
                     bResponseArray = Constant.READ_CHARGE_LOG1;
-                    chargeLogCnt++;
-                }else bResponseArray = Constant.READ_CHARGE_LOG2;
+                    chargeLogCnt=2;
+                }else if(chargeLogCnt==2){
+                    bResponseArray = Constant.READ_CHARGE_LOG2;
+                    chargeLogCnt = 1;
+                }
 
 
                 break;

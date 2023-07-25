@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceResetLog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/BaseFakeDataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/BaseDeviceLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/ClinicianNote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/ClinicianNote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceFaultLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceFaultLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceResetLog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +83,7 @@
       <workItem from="1689380232461" duration="28000" />
       <workItem from="1689613382301" duration="41929000" />
       <workItem from="1689984178053" duration="1013000" />
-      <workItem from="1690217305885" duration="20752000" />
+      <workItem from="1690217305885" duration="24779000" />
     </task>
     <servers />
   </component>

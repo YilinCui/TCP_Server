@@ -3,6 +3,7 @@ package Controller;
 import Constant.Constant;
 import ParseData.*;
 import pgdata.*;
+import pgdata.DeviceLog.DeviceChargeLog;
 import pgdata.DeviceLog.DeviceFaultLog;
 import pgdata.DeviceLog.DeviceResetLog;
 import pgdata.DeviceLog.DeviceTachyLog;
@@ -30,6 +31,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     public DeviceResetLog resetlog_Local;
     public DeviceFaultLog faultlog_Local;
     public DeviceTachyLog tachylog_local;
+    public DeviceChargeLog chargeLog_local;
 
     public LeadInfo li_Local;
     public PatientInformation pi_Local;
@@ -73,6 +75,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         resetlog_Local = new DeviceResetLog();
         tachylog_local = new DeviceTachyLog();
         faultlog_Local = new DeviceFaultLog();
+        chargeLog_local = new DeviceChargeLog();
 
         li_Local = new LeadInfo(folderName);
         pi_Local = new PatientInformation();
@@ -418,13 +421,14 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 break;
 
             case ICD_CMD_READ_CHARGE_LOG: //0x74 Read Charge Log
-                if(chargeLogCnt==1){
-                    bResponseArray = Constant.READ_CHARGE_LOG1;
-                    chargeLogCnt=2;
-                }else if(chargeLogCnt==2){
-                    bResponseArray = Constant.READ_CHARGE_LOG2;
-                    chargeLogCnt = 1;
-                }
+                bResponseArray = chargeLog_local.getbReturnData(packet.getpayload()[0]);
+//                if(chargeLogCnt==1){
+//                    bResponseArray = chargeLog_local.getbReturnData(chargeLogCnt);
+//                    chargeLogCnt=2;
+//                }else if(chargeLogCnt==2){
+//                    bResponseArray = chargeLog_local.getbReturnData(chargeLogCnt);
+//                    chargeLogCnt = 1;
+//                }
 
 
                 break;

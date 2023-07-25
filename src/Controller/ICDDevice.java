@@ -3,10 +3,10 @@ package Controller;
 import Constant.Constant;
 import ParseData.*;
 import pgdata.*;
+import pgdata.DeviceLog.DeviceFaultLog;
+import pgdata.DeviceLog.DeviceResetLog;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.util.Random;
 
 /**
  * Every Device connected to TCP Server would instantiate an ICDDevice
@@ -28,10 +28,10 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     public TachyShockTherapy shock_Local;
     public DeviceResetLog resetlog_Local;
     public DeviceFaultLog faultlog_Local;
+
     public LeadInfo li_Local;
     public PatientInformation pi_Local;
     public ClinicianNote cn_Local;
-    public DeviceLog dl_Local;
 
     private int dataMode = 1;
 
@@ -71,7 +71,6 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         li_Local = new LeadInfo(folderName);
         pi_Local = new PatientInformation();
         cn_Local = new ClinicianNote(folderName);
-        dl_Local = new DeviceLog();
     }
 
     // export/save to local XML document
@@ -173,7 +172,8 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_DEVICE_RESET_LOG: //0x11 Read Device Reset Log
 
-                bResponseArray = Constant.READ_DEVICE_RESET_LOG;
+                // Random Generated Data
+                bResponseArray = resetlog_Local.getbRetrunData();
 
                 break;
 

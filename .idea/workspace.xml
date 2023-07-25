@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceResetLog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RandomData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RandomData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TCPServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterNormal.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterNormal.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/BaseFakeDataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/BaseFakeDataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceFaultLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceFaultLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceResetLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceResetLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/BaseFakeDataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/BaseDeviceLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/ClinicianNote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/ClinicianNote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceFaultLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceFaultLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceResetLog.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +35,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2SUeayoTqHocjQH5W1gLCsC53pB" />
   <component name="ProjectLevelVcsManager">
@@ -94,7 +89,7 @@
       <workItem from="1689380232461" duration="28000" />
       <workItem from="1689613382301" duration="41929000" />
       <workItem from="1689984178053" duration="1013000" />
-      <workItem from="1690217305885" duration="15816000" />
+      <workItem from="1690217305885" duration="20752000" />
     </task>
     <servers />
   </component>

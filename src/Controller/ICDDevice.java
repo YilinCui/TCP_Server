@@ -33,7 +33,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     public ClinicianNote cn_Local;
     public DeviceLog dl_Local;
 
-
+    private int dataMode = 1;
 
     // runtime status
     // DeviceStatus
@@ -76,18 +76,31 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
     // export/save to local XML document
 
+    /**
+     * Process the message sent from Android APP
+     * @param receivedBytes byte array sent from Android app(TCP client)
+     */
+    public void process(byte[] receivedBytes){
+        // Reset/Initialize parameters to null/default state;
+        encodingPacket = null;
+        bResponseArray = null;
+        String fileName = null;
+        int BradyState = 1;
 
-    public void process(DecodingPacket packet){
+        // if receivedByte is the indicator of testCase marker
+        if(receivedBytes.length == 1){
+            dataMode = receivedBytes[0];
+            System.out.println("TestCase initialize message received");
+            return;
+        }
+        DecodingPacket packet = new DecodingPacket(receivedBytes);
         int iCommandId = packet.getCommandID() & 0xFF;
 
         if (iCommandId != ICD_CMD_BLE_IN_SESSION) {
             System.out.println("Received: " + packet);
         }
         // Initialize variable
-        encodingPacket = null;
-        bResponseArray = null;
-        String fileName = null;
-        int BradyState = 1;
+
         // Switch cases
         switch (iCommandId) {
             case ICD_CMD_READ_ALERT_PARAM: //0x02 Read Alert Parameter
@@ -109,17 +122,24 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 break;
 
             case ICD_CMD_READ_PATIENT_LEADS_INFO: //0x0C Read Patient Lead Info
+//                if(dataMode==1){
+//                    fileName = folderName + Constant.LEAD_INFO;
+//                    IOCommand(fileName, 1, packet);
+//
+//                    if(bResponseArray==null){
+//                        bResponseArray = Constant.PATIENT_LEAD_INFO;
+//                    }
+//                }else if(dataMode==2){
+//                    li_Local.process(packet);
+//                    li_Local.setManufacturer(RandomData.generateRandomBytes(16));
+//                    //li_Local.setManufacturer("自定义");
+//                    bResponseArray = li_Local.getbRetrunData();
+//                }
 
                 li_Local.process(packet);
                 li_Local.setManufacturer(RandomData.generateRandomBytes(16));
                 //li_Local.setManufacturer("自定义");
                 bResponseArray = li_Local.getbRetrunData();
-//                fileName = folderName + Constant.LEAD_INFO;
-//                IOCommand(fileName, 1, packet);
-//
-//                if(bResponseArray==null){
-//                    bResponseArray = Constant.PATIENT_LEAD_INFO;
-//                }
 
                 break;
 
@@ -166,7 +186,11 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_DEVICE_FAULT_LOG: //0x14 Read Device Fault Log
 
-                bResponseArray = Constant.READ_DEVICE_FAULT_LOG;
+                // Random Generated Data
+                bResponseArray = faultlog_Local.getbRetrunData();
+
+
+                //bResponseArray = Constant.READ_DEVICE_FAULT_LOG;
 
                 break;
 
@@ -276,24 +300,29 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 break;
 
             case ICD_CMD_READ_BRADY_PARAM: // 0x4A Read Brady Parameters
-                BradyState = packet.getpayload()[0] & 0xFF;
-                switch (BradyState){
-                    case 1:
-                        fileName = folderName + Constant.BRADY_PARAMETER_NORM;
-                        IOCommand(fileName, 1, packet);
-                        break;
-                    case 3:
-                        fileName = folderName + Constant.BRADY_PARAMETER_POSTSHOCK;
-                        IOCommand(fileName, 1, packet);
-                        break;
-                    default:
+                if(dataMode==1){
+                    BradyState = packet.getpayload()[0] & 0xFF;
+                    switch (BradyState){
+                        case 1:
+                            fileName = folderName + Constant.BRADY_PARAMETER_NORM;
+                            IOCommand(fileName, 1, packet);
+                            break;
+                        case 3:
+                            fileName = folderName + Constant.BRADY_PARAMETER_POSTSHOCK;
+                            IOCommand(fileName, 1, packet);
+                            break;
+                        default:
 
-                        break;
-                }
+                            break;
+                    }
 
-                if(bResponseArray==null){
+                    if(bResponseArray==null){
+                        bResponseArray = Constant.READ_BRADY_PARAMETERS_NORM;
+                    }
+                }else if(dataMode == 2){
                     bResponseArray = Constant.READ_BRADY_PARAMETERS_NORM;
                 }
+
                 break;
 
             case ICD_CMD_SET_TACHY_DETECT_PARAM : //0x52 Set Tachy Mode Parameters

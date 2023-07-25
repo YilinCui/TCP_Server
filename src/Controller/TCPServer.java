@@ -56,11 +56,9 @@ public class TCPServer implements ICDCommandDefinitions {
                 int bytes;
                 while ((bytes = inputStream.read(buffer)) != -1) {
                     byte[] receivedBytes = Arrays.copyOf(buffer, bytes);
-                    try{
-                        DecodingPacket packet = new DecodingPacket(receivedBytes);
 
-                        // if command id is valid
-                        myDevice.process(packet);
+                    try{
+                        myDevice.process(receivedBytes);
                         byte[] TCPServerResponse = myDevice.getResponse();
                         if(TCPServerResponse!=null){
                             outputStream.write(TCPServerResponse);

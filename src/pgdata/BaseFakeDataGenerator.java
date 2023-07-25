@@ -29,6 +29,6 @@ public abstract class BaseFakeDataGenerator {
         //packet.setPayload(note);
     }
 
-
+    public abstract byte[] getbRetrunData();
 
 }

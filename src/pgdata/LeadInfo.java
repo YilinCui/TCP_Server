@@ -5,10 +5,6 @@ import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 import ParseData.DecodingPacket;
 import ParseData.EncodingPacket;
-import ParseData.PacketManager;
-
-import javax.xml.crypto.Data;
-import java.nio.ByteBuffer;
 
 /**
  * This module needs Parameter CRC32 check
@@ -39,8 +35,9 @@ public class LeadInfo extends BaseFakeDataGenerator{
         super.process(packet);
         EncodingPacket encodingPacket = new EncodingPacket(packet, false, fileName);
         bRetrunData = encodingPacket.getPacketData();
-        System.out.println(DataConvert.bytesToHex(bRetrunData));
+
         if(bRetrunData!=null){
+            //System.out.println(DataConvert.bytesToHex(bRetrunData));
             System.arraycopy(bRetrunData, 0, packetHeader, 0, 3);
             System.arraycopy(bRetrunData, 3, Manufacturer, 0, 16);
             System.arraycopy(bRetrunData, 19, ModelNumber, 0, 16);

@@ -3,10 +3,7 @@ package Controller;
 import Constant.Constant;
 import ParseData.*;
 import pgdata.*;
-import pgdata.DeviceLog.DeviceChargeLog;
-import pgdata.DeviceLog.DeviceFaultLog;
-import pgdata.DeviceLog.DeviceResetLog;
-import pgdata.DeviceLog.DeviceTachyLog;
+import pgdata.DeviceLog.*;
 
 import java.io.File;
 
@@ -32,6 +29,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     public DeviceFaultLog faultlog_Local;
     public DeviceTachyLog tachylog_local;
     public DeviceChargeLog chargeLog_local;
+    public DeviceBatteryLog batteryLog_local;
 
     public LeadInfo li_Local;
     public PatientInformation pi_Local;
@@ -76,6 +74,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         tachylog_local = new DeviceTachyLog();
         faultlog_Local = new DeviceFaultLog();
         chargeLog_local = new DeviceChargeLog();
+        batteryLog_local = new DeviceBatteryLog();
 
         li_Local = new LeadInfo(folderName);
         pi_Local = new PatientInformation();
@@ -286,7 +285,9 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_BATTERY_LOG: //0x30 Read Battery Log
 
-                bResponseArray = Constant.READ_BATTERY_LOG;
+                bResponseArray = batteryLog_local.getbRetrunData();
+
+                //bResponseArray = Constant.READ_BATTERY_LOG;
 
                 break;
 

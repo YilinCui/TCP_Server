@@ -20,6 +20,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     private int patienInfoIndex = 1;
     private int BradyParameterIndex = 1;
     private byte[] bResponseArray;
+    private byte[] bLongResponseArray;
     private String folderName;
     private EncodingPacket encodingPacket;
     public BradyParameter bp_Local;
@@ -96,6 +97,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         // Reset/Initialize parameters to null/default state;
         encodingPacket = null;
         bResponseArray = null;
+        bLongResponseArray = null;
         String fileName = null;
         int BradyState = 1;
 
@@ -477,9 +479,21 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         }
     }
 
+    /**
+     * return a byte array as response if the array is not too long
+     * @return byte[]
+     */
     public byte[] getResponse(){
 
        return bResponseArray;
+    }
+
+    /**
+     * return a byte[][] if the response is too long and needs to send it separately
+     * @return byte[][]
+     */
+    public byte[][] getLongResponse(){
+        return bLongResponseArray;
     }
 
     /**

@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * Entrance of the program
@@ -40,6 +41,10 @@ public class TCPServer implements ICDCommandDefinitions {
     private class ClientHandler implements Runnable {
         private Socket clientSocket;
         private static int clientID;
+        // a set of commandId including the command return more than 1 packet.
+        private HashSet<Integer> commandSet = new HashSet<>(){{
+            add(0x64);
+        }};
 
         public ClientHandler(Socket clientSocket) {
             this.clientSocket = clientSocket;
@@ -56,14 +61,31 @@ public class TCPServer implements ICDCommandDefinitions {
                 int bytes;
                 while ((bytes = inputStream.read(buffer)) != -1) {
                     byte[] receivedBytes = Arrays.copyOf(buffer, bytes);
-
+                    // Typically, TCP client and Server's message logic should be 1 to 1
+                    // which means client sent 1 packet and server should also return 1 packet
+                    // However, there are some commands might return more than one packet
+                    // Thus, a command HashSet is introduced to handle 1 to Many relationship.
                     try{
                         myDevice.process(receivedBytes);
-                        byte[] TCPServerResponse = myDevice.getResponse();
-                        if(TCPServerResponse!=null){
-                            outputStream.write(TCPServerResponse);
-                            System.out.println("Sent to client: " + DataConvert.byteDataToHexString(TCPServerResponse) + "\n");
+                        int iCommandId = receivedBytes[2];
+                        if(!commandSet.contains(iCommandId)){
+                            // 1 to 1 relationship
+                            byte[] TCPServerResponse = myDevice.getResponse();
+                            if(TCPServerResponse!=null){
+                                outputStream.write(TCPServerResponse);
+                                System.out.println("Sent to client: " + DataConvert.byteDataToHexString(TCPServerResponse) + "\n");
+                            }
+                        }else{
+                            // 1 to many relationship
+                            byte[][] TCPServerResponse = myDevice.getLongResponse();
+                            if(TCPServerResponse!=null){
+                                for(byte[] response: TCPServerResponse){
+                                    outputStream.write(response);
+                                    System.out.println("Sent to client: " + DataConvert.byteDataToHexString(response) + "\n");
+                                }
+                            }
                         }
+
                     }catch (IllegalArgumentException e){
                         System.out.println(e.getMessage());
                     }

@@ -4,7 +4,7 @@ import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 
-public class DeviceChargeLog extends BaseDeviceLog{
+public class DeviceChargeLog extends BaseData{
     private byte[] packetHeader1 = new byte[]{0x74, 0x05, 0x74};
     private byte[] packetHeader2 = new byte[]{(byte) 0x80, 0x09, 0x74};
     private byte[] payload1 = null;
@@ -57,7 +57,7 @@ public class DeviceChargeLog extends BaseDeviceLog{
     }
 
     @Override
-    public byte[] getbRetrunData() {
+    public byte[] getbReturnData() {
 
         return null;
     }

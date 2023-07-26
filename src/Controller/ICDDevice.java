@@ -4,6 +4,7 @@ import Constant.Constant;
 import ParseData.*;
 import pgdata.*;
 import pgdata.DeviceLog.*;
+import pgdata.Episodes.EpisodeHeader;
 
 import java.io.File;
 
@@ -30,6 +31,8 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     public DeviceTachyLog tachylog_local;
     public DeviceChargeLog chargeLog_local;
     public DeviceBatteryLog batteryLog_local;
+
+    public EpisodeHeader episodeHeader_local;
 
     public LeadInfo li_Local;
     public PatientInformation pi_Local;
@@ -80,6 +83,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         pi_Local = new PatientInformation();
         cn_Local = new ClinicianNote(folderName);
 
+        episodeHeader_local = new EpisodeHeader();
     }
 
     // export/save to local XML document
@@ -125,6 +129,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
 
+                bResponseArray = episodeHeader_local.getbReturnData();
                 //bResponseArray = Constant.READ_EPESODE_HEADER;
 
                 break;
@@ -175,7 +180,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_TACHY_LOG: //0x10 Read Tachy Log
 
-                bResponseArray = tachylog_local.getbRetrunData();
+                bResponseArray = tachylog_local.getbReturnData();
 
                 //bResponseArray = Constant.READ_TACHY_LOG;
 
@@ -184,7 +189,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
             case ICD_CMD_READ_DEVICE_RESET_LOG: //0x11 Read Device Reset Log
 
                 // Random Generated Data
-                bResponseArray = resetlog_Local.getbRetrunData();
+                bResponseArray = resetlog_Local.getbReturnData();
 
                 break;
 
@@ -198,7 +203,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
             case ICD_CMD_READ_DEVICE_FAULT_LOG: //0x14 Read Device Fault Log
 
                 // Random Generated Data
-                bResponseArray = faultlog_Local.getbRetrunData();
+                bResponseArray = faultlog_Local.getbReturnData();
 
 
                 //bResponseArray = Constant.READ_DEVICE_FAULT_LOG;
@@ -285,7 +290,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_BATTERY_LOG: //0x30 Read Battery Log
 
-                bResponseArray = batteryLog_local.getbRetrunData();
+                bResponseArray = batteryLog_local.getbReturnData();
 
                 //bResponseArray = Constant.READ_BATTERY_LOG;
 

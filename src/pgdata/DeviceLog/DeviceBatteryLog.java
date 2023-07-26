@@ -4,7 +4,7 @@ import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 
-public class DeviceBatteryLog extends BaseDeviceLog{
+public class DeviceBatteryLog extends BaseData{
 
     private class BatteryLog{
         private byte[] timestamp;
@@ -31,7 +31,7 @@ public class DeviceBatteryLog extends BaseDeviceLog{
     }
 
     @Override
-    public byte[] getbRetrunData() {
+    public byte[] getbReturnData() {
         DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
         buffer = new DynamicByteBuffer();
         for(int i = 0;i<5;i++){

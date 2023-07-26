@@ -4,7 +4,7 @@ import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 
-public class DeviceTachyLog extends BaseDeviceLog{
+public class DeviceTachyLog extends BaseData{
 
     private byte[] packetHeader = {(byte)0x84, 0x5E, 0x10};
     private byte[] payload;
@@ -44,7 +44,7 @@ public class DeviceTachyLog extends BaseDeviceLog{
     }
 
     @Override
-    public byte[] getbRetrunData() {
+    public byte[] getbReturnData() {
         DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
         buffer = new DynamicByteBuffer();
         for(int i = 0;i<10;i++){

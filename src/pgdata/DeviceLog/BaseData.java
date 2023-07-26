@@ -7,13 +7,13 @@ import ParseData.PacketManager;
 
 import java.util.Random;
 
-public abstract class BaseDeviceLog {
+public abstract class BaseData {
     protected byte[] bRetrunData;
     protected byte[] packetHeader;
     protected byte[] payload;
     protected byte[] CRC32;
     protected DynamicByteBuffer buffer;
 
-    public abstract byte[] getbRetrunData();
+    public abstract byte[] getbReturnData();
 
 }

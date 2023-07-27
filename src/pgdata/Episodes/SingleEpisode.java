@@ -5,40 +5,52 @@ import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 import pgdata.DeviceLog.BaseData;
 
+import javax.xml.crypto.Data;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 public class SingleEpisode extends BaseData {
+    public static int episodeIndex = 0;
     // part I : payload length = 100
     private byte[] startTime;
     private byte[] endTime;
-    private byte[] episodeNumber;
-    private byte[] tachyTreat;
-    private byte[] treatmentDeliveredCounter;
-    private byte[] estimatedImpedance;
+    private byte[] episodeNumber = new byte[2];
+    private byte vf_initial_duration;
+    private byte vf_re_duration;
+    private byte vf_post_shock_duration;
+    private byte fvt_initial_duration;
+    private byte fvt_re_duration;
+    private byte fvt_post_shock_duration;
+    private byte vt_initial_duration;
+    private byte vt_re_duration;
+    private byte vt_post_shock_duration;
+    private byte Segments_number;
+    private byte Gain_value;
+    private byte Episode_type;
+    private byte Shock_impedance_val;
+    private byte Tachy_detect_zone;
+    private byte vf_tachy_rate;
+    private byte fvt_tachy_rate;
+    private byte vt_tachy_rate;
+    private byte EPISODE_FORMAT_VER;
+    private byte[] svt_params;
+    private byte[] reserved = new byte[24];
+    // part of Tachy_treat in Packet1, the rest of it is in packet 2
+    private byte[] tachy_treat;
 
-    // part II
-    private byte segmentsNumber;
-    private byte gainValue;
-    private byte EpisodeType;
-    private byte shockImpedanceValue;
-    private byte tachyDetectZone;
-    private byte vfTachyRate;
-    private byte fvtTachyRate;
-    private byte vtTachyRate;
+    // part II:packet payload length = 100;
+    private byte[] estimatedImpedance;
     private byte[] segmentsTimestamp;
     private byte[] nearSegments;
     private byte[] farSegments;
-    private byte[] reserved1 = new byte[4];
-    private byte[] reserved2 = new byte[4];
-    private byte[] EpisodeCRC32;
     private byte[] CRC32;
+    // 最后3个补位
+    private byte[] supplement = new byte[3];
     private byte[] packetHeader1 = new byte[]{0x6C, 0x2A, 0x64};
     private byte[] packetHeader2 = new byte[]{0x6C, 0x2D, 0x64};
 
-    public SingleEpisode(byte[] episodeNumber) {
-        this.episodeNumber = new byte[2];
-        System.arraycopy(episodeNumber, 0, this.episodeNumber, 0, 2);
-
+    public SingleEpisode() {
+        episodeNumber[0] = (byte) episodeIndex++;
     }
 
     @Override
@@ -51,69 +63,102 @@ public class SingleEpisode extends BaseData {
         ArrayList<byte[]> list = new ArrayList<>();
         DynamicByteBuffer buffer1 = new DynamicByteBuffer();
         DynamicByteBuffer buffer2 = new DynamicByteBuffer();
+        DynamicByteBuffer payloadBuffer = new DynamicByteBuffer();
 
         startTime = RandomData.generateRandomBytes(4);
         endTime = RandomData.generateRandomBytes(4);
-        //episodeNumber = RandomData.generateRandomBytes(4);
-        tachyTreat = RandomData.generateRandomBytes(40);
-        treatmentDeliveredCounter = RandomData.generateRandomBytes(10);
-        estimatedImpedance = RandomData.generateRandomBytes(20);
+        //episodeNumber = RandomData.generateRandomBytes(2);
+        vf_initial_duration = RandomData.generateRandomByte();
+        vf_re_duration = RandomData.generateRandomByte();
+        vf_post_shock_duration = RandomData.generateRandomByte();
+        fvt_initial_duration = RandomData.generateRandomByte();
+        fvt_re_duration = RandomData.generateRandomByte();
+        fvt_post_shock_duration = RandomData.generateRandomByte();
+        vt_initial_duration = RandomData.generateRandomByte();
+        vt_re_duration = RandomData.generateRandomByte();
+        vt_post_shock_duration = RandomData.generateRandomByte();
+        Segments_number = RandomData.generateRandomByte(10);
+        Gain_value = RandomData.generateRandomByte(2);
+        Episode_type = RandomData.generateRandomByte(10);
+        Shock_impedance_val = RandomData.generateRandomByte();
+        Tachy_detect_zone = RandomData.generateRandomByte();
+        vf_tachy_rate = RandomData.generateRandomByte();
+        fvt_tachy_rate = RandomData.generateRandomByte();
+        vt_tachy_rate = RandomData.generateRandomByte();
+        EPISODE_FORMAT_VER = RandomData.generateRandomByte();
+        svt_params = RandomData.generateRandomBytes(24);
 
-        buffer1.put((byte) 0x00);
         buffer1.put(startTime);
         buffer1.put(endTime);
         buffer1.put(episodeNumber);
-        buffer1.put(tachyTreat);
-        buffer1.put(treatmentDeliveredCounter);
-        buffer1.put(estimatedImpedance);
+        buffer1.put(vf_initial_duration);
+        buffer1.put(vf_re_duration);
+        buffer1.put(vf_post_shock_duration);
+        buffer1.put(fvt_initial_duration);
+        buffer1.put(fvt_re_duration);
+        buffer1.put(fvt_post_shock_duration);
+        buffer1.put(vt_initial_duration);
+        buffer1.put(vt_re_duration);
+        buffer1.put(vt_post_shock_duration);
+        buffer1.put(Segments_number);
+        buffer1.put(Gain_value);
+        buffer1.put(Episode_type);
+        buffer1.put(Shock_impedance_val);
+        buffer1.put(Tachy_detect_zone);
+        buffer1.put(vf_tachy_rate);
+        buffer1.put(fvt_tachy_rate);
+        buffer1.put(vt_tachy_rate);
+        buffer1.put(EPISODE_FORMAT_VER);
+        buffer1.put(svt_params);
+        buffer1.put(reserved);
+        // packet1 has a total length of 108
+        // 77, still needs 24 from tachy_treat. 102-104 bytes are supplement(00 00 00)
+        // Last 4 bytes are CRC32 105-108
 
-        byte[] payload1 = buffer1.toArray();
-        byte[] payload1CRC32 = DataConvert.calculateCRC32(payload1, 0, payload1.length);
-        buffer1.put(payload1CRC32);
-        buffer1.put(0, packetHeader1);
+        // Gotta to tear Tachy_treat packet apart
+        tachy_treat = RandomData.generateRandomBytes(40);
+        byte[] tachy_treat_part1 = new byte[24];
+        byte[] tachy_treat_part2 = new byte[16];
+        System.arraycopy(tachy_treat, 0, tachy_treat_part1, 0, tachy_treat_part1.length);
+        System.arraycopy(tachy_treat, 24, tachy_treat_part2, 0, tachy_treat_part2.length);
+        buffer1.put(tachy_treat_part1);
+        // payloadCRC32 calculation does not include supplement!!!!
+        payloadBuffer.put(buffer1.toArray());
 
-        byte[] packet1 = buffer1.toArray();
-        list.add(packet1);
+        buffer1.put(supplement);
+        buffer1.put(0, (byte) 0x00);
 
-        segmentsNumber = 0x00;
-        gainValue = RandomData.generateRandomByte();
-        EpisodeType = RandomData.generateRandomByte();
-        shockImpedanceValue = RandomData.generateRandomByte();
-        tachyDetectZone = RandomData.generateRandomByte();
-        vfTachyRate = RandomData.generateRandomByte();
-        fvtTachyRate = RandomData.generateRandomByte();
-        vtTachyRate = RandomData.generateRandomByte();
+        DynamicByteBuffer packetBuffer1 = new DynamicByteBuffer();
+        packetBuffer1.put(packetHeader1);
+        packetBuffer1.put(DataConvert.addCRC32(buffer1.toArray()));
 
+        list.add(packetBuffer1.toArray());
+        // End of Constructing packet1
+
+        estimatedImpedance = RandomData.generateRandomBytes(20);
         segmentsTimestamp = RandomData.generateRandomBytes(20);
         nearSegments = RandomData.generateRandomBytes(20);
         farSegments = RandomData.generateRandomBytes(20);
 
-        buffer2.put((byte) 0x01);
-        buffer2.put(segmentsNumber);
-        buffer2.put(gainValue);
-        buffer2.put(EpisodeType);
-        buffer2.put(shockImpedanceValue);
-        buffer2.put(tachyDetectZone);
-        buffer2.put(vfTachyRate);
-        buffer2.put(fvtTachyRate);
-        buffer2.put(vtTachyRate);
-        buffer2.put(segmentsTimestamp);
-        buffer2.put(nearSegments);
-        buffer2.put(farSegments);
-        buffer2.put(reserved1);
-        buffer2.put(reserved2);
+        buffer2.put(tachy_treat_part2); // 17
+        buffer2.put(estimatedImpedance); // 37
+        buffer2.put(segmentsTimestamp); //57
+        buffer2.put(nearSegments); // 77
+        buffer2.put(farSegments); //97
+        payloadBuffer.put(buffer2.toArray());
+        buffer2.put(0, (byte) 0x01); // 1
 
-        byte[] payload2 = buffer2.toArray();
-        byte[] payload2CRC32 = DataConvert.calculateCRC32(payload2, 0, payload2.length);
-        buffer2.put(payload2CRC32);
+        byte[] payloadCRC32 = DataConvert.calculateCRC32(payloadBuffer.toArray(),0, payloadBuffer.toArray().length);
+        buffer2.put(payloadCRC32); //101
+        buffer2.put(supplement); //104
+        byte[] packetBodyWithCRC = DataConvert.addCRC32(buffer2.toArray()); // 108
 
-        byte[] packet2Body = buffer2.toArray();
-        byte[] CRC32 = DataConvert.calculateCRC32(packet2Body, 0, packet2Body.length);
-        buffer2.put(CRC32);
-        buffer2.put(0, packetHeader2);
+        DynamicByteBuffer packetBuffer2 = new DynamicByteBuffer();
+        packetBuffer2.put(packetHeader2);
+        packetBuffer2.put(packetBodyWithCRC);
 
-        byte[] packet2 = buffer2.toArray();
-        list.add(packet2);
+        list.add(packetBuffer2.toArray());
+        // End of Constructing packet2
 
         byte[][] array = new byte[list.size()][];
         for (int i = 0; i < list.size(); i++) {

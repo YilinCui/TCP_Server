@@ -94,6 +94,23 @@ public class DataConvert {
         return bb.array();
     }
 
+    public static byte[] addCRC32(byte[] data) {
+        byte[] crc1 = calculateCRC32(data, 0, data.length);
+        byte[] dataWithCrc = ByteBuffer.allocate(data.length + crc1.length)
+                .put(data).put(crc1).array();
+        return dataWithCrc;
+    }
+
+    public static byte[] addTwoCRC32(byte[] data) {
+        byte[] crc1 = calculateCRC32(data, 0, data.length);
+        byte[] dataWithCrc1 = ByteBuffer.allocate(data.length + crc1.length)
+                .put(data).put(crc1).array();
+        byte[] crc2 = calculateCRC32(dataWithCrc1, 0, dataWithCrc1.length);
+        byte[] dataWithTwoCrc = ByteBuffer.allocate(dataWithCrc1.length + crc2.length)
+                .put(dataWithCrc1).put(crc2).array();
+        return dataWithTwoCrc;
+    }
+
     public static byte[] stringToByteArray(String input, int length) {
         byte[] bytes = new byte[length];
         byte[] inputBytes = input.getBytes(StandardCharsets.UTF_8);

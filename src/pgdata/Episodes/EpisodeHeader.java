@@ -20,7 +20,7 @@ public class EpisodeHeader extends BaseData {
 
     public byte[] getbReturnData(){
         EpisodeHeader = RandomData.generateRandomBytes(5);
-        latestEpisode = RandomData.generateRandomByte();
+        latestEpisode = 0x00;
         EpisodeCount = new byte[]{0x20,0x00};
 
         DynamicByteBuffer buffer = new DynamicByteBuffer();

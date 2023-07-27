@@ -86,6 +86,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         cn_Local = new ClinicianNote(folderName);
 
         episodeHeader_local = new EpisodeHeader();
+        SingleEpisode.episodeIndex = 0;
     }
 
     // export/save to local XML document
@@ -367,7 +368,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
 
-                SingleEpisode episode = new SingleEpisode(packet.getpayload());
+                SingleEpisode episode = new SingleEpisode();
                 bLongResponseArray = episode.getbLongReturnData();
 
                 break;

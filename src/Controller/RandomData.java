@@ -22,12 +22,18 @@ public class RandomData {
         }
         return array;
     }
-
+    // Generate a random byte between [-128,127]
     public static byte generateRandomByte() {
         Random random = new Random();
         byte[] bytes = new byte[1];
         random.nextBytes(bytes);
         return bytes[0];
+    }
+    // Generate a random byte no larger than length
+    public static byte generateRandomByte(int length) {
+        Random rand = new Random();
+        int limit = Math.min(length, 127);
+        return (byte) rand.nextInt(limit + 1);
     }
 
     public static int generateRandomInt(int length) {

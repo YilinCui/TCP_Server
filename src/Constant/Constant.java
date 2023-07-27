@@ -63,4 +63,5 @@ public class Constant {
     public static final byte[] READ_BRADY_PARAMETERS_POSTSHOCK = DataConvert.hexStringToByteArray("20 2F 4A 03 03 0A 27 0E 00 03 00 00 00 FA 00 78 00 00 00 03 1E 08 02 07 02 14 00 F9 FB 15 11 1C DF 44 21");
     public static final byte[] READ_BRADY_PARAMETERS_NORM = DataConvert.hexStringToByteArray("20 33 4A 03 01 02 22 03 00 03 00 00 00 FA 00 78 00 00 00 03 1E 08 02 07 02 14 00 98 8F B2 7E 1C DF 44 21");
     public static final String DEVICE_RESET_LOG = "DeviceResetLog.per";
+    public static final byte[] READ_BLE_EPISODE = DataConvert.hexStringToByteArray("08 00 A3 1A 00 00 00 E7 68 E0 1E");
 }

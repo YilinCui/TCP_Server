@@ -5,6 +5,7 @@ import ParseData.*;
 import pgdata.*;
 import pgdata.DeviceLog.*;
 import pgdata.Episodes.EpisodeHeader;
+import pgdata.Episodes.SingleEpisode;
 
 import java.io.File;
 
@@ -20,7 +21,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     private int patienInfoIndex = 1;
     private int BradyParameterIndex = 1;
     private byte[] bResponseArray;
-    private byte[] bLongResponseArray;
+    private byte[][] bLongResponseArray;
     private String folderName;
     private EncodingPacket encodingPacket;
     public BradyParameter bp_Local;
@@ -132,6 +133,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
 
                 bResponseArray = episodeHeader_local.getbReturnData();
+
                 //bResponseArray = Constant.READ_EPESODE_HEADER;
 
                 break;
@@ -365,7 +367,8 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
 
-                bResponseArray = Constant.READ_SINGLE_EPISODE;
+                SingleEpisode episode = new SingleEpisode(packet.getpayload());
+                bLongResponseArray = episode.getbLongReturnData();
 
                 break;
 
@@ -470,6 +473,12 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
             case ICD_CMD_READ_BATTERY_DETAIL: // 0x88 Read Battery Detail
 
                 bResponseArray = Constant.READ_BATTERY_DETAIL;
+
+                break;
+
+            case ICD_CMD_BLE_READ_EPISODE: // 0x88 Read Battery Detail
+
+                bResponseArray = Constant.READ_BLE_EPISODE;
 
                 break;
 

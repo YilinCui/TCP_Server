@@ -19,7 +19,7 @@ public class DeviceFaultLog extends BaseLog {
         private byte faultId;
         private byte reserved = 0x00;
         public FaultLog(){
-            timestamp = RandomData.generateRandomBytes(4);
+            timestamp = RandomData.getTimePassedInSeconds();
             faultCount = RandomData.generateRandomBytes(2);
             faultId = RandomData.generateRandomByte(34);
         }

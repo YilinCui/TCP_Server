@@ -19,7 +19,7 @@ public class DeviceTachyLog extends BaseLog {
         private byte recordReason; // only 5 reasons
         private byte recordMode;
         public TachyLog(){
-            timestamp = RandomData.generateRandomBytes(4);
+            timestamp = RandomData.getTimePassedInSeconds();
             recordMode = RandomData.generateRandomByte(2); // 3 modes in total
             recordReason = RandomData.generateRandomByte(4); //5 reasons
 

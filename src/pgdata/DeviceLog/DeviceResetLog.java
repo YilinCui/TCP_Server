@@ -17,15 +17,15 @@ public class DeviceResetLog extends BaseLog {
     }
 
     private class ResetLog{
+        private byte[] DeviceIdList = new byte[]{0x00, 0x54, 0x14, 0x50}; // M1, M2, M3, BLE
         private byte DeviceId;
         private byte resetReason;
         private byte[] timestamp;
         private byte[] operataionIdLog;
         public ResetLog(){
-            DeviceId = RandomData.generateRandomByte();
+            DeviceId = DeviceIdList[RandomData.generateRandomByte(3)];
             resetReason = RandomData.generateRandomByte();
-            timestamp = new byte[]{0x01, 0x00, 0x00, 0x00};
-            //timestamp = RandomData.generateRandomBytes(4);
+            timestamp = RandomData.getTimePassedInSeconds(); // length 4
             operataionIdLog = RandomData.generateRandomBytes(6);
         }
 

@@ -34,9 +34,9 @@ public class RandomData {
         return bytes[0];
     }
     // Generate a random byte no larger than length
-    public static byte generateRandomByte(int length) {
+    public static byte generateRandomByte(int max) {
         Random rand = new Random();
-        int limit = Math.min(length, 127);
+        int limit = Math.min(max, 127);
         return (byte) rand.nextInt(limit + 1);
     }
 

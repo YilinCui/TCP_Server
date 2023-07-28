@@ -4,12 +4,11 @@ import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 
-public class DeviceTachyLog extends BaseData{
+public class DeviceTachyLog extends BaseLog {
 
     private byte[] packetHeader = {(byte)0x84, 0x5E, 0x10};
     private byte[] payload;
     private byte[] CRC32;
-    private DynamicByteBuffer buffer;
 
     private class TachyLog{
         private byte recordTime;
@@ -46,7 +45,7 @@ public class DeviceTachyLog extends BaseData{
     @Override
     public byte[] getbReturnData() {
         DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
-        buffer = new DynamicByteBuffer();
+        DynamicByteBuffer buffer = new DynamicByteBuffer();
         for(int i = 0;i<10;i++){
             DeviceTachyLog.TachyLog log = new DeviceTachyLog.TachyLog();
             buffer.put(log.getTachyLog());

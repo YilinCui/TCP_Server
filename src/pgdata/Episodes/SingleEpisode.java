@@ -3,13 +3,11 @@ package pgdata.Episodes;
 import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
-import pgdata.DeviceLog.BaseData;
+import pgdata.DeviceLog.BaseLog;
 
-import javax.xml.crypto.Data;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
-public class SingleEpisode extends BaseData {
+public class SingleEpisode extends BaseLog {
     public static int episodeIndex = 0;
     // part I : payload length = 100
     private byte[] startTime;

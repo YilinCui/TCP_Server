@@ -3,11 +3,11 @@ package pgdata.Episodes;
 import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
-import pgdata.DeviceLog.BaseData;
+import pgdata.DeviceLog.BaseLog;
 
 import java.util.ArrayList;
 
-public class EpisodeMarker extends BaseData {
+public class EpisodeMarker extends BaseLog {
     private byte markerIndex = 0x00;
     private byte[] markerData;
 

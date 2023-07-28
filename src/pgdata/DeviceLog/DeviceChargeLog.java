@@ -4,7 +4,7 @@ import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 
-public class DeviceChargeLog extends BaseData{
+public class DeviceChargeLog extends BaseLog {
     private byte[] packetHeader1 = new byte[]{0x74, 0x05, 0x74};
     private byte[] packetHeader2 = new byte[]{(byte) 0x80, 0x09, 0x74};
     private byte[] payload1 = null;
@@ -63,6 +63,7 @@ public class DeviceChargeLog extends BaseData{
     }
 
     public byte[] getbReturnData(int chargeLog){
+        DynamicByteBuffer buffer;
         if(chargeLog==1){
             // for packet1, it contains packetHeader1 + 7 entries of ChargeLog + 4 bytes of CRC32
             DynamicByteBuffer dataBuffer = new DynamicByteBuffer();

@@ -3,9 +3,9 @@ package pgdata.Episodes;
 import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
-import pgdata.DeviceLog.BaseData;
+import pgdata.DeviceLog.BaseLog;
 
-public class EpisodeHeader extends BaseData {
+public class EpisodeHeader extends BaseLog {
     private byte maxEpisodeCount = 0x20;
     private byte[] EpisodeHeader;
     private byte latestEpisode;

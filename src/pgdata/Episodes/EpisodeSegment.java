@@ -3,12 +3,11 @@ package pgdata.Episodes;
 import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
-import pgdata.DeviceLog.BaseData;
+import pgdata.DeviceLog.BaseLog;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
-public class EpisodeSegment extends BaseData {
+public class EpisodeSegment extends BaseLog {
     private byte segmentIndex = 0x00;
     private byte[] segmentData;
 

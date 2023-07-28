@@ -6,16 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/BaseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/BaseLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceBatteryLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceBatteryLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceChargeLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceChargeLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceFaultLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceFaultLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceResetLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceResetLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeMarker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeMarker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeSegment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeSegment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +84,7 @@
       <workItem from="1689613382301" duration="41929000" />
       <workItem from="1689984178053" duration="1013000" />
       <workItem from="1690217305885" duration="40698000" />
-      <workItem from="1690389530831" duration="43405000" />
+      <workItem from="1690389530831" duration="47784000" />
     </task>
     <servers />
   </component>

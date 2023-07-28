@@ -9,18 +9,21 @@ import ParseData.DataConvert;
  * The logs have nothing to do with programmer itself
  */
 public class DeviceResetLog extends BaseLog {
+    private byte actual_number;
+    private byte write_index;
+    private byte[] m1_reset_count;
     public DeviceResetLog(){
         packetHeader = new byte[]{(byte) 0x84, 0x59, 0x11};
     }
 
     private class ResetLog{
         private byte DeviceId;
-        private byte faultId;
+        private byte resetReason;
         private byte[] timestamp;
         private byte[] operataionIdLog;
         public ResetLog(){
             DeviceId = RandomData.generateRandomByte();
-            faultId = RandomData.generateRandomByte();
+            resetReason = RandomData.generateRandomByte();
             timestamp = RandomData.generateRandomBytes(4);
             operataionIdLog = RandomData.generateRandomBytes(6);
         }
@@ -28,7 +31,7 @@ public class DeviceResetLog extends BaseLog {
         public byte[] getResetLog(){
             DynamicByteBuffer buffer = new DynamicByteBuffer();
             buffer.put(DeviceId);
-            buffer.put(faultId);
+            buffer.put(resetReason);
             buffer.put(timestamp);
             buffer.put(operataionIdLog);
             return buffer.toArray();
@@ -37,15 +40,19 @@ public class DeviceResetLog extends BaseLog {
 
     public byte[] getbReturnData() {
         DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
-        DynamicByteBuffer buffer = new DynamicByteBuffer();
+
         for(int i = 0;i<10;i++){
             DeviceResetLog.ResetLog log = new DeviceResetLog.ResetLog();
-            buffer.put(log.getResetLog());
+            dataBuffer.put(log.getResetLog());
         }
 
-        payload = null;
+        actual_number = RandomData.generateRandomByte();
+        write_index = RandomData.generateRandomByte();
+        m1_reset_count = RandomData.generateRandomBytes(2);
 
-        dataBuffer.put(0,buffer.toArray());
+        dataBuffer.put(actual_number);
+        dataBuffer.put(write_index);
+        dataBuffer.put(m1_reset_count);
         // 将ByteBuffer转化为byte数组
         payload = dataBuffer.toArray();
 

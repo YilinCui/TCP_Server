@@ -5,38 +5,32 @@ import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 
 public class DeviceTachyLog extends BaseLog {
+    private byte size;
+    private byte index;
+    private byte r1;
+    private byte r2;
 
     private byte[] packetHeader = {(byte)0x84, 0x5E, 0x10};
     private byte[] payload;
     private byte[] CRC32;
 
     private class TachyLog{
-        private byte recordTime;
-        private byte recordIndex;
         private byte[] timestamp;
-        private byte recordReason;
+        private byte recordReason; // only 5 reasons
         private byte recordMode;
         public TachyLog(){
-            recordTime = RandomData.generateRandomByte();
-            recordIndex = RandomData.generateRandomByte();
             timestamp = RandomData.generateRandomBytes(4);
-            recordReason = RandomData.generateRandomByte();
-            recordMode = RandomData.generateRandomByte();
+            recordMode = RandomData.generateRandomByte(2); // 3 modes in total
+            recordReason = RandomData.generateRandomByte(4); //5 reasons
+
         }
 
         public byte[] getTachyLog(){
             DynamicByteBuffer buffer = new DynamicByteBuffer();
-            buffer.put(recordTime);
-            buffer.put(recordIndex);
             buffer.put(timestamp);
-            buffer.put(recordReason);
             buffer.put(recordMode);
+            buffer.put(recordReason);
 
-            byte[] payload = buffer.toArray();
-
-            byte[] CRC32 = DataConvert.calculateCRC32(payload, 0, payload.length);
-
-            buffer.put(CRC32);
 
             return buffer.toArray();
         }
@@ -45,15 +39,21 @@ public class DeviceTachyLog extends BaseLog {
     @Override
     public byte[] getbReturnData() {
         DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
-        DynamicByteBuffer buffer = new DynamicByteBuffer();
-        for(int i = 0;i<10;i++){
+
+        size = RandomData.generateRandomByte();
+        index = RandomData.generateRandomByte();
+        r1 = RandomData.generateRandomByte();
+        r2 = RandomData.generateRandomByte();
+        dataBuffer.put(size);
+        dataBuffer.put(index);
+        dataBuffer.put(r1);
+        dataBuffer.put(r2);
+
+        for(int i = 0;i<20;i++){
             DeviceTachyLog.TachyLog log = new DeviceTachyLog.TachyLog();
-            buffer.put(log.getTachyLog());
+            dataBuffer.put(log.getTachyLog());
         }
 
-        payload = null;
-
-        dataBuffer.put(0,buffer.toArray());
         // 将ByteBuffer转化为byte数组
         payload = dataBuffer.toArray();
 

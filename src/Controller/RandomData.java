@@ -1,7 +1,11 @@
 package Controller;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Generate Random Data
@@ -39,6 +43,28 @@ public class RandomData {
     public static int generateRandomInt(int length) {
         Random random = new Random();
         return random.nextInt(length); // 这里的16是生成随机数的上限，不包括这个数本身。
+    }
+
+    public static byte[] getTimePassedInSeconds() {
+        // Get the current date and the date one month ago.
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime oneMonthAgo = now.minusMonths(1);
+
+        // Generate a random date between one month ago and now.
+        long secondsOneMonthAgo = oneMonthAgo.toEpochSecond(ZoneOffset.UTC);
+        long secondsNow = now.toEpochSecond(ZoneOffset.UTC);
+        long randomEpochSecond = ThreadLocalRandom.current().nextLong(secondsOneMonthAgo, secondsNow);
+
+        // Calculate the number of seconds from 2021/1/1 to the random date.
+        LocalDateTime startingDate = LocalDateTime.of(2021, 1, 1, 0, 0);
+        long startingEpochSecond = startingDate.toEpochSecond(ZoneOffset.UTC);
+        long secondsPassed = randomEpochSecond - startingEpochSecond;
+
+        // Convert the number of seconds to a 4-byte array with Little-Endian order.
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4);
+        byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt((int) secondsPassed);
+        return byteBuffer.array();
     }
 
 }

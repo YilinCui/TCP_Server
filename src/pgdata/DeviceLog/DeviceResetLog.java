@@ -24,7 +24,8 @@ public class DeviceResetLog extends BaseLog {
         public ResetLog(){
             DeviceId = RandomData.generateRandomByte();
             resetReason = RandomData.generateRandomByte();
-            timestamp = RandomData.generateRandomBytes(4);
+            timestamp = new byte[]{0x01, 0x00, 0x00, 0x00};
+            //timestamp = RandomData.generateRandomBytes(4);
             operataionIdLog = RandomData.generateRandomBytes(6);
         }
 
@@ -41,17 +42,18 @@ public class DeviceResetLog extends BaseLog {
     public byte[] getbReturnData() {
         DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
 
-        for(int i = 0;i<10;i++){
-            DeviceResetLog.ResetLog log = new DeviceResetLog.ResetLog();
-            dataBuffer.put(log.getResetLog());
-        }
-
         actual_number = RandomData.generateRandomByte();
         write_index = RandomData.generateRandomByte();
         m1_reset_count = RandomData.generateRandomBytes(2);
 
         dataBuffer.put(actual_number);
         dataBuffer.put(write_index);
+
+        for(int i = 0;i<10;i++){
+            DeviceResetLog.ResetLog log = new DeviceResetLog.ResetLog();
+            dataBuffer.put(log.getResetLog());
+        }
+
         dataBuffer.put(m1_reset_count);
         // 将ByteBuffer转化为byte数组
         payload = dataBuffer.toArray();

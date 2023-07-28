@@ -65,4 +65,6 @@ public class Constant {
     public static final byte[] READ_BRADY_PARAMETERS_NORM = DataConvert.hexStringToByteArray("20 33 4A 03 01 02 22 03 00 03 00 00 00 FA 00 78 00 00 00 03 1E 08 02 07 02 14 00 98 8F B2 7E 1C DF 44 21");
     public static final String DEVICE_RESET_LOG = "DeviceResetLog.per";
     public static final byte[] READ_BLE_EPISODE = DataConvert.hexStringToByteArray("08 00 A3 1A 00 00 00 E7 68 E0 1E");
+    public static final byte[] READ_EPISODE_SEGMENT = DataConvert.hexStringToByteArray("84 30 65 00 AF A4 A7 A2 A2 9E 9E 9A 9A 96 40 45 33 3C 34 32 2D 2C 29 25 24 20 20 1C 11 19 15 0F 0F 0E 0B 0D 09 04 06 05 03 04 08 03 08 03 85 83 03 81 85 02 81 02 05 00 02 83 85 0C 91 8B 0C 0F 11 03 08 07 04 0A 07 09 0B 03 03 05 07 09 0C 88 04 1A 0F 0F 0F 0C 0C 0B 05 08 0B 07 04 09 11 15 10 0C 08 0D 0C 0C 11 09 0D 12 0F 0F 16 13 0A 09 08 17 17 10 13 13 0A 0D 12 0F 0F 12 0C 14 1B 0F 0E 00 00 D8 67 CD A7");
+    public static final byte[] READ_EPISODE_MARKER = DataConvert.hexStringToByteArray("28 53 67 00 3B 05 7A 07 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 8D 46 D2 94");
 }

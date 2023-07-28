@@ -5,6 +5,8 @@ import ParseData.*;
 import pgdata.*;
 import pgdata.DeviceLog.*;
 import pgdata.Episodes.EpisodeHeader;
+import pgdata.Episodes.EpisodeMarker;
+import pgdata.Episodes.EpisodeSegment;
 import pgdata.Episodes.SingleEpisode;
 
 import java.io.File;
@@ -370,6 +372,20 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
                 SingleEpisode episode = new SingleEpisode();
                 bLongResponseArray = episode.getbLongReturnData();
+
+                break;
+
+            case ICD_CMD_READ_SINGLE_SEGMENT: //0x65 Read single episode segment
+
+                EpisodeSegment segment = new EpisodeSegment();
+                bLongResponseArray = segment.getbLongReturnData();
+
+                break;
+
+            case ICD_CMD_READ_SEGMENT_MARKERS: //0x67 Read segment marker
+
+                EpisodeMarker marker = new EpisodeMarker();
+                bLongResponseArray = marker.getbLongReturnData();
 
                 break;
 

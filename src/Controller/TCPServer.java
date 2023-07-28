@@ -44,6 +44,8 @@ public class TCPServer implements ICDCommandDefinitions {
         // a set of commandId including the command return more than 1 packet.
         private HashSet<Integer> commandSet = new HashSet<>(){{
             add(0x64);
+            add(0x65);
+            add(0x67);
         }};
 
         public ClientHandler(Socket clientSocket) {
@@ -84,7 +86,14 @@ public class TCPServer implements ICDCommandDefinitions {
                             if(TCPServerResponse!=null){
                                 for(byte[] response: TCPServerResponse){
                                     outputStream.write(response);
+                                    // flush the packet to handle TCP packet stickiness
+                                    outputStream.flush();
                                     System.out.println("Sent to client: " + DataConvert.byteDataToHexString(response) + "\n");
+                                    try {
+                                        Thread.sleep(20); // sleep to handle TCP packet stickiness
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             }
                         }

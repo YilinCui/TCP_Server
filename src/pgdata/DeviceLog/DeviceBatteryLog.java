@@ -78,7 +78,7 @@ public class DeviceBatteryLog extends BaseLog {
         // Print out sorted log entries
         for (BatteryLog log : list) {
             byte[] logBytes = log.getBatteryLog();
-            System.out.println("The Timestamp is: " + RandomData.getFormattedTimestampFromBytes(log.getTimestamp()) + " The old status is " + logBytes[4] + " and the new status is " + logBytes[5]);
+            System.out.println("The Timestamp is: " + DataConvert.getFormattedTimestampFromBytes(log.getTimestamp()) + " The old status is " + logBytes[4] + " and the new status is " + logBytes[5]);
         }
 
         //index = RandomData.generateRandomByte(20);

@@ -68,31 +68,7 @@ public class RandomData {
     }
 
     // Method to calculate a timestamp from a 4-byte array and return it as a formatted string
-    public static String getFormattedTimestampFromBytes(byte[] byteArray) {
-        // Check if array length is 4
-        if (byteArray == null || byteArray.length != 4) {
-            throw new IllegalArgumentException("Array is null or its length is not 4.");
-        }
 
-        // Convert the byte array to an integer with Little-Endian order
-        ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);
-        byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
-        int secondsPassed = byteBuffer.getInt();
-
-        // Get the starting date
-        ZonedDateTime startingDate = ZonedDateTime.of(2021, 1, 1, 0, 0, 0, 0, ZoneId.systemDefault());
-        long startingEpochSecond = startingDate.toEpochSecond();
-
-        // Calculate the timestamp
-        long randomEpochSecond = startingEpochSecond + secondsPassed;
-        ZonedDateTime randomDate = ZonedDateTime.ofInstant(Instant.ofEpochSecond(randomEpochSecond), ZoneId.systemDefault());
-
-        // Format the timestamp as a string
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedTimestamp = randomDate.format(formatter);
-
-        return formattedTimestamp;
-    }
 
 
     // Method to get a random byte from the given array
@@ -127,6 +103,11 @@ public class RandomData {
         // 返回随机索引处的字节数组
         return arrays[randomIndex];
     }
+
+    /**
+     * Generate a byte[] in certain range
+     * @return
+     */
 
 
 }

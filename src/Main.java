@@ -1,3 +1,4 @@
+import Controller.RandomData;
 import ParseData.DataConvert;
 
 import java.util.zip.CRC32;
@@ -8,10 +9,12 @@ public class Main {
     public static void main(String[] args) {
 
 
-        String hexData = "2F 3E 3B 19 67 6E 25 D8 90 D0 26 3A 96 C3 44 79 19 3C 11 49 08 F3 8A 4D 5C 57 50 18 42 48 C2 3C E8 BF F0 44 1B 98 05 35 1B 53 6F 01 83 6B 58 DD B6 F9 51 20 10 2D 0E 95 7C 43 24 FC 73 5D 07 53 40 40 0E B4 28 CB 48 DE 00 F8 33 04 57 52 6A E1 12 E4 20 34 3C DD 24 74 22 19 85 01 23 59 04 C5 9D 4B 16 04 15 66 0B A7 33 E7 7F 37 D3 BC 02 21 39 49 9A 56 C8 BB C2 40 4A 6D 37 0E 1C DF 44 21";
-        System.out.println("数据长度: " + getDataLength(hexData));
+//        String hexData = "5A 06 63 23 CD 79 BA 04 11 70 09 22 77 44 52 5F 16 7C 7E 1A 44 36 D1 04 45 16 51 3E 06 26 5B 23 37 66 44 1C 3E 8C BC 04 07 5D 2F 79 00 64 04 55 11 5B 66 04 B7 E8 BA 04 5C 05 75 70 26 29 50 52 5C 01 24 76 1C C6 B3 04 5B 2A 56 17 7E 69 46 39 22 25 08 4D 37 AA CE 04 36 20 55 3F 2A 6B 08 42 79 77 12 2B AF 54 CF 04 4F 57 6E 1A 2C 35 0D 34 33 FA 0F F5";
+//        System.out.println("数据长度: " + getDataLength(hexData));
 
-
+        String data = "AC 7A D2 04";
+        byte[] arr = DataConvert.hexStringToByteArray(data);
+        System.out.println(DataConvert.getFormattedTimestampFromBytes(arr));
     }
 
     public static int getDataLength (String data){

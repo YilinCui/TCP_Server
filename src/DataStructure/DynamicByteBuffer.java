@@ -1,19 +1,24 @@
 package DataStructure;
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Arrays;
 
 /**
  * Customized Data Structure based on ByteBuffer
- *
  */
 public class DynamicByteBuffer {
     private ByteBuffer buffer;
     private int capacity = 64;
 
+    //    public DynamicByteBuffer() {
+//        buffer = ByteBuffer.allocate(capacity);
+//    }
     public DynamicByteBuffer() {
         buffer = ByteBuffer.allocate(capacity);
+        //buffer.order(ByteOrder.LITTLE_ENDIAN);
     }
+
 
     public void put(byte b) {
         ensureCapacity(buffer.position() + 1);

@@ -19,7 +19,7 @@ public class DeviceChargeLog extends BaseLog {
         private byte[] impedance;
         public ChargeLog(){
             duration = RandomData.generateRandomBytes(4);
-            timestamp = RandomData.generateRandomBytes(4);
+            timestamp = RandomData.getTimePassedInSeconds();
             status = RandomData.generateRandomBytes(2);
             disStart = RandomData.generateRandomBytes(2);
             disEnd = RandomData.generateRandomBytes(2);

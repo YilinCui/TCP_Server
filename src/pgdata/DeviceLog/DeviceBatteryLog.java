@@ -5,7 +5,8 @@ import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 
 public class DeviceBatteryLog extends BaseLog {
-
+    private byte index;
+    private byte[] reserved = new byte[3];
     private class BatteryLog{
         private byte[] timestamp;
         private byte oldStatus;
@@ -13,9 +14,9 @@ public class DeviceBatteryLog extends BaseLog {
         private byte Reserved1 = 0x00;
         private byte Reserved2 = 0x00;
         public BatteryLog(){
-            timestamp = RandomData.generateRandomBytes(4);
-            oldStatus = RandomData.generateRandomByte();
-            newStatus = RandomData.generateRandomByte();
+            timestamp = RandomData.getTimePassedInSeconds();
+            oldStatus = RandomData.generateRandomByte(6);
+            newStatus = RandomData.generateRandomByte(6);
             packetHeader = new byte[]{0x34, 0x0F, 0x30};
         }
 
@@ -30,32 +31,14 @@ public class DeviceBatteryLog extends BaseLog {
         }
     }
 
-    @Override
-    public byte[] getbReturnData() {
-        DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
-        DynamicByteBuffer buffer = new DynamicByteBuffer();
+    public void buildPayload(DynamicByteBuffer buffer){
         for(int i = 0;i<5;i++){
             BatteryLog log = new BatteryLog();
             buffer.put(log.getBatteryLog());
         }
-
-        payload = null;
-
-        dataBuffer.put(0,buffer.toArray());
-        // 将ByteBuffer转化为byte数组
-        payload = dataBuffer.toArray();
-
-        byte[] parameterCRC32 = DataConvert.calculateCRC32(payload, 0, payload.length);
-        dataBuffer.put(parameterCRC32);
-
-        byte[] packetBody = dataBuffer.toArray();
-        byte[] CRC32 = DataConvert.calculateCRC32(packetBody, 0, packetBody.length);
-
-        dataBuffer.put(CRC32);
-        dataBuffer.put(0, packetHeader);
-
-        bRetrunData = dataBuffer.toArray();
-
-        return bRetrunData;
+        index = RandomData.generateRandomByte(20);
+        buffer.put(index);
+        buffer.put(reserved);
     }
+
 }

@@ -23,7 +23,8 @@ public class DeviceBatteryLog extends BaseLog {
         // 0x02 : RRT
         // 0x03 : EOS
         // 0x04 : EOS
-        private byte[] batteryStatus = new byte[]{0x01, 0x02, 0x03, 0x04};
+        // Other: NA
+        private byte[] batteryStatus = new byte[]{0x00, 0x01, 0x02, 0x03, 0x04};
         public BatteryLog(){
             timestamp = RandomData.getTimePassedInSeconds();
             while (oldStatus == newStatus){

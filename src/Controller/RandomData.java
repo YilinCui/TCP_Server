@@ -112,4 +112,21 @@ public class RandomData {
         return array[randomIndex];
     }
 
+    public static byte[] getRandomArrayFrom2DArray(byte[][] arrays) {
+        // 检查数组是否为空
+        if (arrays == null || arrays.length == 0) {
+            throw new IllegalArgumentException("Array is empty.");
+        }
+
+        // 创建一个Random对象
+        Random rand = new Random();
+
+        // 从0到数组长度-1中获取一个随机索引
+        int randomIndex = rand.nextInt(arrays.length);
+
+        // 返回随机索引处的字节数组
+        return arrays[randomIndex];
+    }
+
+
 }

@@ -4,6 +4,10 @@ import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.*;
+
 public class DeviceChargeLog extends BaseLog {
     private byte[] packetHeader1 = new byte[]{0x74, 0x05, 0x74};
     private byte[] packetHeader2 = new byte[]{(byte) 0x80, 0x09, 0x74};
@@ -14,12 +18,14 @@ public class DeviceChargeLog extends BaseLog {
         private byte[] duration;
         private byte[] timestamp;
         private byte[] status;
+        private byte[][] statusSelection = {{0x00, 0x10},{0x00, 0x20}, {0x00, 0x30},{0x00,0x60}};
         private byte[] disStart;
         private byte[] disEnd;
         private byte[] impedance;
         public ChargeLog(){
             duration = RandomData.generateRandomBytes(4);
             timestamp = RandomData.getTimePassedInSeconds();
+            //status = RandomData.getRandomArrayFrom2DArray(statusSelection);
             status = RandomData.generateRandomBytes(2);
             disStart = RandomData.generateRandomBytes(2);
             disEnd = RandomData.generateRandomBytes(2);
@@ -36,6 +42,15 @@ public class DeviceChargeLog extends BaseLog {
             buffer.put(impedance);
             return buffer.toArray();
         }
+
+        public byte[] getTimestamp(){
+            return timestamp;
+        }
+
+        public byte[] getStatus(){
+            return status;
+        }
+
     }
 
     private class ChargeLog2{
@@ -64,14 +79,41 @@ public class DeviceChargeLog extends BaseLog {
 
     public byte[] getbReturnData(int chargeLog){
         DynamicByteBuffer buffer;
+
         if(chargeLog==1){
             // for packet1, it contains packetHeader1 + 7 entries of ChargeLog + 4 bytes of CRC32
             DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
+            List<ChargeLog> list = new ArrayList<>();
+
             buffer = new DynamicByteBuffer();
             for(int i = 0;i<7;i++){
                 DeviceChargeLog.ChargeLog log = new DeviceChargeLog.ChargeLog();
                 buffer.put(log.getChargeLog());
+                list.add(log);
             }
+
+
+            // Sort list based on the timestamps
+            Collections.sort(list, new Comparator<ChargeLog>(){
+                public int compare(ChargeLog b1, ChargeLog b2) {
+                    byte[] timestamp1 = b1.getTimestamp();
+                    byte[] timestamp2 = b2.getTimestamp();
+
+                    // Assuming timestamps are integers represented as byte arrays
+                    int time1 = ByteBuffer.wrap(timestamp1).order(ByteOrder.LITTLE_ENDIAN).getInt();
+                    int time2 = ByteBuffer.wrap(timestamp2).order(ByteOrder.LITTLE_ENDIAN).getInt();
+
+                    return time2 - time1;
+                }
+            });
+
+            // Print out sorted log entries
+            for (ChargeLog log : list) {
+
+                System.out.println("The Timestamp is: " + RandomData.getFormattedTimestampFromBytes(log.getTimestamp()) + " The status is " + DataConvert.byteDataToHexString(log.getStatus()));
+            }
+
+
 
             payload1 = null;
 

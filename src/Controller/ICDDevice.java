@@ -158,7 +158,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 li_Local.setManufacturer(RandomData.generateRandomBytes(16));
                 //li_Local.setManufacturer("自定义");
                 bResponseArray = li_Local.getbRetrunData();
-
+                if(bResponseArray==null)
                 break;
 
             case ICD_CMD_READ_SERIAL_MODEL_NUM: //0x0D Read Device Serial Number

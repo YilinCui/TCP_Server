@@ -47,6 +47,7 @@ public class LeadInfo extends BaseFakeDataGenerator {
     }
 
     public byte[] getbRetrunData(){
+        if(bRetrunData==null)return null;
         // Construct Payload. Need to recalculate CRC32
 
         // 初始化ByteBuffer

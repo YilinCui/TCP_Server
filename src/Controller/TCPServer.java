@@ -69,9 +69,6 @@ public class TCPServer implements ICDCommandDefinitions {
                     // Thus, a command HashSet is introduced to handle 1 to Many relationship.
                     try{
                         myDevice.process(receivedBytes);
-                        if(receivedBytes.length<4){
-                            continue;
-                        }
                         int iCommandId = receivedBytes[2];
                         if(!commandSet.contains(iCommandId)){
                             // 1 to 1 relationship

@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/RandomData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RandomData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TCPServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterNormal.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterNormal.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterPostShock.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceChargeLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceChargeLog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +31,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Controller/ICDDevice.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -86,7 +96,7 @@
       <workItem from="1690217305885" duration="40698000" />
       <workItem from="1690389530831" duration="56966000" />
       <workItem from="1690820462972" duration="168000" />
-      <workItem from="1690820658513" duration="24219000" />
+      <workItem from="1690820658513" duration="27629000" />
     </task>
     <servers />
   </component>

@@ -42,7 +42,6 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     public PatientInformation pi_Local;
     public ClinicianNote cn_Local;
 
-    private int dataMode = 1;
 
     // runtime status
     // DeviceStatus
@@ -64,13 +63,13 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     // constructor
     // load from local XML document
     // initialize with specific value
-    public ICDDevice(int clientID){
+    public ICDDevice(int clientID) {
         folderName = "src" + File.separator + "LocalData" + File.separator + "Device" + clientID + File.separator;
         FilesHandler.creatFolder(folderName);
         initializeDevice();
     }
 
-    private void initializeDevice(){
+    private void initializeDevice() {
         bp_Local = new BradyParameter();
         td_Local = new TachyDetection();
         atp_Local = new TachyATPTherapy();
@@ -95,9 +94,10 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
     /**
      * Process the message sent from Android APP
+     *
      * @param receivedBytes byte array sent from Android app(TCP client)
      */
-    public void process(byte[] receivedBytes){
+    public void process(byte[] receivedBytes) {
         // Reset/Initialize parameters to null/default state;
         encodingPacket = null;
         bResponseArray = null;
@@ -105,12 +105,6 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         String fileName = null;
         int BradyState = 1;
 
-        // if receivedByte is the indicator of testCase marker
-        if(receivedBytes.length == 1){
-            dataMode = receivedBytes[0];
-            System.out.println("TestCase initialize message received");
-            return;
-        }
         DecodingPacket packet = new DecodingPacket(receivedBytes);
         int iCommandId = packet.getCommandID() & 0xFF;
 
@@ -121,6 +115,10 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
         // Switch cases
         switch (iCommandId) {
+            case 0x00:
+                // commandId refers to the testing configurations
+                System.out.println("Testing configurations parameters received!");
+
             case ICD_CMD_READ_ALERT_PARAM: //0x02 Read Alert Parameter
 
                 bResponseArray = Constant.READ_ALERT_PARAMETER;
@@ -179,7 +177,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 fileName = folderName + Constant.CLINICIAN_NOTE;
                 IOCommand(fileName, 1, packet);
 
-                if(bResponseArray==null){
+                if (bResponseArray == null) {
                     bResponseArray = Constant.READ_CLINICIAN_NOTE;
                 }
 
@@ -305,7 +303,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_SET_BRADY_PARAM: // 0x48 Program Brady Parameters
                 BradyState = packet.getpayload()[1] & 0xFF; // Get BradyState code : 0->9
-                switch (BradyState){
+                switch (BradyState) {
                     case 1:
                         fileName = folderName + Constant.BRADY_PARAMETER_NORM;
                         IOCommand(fileName, 2, packet);
@@ -318,51 +316,48 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                         break;
                 }
 
-                if(bResponseArray==null){
+                if (bResponseArray == null) {
                     bResponseArray = Constant.READ_BRADY_PARAMETERS_NORM;
                 }
 
                 break;
 
             case ICD_CMD_READ_BRADY_PARAM: // 0x4A Read Brady Parameters
-                if(dataMode==1){
-                    BradyState = packet.getpayload()[0] & 0xFF;
-                    switch (BradyState){
-                        case 1:
-                            fileName = folderName + Constant.BRADY_PARAMETER_NORM;
-                            IOCommand(fileName, 1, packet);
-                            break;
-                        case 3:
-                            fileName = folderName + Constant.BRADY_PARAMETER_POSTSHOCK;
-                            IOCommand(fileName, 1, packet);
-                            break;
-                        default:
 
-                            break;
-                    }
+                BradyState = packet.getpayload()[0] & 0xFF;
+                switch (BradyState) {
+                    case 1:
+                        fileName = folderName + Constant.BRADY_PARAMETER_NORM;
+                        IOCommand(fileName, 1, packet);
+                        break;
+                    case 3:
+                        fileName = folderName + Constant.BRADY_PARAMETER_POSTSHOCK;
+                        IOCommand(fileName, 1, packet);
+                        break;
+                    default:
 
-                    if(bResponseArray==null){
-                        bResponseArray = Constant.READ_BRADY_PARAMETERS_NORM;
-                    }
-                }else if(dataMode == 2){
+                        break;
+                }
+
+                if (bResponseArray == null) {
                     bResponseArray = Constant.READ_BRADY_PARAMETERS_NORM;
                 }
 
                 break;
 
-            case ICD_CMD_SET_TACHY_DETECT_PARAM : //0x52 Set Tachy Mode Parameters
+            case ICD_CMD_SET_TACHY_DETECT_PARAM: //0x52 Set Tachy Mode Parameters
                 fileName = folderName + Constant.TACHY_MODE_PARAMETER;
                 IOCommand(fileName, 2, packet);
 
                 break;
 
-            case ICD_CMD_SET_TACHY_THERAPY_PARAM : //0x53 Set Tachy Therapy Parameters
+            case ICD_CMD_SET_TACHY_THERAPY_PARAM: //0x53 Set Tachy Therapy Parameters
                 fileName = folderName + Constant.TACHY_THERAPY_PARAMETER;
                 IOCommand(fileName, 2, packet);
 
                 break;
 
-            case ICD_CMD_READ_TACHY_THERAPY_PARAM : //0x54 Read Tachy Therapy Parameters
+            case ICD_CMD_READ_TACHY_THERAPY_PARAM: //0x54 Read Tachy Therapy Parameters
                 fileName = folderName + Constant.TACHY_THERAPY_PARAMETER;
                 IOCommand(fileName, 1, packet);
 
@@ -390,11 +385,11 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 break;
 
             case ICD_CMD_SET_PATIENT_INFO: //0x68 Set Patient Info
-                if(patienInfoIndex==1){
+                if (patienInfoIndex == 1) {
                     fileName = folderName + Constant.PATIENT_INFO1;
                     IOCommand(fileName, 2, packet);
                     patienInfoIndex = 2;
-                }else if(patienInfoIndex==2){
+                } else if (patienInfoIndex == 2) {
                     fileName = folderName + Constant.PATIENT_INFO2;
                     IOCommand(fileName, 2, packet);
                     patienInfoIndex = 1;
@@ -403,19 +398,19 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 break;
 
             case ICD_CMD_READ_PATIENT_INFO: //0x69 Read Patient Info
-                if(patienInfoIndex==1){
+                if (patienInfoIndex == 1) {
                     fileName = folderName + Constant.PATIENT_INFO1;
                     IOCommand(fileName, 1, packet);
                     patienInfoIndex = 2;
-                    if(bResponseArray==null){
+                    if (bResponseArray == null) {
                         bResponseArray = Constant.READ_PATIENT_INFO1;
                     }
 
-                }else if(patienInfoIndex==2){
+                } else if (patienInfoIndex == 2) {
                     fileName = folderName + Constant.PATIENT_INFO2;
                     IOCommand(fileName, 1, packet);
                     patienInfoIndex = 1;
-                    if(bResponseArray==null){
+                    if (bResponseArray == null) {
                         bResponseArray = Constant.READ_PATIENT_INFO2;
                     }
                 }
@@ -461,18 +456,17 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
                 break;
 
-            case ICD_CMD_SET_TACHY_MODE : //0x75 Set Tachy Mode OnOFF
+            case ICD_CMD_SET_TACHY_MODE: //0x75 Set Tachy Mode OnOFF
                 fileName = folderName + Constant.TACHY_MODE_ONOFF;
                 IOCommand(fileName, 2, packet);
 
                 break;
 
-            case ICD_CMD_SET_TACHY_SVT_PARAM : //0x76 Set Tachy SVT Parameters
+            case ICD_CMD_SET_TACHY_SVT_PARAM: //0x76 Set Tachy SVT Parameters
                 fileName = folderName + Constant.TACHY_SVT_DETECTION;
                 IOCommand(fileName, 2, packet);
 
                 break;
-
 
 
             case ICD_CMD_BLE_IN_SESSION: // 0x80
@@ -507,46 +501,47 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
     /**
      * return a byte array as response if the array is not too long
+     *
      * @return byte[]
      */
-    public byte[] getResponse(){
+    public byte[] getResponse() {
 
-       return bResponseArray;
+        return bResponseArray;
     }
 
     /**
      * return a byte[][] if the response is too long and needs to send it separately
+     *
      * @return byte[][]
      */
-    public byte[][] getLongResponse(){
+    public byte[][] getLongResponse() {
         return bLongResponseArray;
     }
 
     /**
      * Files I/O and serialization
      * If we don't wish to fake the data, use this method.
+     *
      * @param fileName name of the serialized packet. eg. packet.per
-     * @param mode mode 1 == Read; mode 2 == Write
+     * @param mode     mode 1 == Read; mode 2 == Write
      */
-    private void IOCommand(String fileName, int mode, DecodingPacket packet){
+    private void IOCommand(String fileName, int mode, DecodingPacket packet) {
         // Read
-        if(mode==1){
-            encodingPacket = new EncodingPacket(packet,false, fileName);
+        if (mode == 1) {
+            encodingPacket = new EncodingPacket(packet, false, fileName);
             bResponseArray = encodingPacket.getPacketData();
         }
         // Write
-        else if(mode==2){
+        else if (mode == 2) {
             PacketManager.serialize(packet, fileName);
-            encodingPacket = new EncodingPacket(packet,true, fileName);
+            encodingPacket = new EncodingPacket(packet, true, fileName);
             bResponseArray = encodingPacket.getPacketData();
-        }
-        else if(mode==3){
+        } else if (mode == 3) {
             FilesHandler.deleteFile(fileName);
-            encodingPacket = new EncodingPacket(packet,true, fileName);
+            encodingPacket = new EncodingPacket(packet, true, fileName);
             bResponseArray = encodingPacket.getPacketData();
         }
     }
-
 
 
 }

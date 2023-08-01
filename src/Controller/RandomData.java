@@ -119,4 +119,28 @@ public class RandomData {
         return bb.array();
     }
 
+    public static byte[] generateBytesinRange() {
+        // Create a Random object
+        Random rand = new Random();
+
+        // Define the range for each part
+        int[] firstRange = {1, 2, 3, 6};  // Values for the first X
+        int secondRange = 13;  // Range for the second X, from 0 to C (12 in decimal)
+        int[] thirdRange = {1,2,3,4,5,8,9,10, 11};   // Range for the third X, from 1 to B (11 in decimal)
+        int fourthRange = 4;   // Range for the fourth X, from 0 to 3
+
+        // Generate random numbers within the specified range
+        int firstX = firstRange[rand.nextInt(firstRange.length)];
+        int secondX = rand.nextInt(secondRange);
+        int thirdX = thirdRange[rand.nextInt(thirdRange.length)];
+        int fourthX = rand.nextInt(fourthRange);
+
+        // Combine the two parts of each byte
+        byte firstByte = (byte) ((firstX << 4) | secondX);
+        byte secondByte = (byte) ((thirdX << 4) | fourthX);
+
+        // Return the byte array
+        return new byte[] {firstByte, secondByte};
+    }
+
 }

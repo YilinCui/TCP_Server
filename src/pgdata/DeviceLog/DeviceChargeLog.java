@@ -124,19 +124,7 @@ public class DeviceChargeLog extends BaseLog {
 
         }
 
-        // Sort list based on the timestamps
-        Collections.sort(list, new Comparator<ChargeLog>(){
-            public int compare(ChargeLog b1, ChargeLog b2) {
-                byte[] timestamp1 = b1.getTimestamp();
-                byte[] timestamp2 = b2.getTimestamp();
 
-                // Assuming timestamps are integers represented as byte arrays
-                int time1 = ByteBuffer.wrap(timestamp1).order(ByteOrder.LITTLE_ENDIAN).getInt();
-                int time2 = ByteBuffer.wrap(timestamp2).order(ByteOrder.LITTLE_ENDIAN).getInt();
-
-                return time2 - time1;
-            }
-        });
 
         // Print out sorted log entries
         for (ChargeLog log : list) {

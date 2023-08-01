@@ -11,8 +11,8 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
 
     private byte[] receivedBuffer;
     private int size;
-    private byte sequenceNumber;
-    private byte commandID;
+    private byte sequenceNumber = 0x00;
+    private byte commandID = 0x00;
     private byte[] payload;
     private byte[] crc32;
     public DecodingPacket(byte[] receivedBuffer){
@@ -22,6 +22,11 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
 
     private void parsePacket(){
         size = receivedBuffer[0] & 0xFF;
+        if(size==0){
+            System.out.println("TestCase Configuration received!");
+            sequenceNumber = receivedBuffer[1];
+            return;
+        }
 
         // Check if the packet has at least 4 parts (length, sequence number, instruction id, crc32)
         if (receivedBuffer.length < 4) {

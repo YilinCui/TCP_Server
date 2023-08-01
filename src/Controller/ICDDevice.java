@@ -41,6 +41,10 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     public LeadInfo li_Local;
     public PatientInformation pi_Local;
     public ClinicianNote cn_Local;
+    // There are several device modes of the virtual device
+    // 0: Normal Mode. All of the device data are randomized.
+    // 1: Espresso Testing Mode. How to return the data is determined by the configuration paramters from Espresso.
+    private int deviceMode = 0;
 
 
     // runtime status
@@ -116,8 +120,10 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
         // Switch cases
         switch (iCommandId) {
             case 0x00:
+                // 0x00 is used to set up the device mode
                 // commandId refers to the testing configurations
                 System.out.println("Testing configurations parameters received!");
+                deviceMode = 1;
 
             case ICD_CMD_READ_ALERT_PARAM: //0x02 Read Alert Parameter
 
@@ -295,7 +301,14 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_BATTERY_LOG: //0x30 Read Battery Log
 
-                bResponseArray = batteryLog_local.getbReturnData();
+                if(deviceMode==0){
+                    bResponseArray = batteryLog_local.getbReturnData();
+                }else if(deviceMode==1){
+                    // use sequenceNumber as testCase indicator
+                    DeviceBatteryLog log = new DeviceBatteryLog(packet.getSequenceNumber());
+                    bResponseArray = log.getbReturnData();
+                }
+
 
                 //bResponseArray = Constant.READ_BATTERY_LOG;
 

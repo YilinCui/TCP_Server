@@ -1,6 +1,7 @@
 package Controller;
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -104,10 +105,18 @@ public class RandomData {
         return arrays[randomIndex];
     }
 
-    /**
-     * Generate a byte[] in certain range
-     * @return
-     */
+    public static byte[] generateRandomLittleEndianBytes(int max) {
+        Random rand = new Random();
 
+        // Generate a random integer in the range [1, 127]
+        int randomNumber = rand.nextInt(max) + 1;
+
+        // Convert the integer to bytes in little endian order
+        ByteBuffer bb = ByteBuffer.allocate(4);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
+        bb.putInt(randomNumber);
+
+        return bb.array();
+    }
 
 }

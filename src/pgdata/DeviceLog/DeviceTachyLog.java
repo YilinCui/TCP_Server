@@ -4,70 +4,138 @@ import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.List;
+
 public class DeviceTachyLog extends BaseLog {
     private byte size;
     private byte index;
     private byte r1;
     private byte r2;
+    int deviceMode = 0;
+    int testCaseId = 0;
 
-    private byte[] packetHeader = {(byte)0x84, 0x5E, 0x10};
     private byte[] payload;
     private byte[] CRC32;
 
+    public DeviceTachyLog(){
+        packetHeader = new byte[]{(byte) 0x84, 0x5E, 0x10};
+    }
+
+    public DeviceTachyLog(int deviceMode, int testCaseId){
+        this();
+        this.deviceMode = deviceMode;
+        this.testCaseId = testCaseId;
+    }
+
     private class TachyLog{
+        private int deviceMode;
+        private int testCaseId;
         private byte[] timestamp;
         private byte recordReason; // only 5 reasons
-        private byte recordMode;
-        public TachyLog(){
+        private byte recordMode; // 3 modes in total
+
+        public TachyLog(int deviceMode, int testCaseId){
+            this.deviceMode = deviceMode;
+            this.testCaseId = testCaseId;
+
             timestamp = RandomData.getTimePassedInSeconds();
             recordMode = RandomData.generateRandomByte(2); // 3 modes in total
             recordReason = RandomData.generateRandomByte(4); //5 reasons
 
+            if(deviceMode==0){
+                // default
+                recordReason = 0x00;
+            }else if(deviceMode==1){
+                timestamp = new byte[4];
+                if(testCaseId==0){
+
+                }else if(testCaseId==1){
+                    recordMode = 0x00; // 3 modes in total
+                    recordReason = 0x00; //5 reasons
+                }else if(testCaseId==2){
+                    timestamp = new byte[4];
+                    recordReason = 0x00; //5 reasons
+                }else if(testCaseId==3){
+                    timestamp = new byte[4];
+                    recordMode = 0x00; // 3 modes in total
+                    recordReason = RandomData.generateRandomByte(4); //5 reasons
+                }
+            }
+
         }
+        public TachyLog(){}
 
         public byte[] getTachyLog(){
             DynamicByteBuffer buffer = new DynamicByteBuffer();
             buffer.put(timestamp);
             buffer.put(recordMode);
             buffer.put(recordReason);
-
-
             return buffer.toArray();
+        }
+        public byte[] getTimestamp(){
+            return timestamp;
         }
     }
 
-    @Override
-    public byte[] getbReturnData() {
-        DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
-
+    public void buildPayload(DynamicByteBuffer buffer){
         size = RandomData.generateRandomByte();
         index = RandomData.generateRandomByte();
         r1 = RandomData.generateRandomByte();
         r2 = RandomData.generateRandomByte();
-        dataBuffer.put(size);
-        dataBuffer.put(index);
-        dataBuffer.put(r1);
-        dataBuffer.put(r2);
+        if(deviceMode==0){
+
+        }else if(deviceMode==1){
+            size = 0x00;
+            index = 0x00;
+            r1 = 0x00;
+            r2 = 0x00;
+        }
+        buffer.put(size);
+        buffer.put(index);
+        buffer.put(r1);
+        buffer.put(r2);
+
+        List<TachyLog> list = new ArrayList<>();
 
         for(int i = 0;i<20;i++){
-            DeviceTachyLog.TachyLog log = new DeviceTachyLog.TachyLog();
-            dataBuffer.put(log.getTachyLog());
+            DeviceTachyLog.TachyLog log = new DeviceTachyLog.TachyLog(deviceMode, testCaseId);
+            buffer.put(log.getTachyLog());
+            list.add(log);
         }
+//        for(int i = 0;i<19;i++){
+//            DeviceTachyLog.TachyLog log = new DeviceTachyLog.TachyLog(deviceMode, 1);
+//            buffer.put(log.getTachyLog());
+//            list.add(log);
+//        }
+//        for(int i = 0;i<1;i++){
+//            DeviceTachyLog.TachyLog log = new DeviceTachyLog.TachyLog(deviceMode, 0);
+//            buffer.put(log.getTachyLog());
+//            list.add(log);
+//        }
 
-        // 将ByteBuffer转化为byte数组
-        payload = dataBuffer.toArray();
 
-        byte[] parameterCRC32 = DataConvert.calculateCRC32(payload, 0, payload.length);
-        dataBuffer.put(parameterCRC32);
 
-        byte[] packetBody = dataBuffer.toArray();
-        byte[] CRC32 = DataConvert.calculateCRC32(packetBody, 0, packetBody.length);
+        // List here is used for debug purpose.
+        // It will print out BatteryLog in timestamp order
+        // delete the code below won't affect the functionalities.
+        list.sort((b1, b2) -> {
+            byte[] timestamp1 = b1.getTimestamp();
+            byte[] timestamp2 = b2.getTimestamp();
 
-        dataBuffer.put(CRC32);
-        dataBuffer.put(0, packetHeader);
+            // Assuming timestamps are integers represented as byte arrays
+            int time1 = ByteBuffer.wrap(timestamp1).order(ByteOrder.LITTLE_ENDIAN).getInt();
+            int time2 = ByteBuffer.wrap(timestamp2).order(ByteOrder.LITTLE_ENDIAN).getInt();
 
-        bRetrunData = dataBuffer.toArray();
+            return time2 - time1;
+        });
 
-        return bRetrunData;
+        // Print out sorted log entries
+        for (TachyLog log : list) {
+            byte[] logBytes = log.getTachyLog();
+            System.out.println("The Timestamp is: " + DataConvert.getFormattedTimestampFromBytes(log.getTimestamp()) + " The mode is " + logBytes[4] + " and the reason is " + logBytes[5]);
+        }
     }
 }

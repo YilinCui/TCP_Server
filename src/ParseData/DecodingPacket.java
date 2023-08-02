@@ -2,6 +2,7 @@ package ParseData;
 
 
 import java.io.*;
+import java.util.Arrays;
 
 /**
  * Decode the binary packet to Hex
@@ -13,8 +14,8 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
     private int size;
     private byte sequenceNumber = 0x00;
     private byte commandID = 0x00;
-    private byte[] payload;
-    private byte[] crc32;
+    private byte[] payload = new byte[0];
+    private byte[] crc32 = new byte[0];
     public DecodingPacket(byte[] receivedBuffer){
         this.receivedBuffer = receivedBuffer;
         parsePacket();
@@ -24,7 +25,9 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
         size = receivedBuffer[0] & 0xFF;
         if(size==0){
             System.out.println("TestCase Configuration received!");
+            System.out.println("receivedBuffer is " + Arrays.toString(receivedBuffer));
             sequenceNumber = receivedBuffer[1];
+            System.out.println("sequenceNumber is " + sequenceNumber);
             return;
         }
 

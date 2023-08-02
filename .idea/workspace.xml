@@ -7,9 +7,10 @@
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceBatteryLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceBatteryLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceChargeLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceChargeLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +76,26 @@
       <recent name="" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="TCPServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Controller.TCPServer" />
+      <module name="TCP_Server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TCPServer" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -91,7 +112,7 @@
       <workItem from="1690217305885" duration="40698000" />
       <workItem from="1690389530831" duration="56966000" />
       <workItem from="1690820462972" duration="168000" />
-      <workItem from="1690820658513" duration="38915000" />
+      <workItem from="1690820658513" duration="65549000" />
     </task>
     <servers />
   </component>

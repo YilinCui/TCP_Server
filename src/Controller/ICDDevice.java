@@ -19,6 +19,9 @@ import java.io.File;
  */
 
 public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
+    private int deviceMode = 1;
+    private int testCaseId = 2;
+
     private int chargeLogCnt = 1;
     private int patienInfoIndex = 1;
     private int BradyParameterIndex = 1;
@@ -44,7 +47,6 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     // There are several device modes of the virtual device
     // 0: Normal Mode. All of the device data are randomized.
     // 1: Espresso Testing Mode. How to return the data is determined by the configuration paramters from Espresso.
-    private int deviceMode = 0;
 
 
     // runtime status
@@ -111,6 +113,7 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
         DecodingPacket packet = new DecodingPacket(receivedBytes);
         int iCommandId = packet.getCommandID() & 0xFF;
+        int iSequenceNumber = packet.getSequenceNumber() & 0xFF;
 
         if (iCommandId != ICD_CMD_BLE_IN_SESSION) {
             System.out.println("Received: " + packet);
@@ -122,8 +125,10 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
             case 0x00:
                 // 0x00 is used to set up the device mode
                 // commandId refers to the testing configurations
-                System.out.println("Testing configurations parameters received!");
-                deviceMode = 1;
+
+                deviceMode = iSequenceNumber;
+                testCaseId = receivedBytes[3] & 0xFF;
+                System.out.println("Testing configurations parameters received! deviceMode is: " + deviceMode + ", testCaseId is: " + testCaseId);
 
             case ICD_CMD_READ_ALERT_PARAM: //0x02 Read Alert Parameter
 
@@ -164,8 +169,8 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
                 li_Local.setManufacturer(RandomData.generateRandomBytes(16));
                 //li_Local.setManufacturer("自定义");
                 bResponseArray = li_Local.getbRetrunData();
-                if(bResponseArray==null)
-                break;
+                if (bResponseArray == null)
+                    break;
 
             case ICD_CMD_READ_SERIAL_MODEL_NUM: //0x0D Read Device Serial Number
 
@@ -191,7 +196,12 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_TACHY_LOG: //0x10 Read Tachy Log
 
-                bResponseArray = tachylog_local.getbReturnData();
+                // use sequenceNumber as testCase indicator
+                DeviceTachyLog tachyLog = new DeviceTachyLog(deviceMode, testCaseId);
+                //DeviceTachyLog tachyLog = new DeviceTachyLog(1, 0);
+                bResponseArray = tachyLog.getbReturnData();
+
+                //bResponseArray = tachylog_local.getbReturnData();
 
                 //bResponseArray = Constant.READ_TACHY_LOG;
 
@@ -301,13 +311,11 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_BATTERY_LOG: //0x30 Read Battery Log
 
-                if(deviceMode==0){
-                    bResponseArray = batteryLog_local.getbReturnData();
-                }else if(deviceMode==1){
-                    // use sequenceNumber as testCase indicator
-                    DeviceBatteryLog log = new DeviceBatteryLog(packet.getSequenceNumber());
-                    bResponseArray = log.getbReturnData();
-                }
+
+                // use sequenceNumber as testCase indicator
+                DeviceBatteryLog batteryLog = new DeviceBatteryLog(deviceMode, testCaseId);
+                //DeviceBatteryLog batteryLog = new DeviceBatteryLog(1, 2);
+                bResponseArray = batteryLog.getbReturnData();
 
 
                 //bResponseArray = Constant.READ_BATTERY_LOG;

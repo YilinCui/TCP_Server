@@ -1,5 +1,5 @@
-# TCP_Server
-TCP Server for Android app. This project is authorized by Singular Medical (Irvine, USA).
+# TCP_Server(Virtual Device)
+This virtual device is based on TCP communication protocol for our Android app. This project is authorized by Singular Medical (Irvine, USA).
 
 ## Copyright and Permissions
 All rights reserved. This project and accompanying materials are owned by Singular Medical. The content is protected by international copyright laws. 
@@ -9,6 +9,10 @@ No part of this project may be reproduced, distributed, or transmitted in any fo
 This project is intended for use solely by authorized individuals or entities, and may not be used for commercial purposes without the express written consent of Singular Medical. Unauthorized use of this project for commercial purposes is strictly prohibited and may result in severe civil and criminal penalties under applicable laws.
 
 By accessing or using this project, you agree to abide by the above terms.
+
+# Device Mode
+1. DeviceMode = 0: Normal State. All of the data are generated and retrieved randomly.
+2. DeviceMode = 1: Espresso testing state. All of the data are generated and returned according to the configuration paramters passed from Espresso testing framework.
 
 ### TCP Server-Client Interaction and Data Processing Workflow
 - Start

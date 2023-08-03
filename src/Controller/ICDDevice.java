@@ -19,8 +19,22 @@ import java.io.File;
  */
 
 public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
-    private int deviceMode = 0;
-    private int testCaseId = 0;
+    /*
+Non-testing mode (deviceMode = 0): In this mode, device data, such as parameter data that can be programmed, is processed through local serialization and deserialization IO. If the local data does not exist, the default value is returned. Non-programmable data all return random values (like Device Log, Episode, etc.)
+
+Espresso testing script mode 1 (deviceMode = 1): Fuzz testing + Full random: After Espresso gets the data, it parses it locally and then compares it with the actual UI data. All returned data are completely randomly without any rules.
+
+Espresso testing script mode 2 (deviceMode = 2): Fuzz testing + Semi-random: After Espresso gets the data, it parses it locally and then compares it with the actual UI data. All returned data are randomly within a reasonable range.
+
+Espresso testing script mode 3 (deviceMode = 3): Regression testing. Predefined data and expected test results: Espresso does not need to parse the data locally. Each Testcase will predefine the expected data and results. Espresso should directly compare whether the result is correct or not.
+
+Espresso testing script mode 4 (deviceMode = 4): Integration testing. The interaction of multiple modules. For example, pop-up testing.
+
+Stress/Performance testing (deviceMode = 5): Test the programmer's performance when faced with a large amount of garbage/illegal data.
+
+     */
+    private int deviceMode = 1;
+    private int testCaseId = 1;
 
     private int chargeLogCnt = 1;
     private int patienInfoIndex = 1;
@@ -210,8 +224,8 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 
             case ICD_CMD_READ_DEVICE_RESET_LOG: //0x11 Read Device Reset Log
 
-                // Random Generated Data
-                bResponseArray = resetlog_Local.getbReturnData();
+                DeviceResetLog resetLog = new DeviceResetLog(deviceMode, testCaseId);
+                bResponseArray = resetLog.getbReturnData();
 
                 break;
 

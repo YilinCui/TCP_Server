@@ -12,26 +12,66 @@ public class DeviceResetLog extends BaseLog {
     private byte actual_number;
     private byte write_index;
     private byte[] m1_reset_count;
+    private int deviceMode;
+    private int testCaseId;
     public DeviceResetLog(){
         packetHeader = new byte[]{(byte) 0x84, 0x59, 0x11};
     }
 
+    public DeviceResetLog(int deviceMode, int testCaseId){
+        this();
+        this.deviceMode = deviceMode;
+        this.testCaseId = testCaseId;
+    }
+    /*
+    If every byte in the ResetLog is 0x00, it will not be displayed on ResetLog UI.
+     */
     private class ResetLog{
         private byte[] DeviceIdList = new byte[]{0x00, 0x54, 0x14, 0x50}; // M1, M2, M3, BLE
-        private byte DeviceId;
+
+        private byte deviceId;
         private byte resetReason;
         private byte[] timestamp;
         private byte[] operataionIdLog;
         public ResetLog(){
-            DeviceId = DeviceIdList[RandomData.generateRandomByte(3)];
+
+        }
+
+        public ResetLog(int deviceMode, int testCaseId){
+            deviceId = DeviceIdList[RandomData.generateRandomByte(3)];
             resetReason = RandomData.generateRandomByte();
             timestamp = RandomData.getTimePassedInSeconds(); // length 4
             operataionIdLog = RandomData.generateRandomBytes(6);
+            if(deviceMode==0){
+                // default
+            }else if(deviceMode==1){
+                timestamp = new byte[4];
+                switch (testCaseId){
+                    case 0:{
+                        deviceId = 0x00;
+                        resetReason = 0x00;
+                        operataionIdLog = new byte[6];
+                        break;
+                    }
+                    case 1:{
+                        break;
+                    }
+                    case 2:{
+                        deviceId = 0x00;
+                        resetReason = 0x00;
+                        break;
+                    }
+                    case 3:{
+                        operataionIdLog = new byte[6];
+                        break;
+                    }
+                }
+            }
         }
 
         public byte[] getResetLog(){
             DynamicByteBuffer buffer = new DynamicByteBuffer();
-            buffer.put(DeviceId);
+            buffer.put(deviceId);
             buffer.put(resetReason);
             buffer.put(timestamp);
             buffer.put(operataionIdLog);
@@ -48,7 +88,7 @@ public class DeviceResetLog extends BaseLog {
         buffer.put(write_index);
 
         for(int i = 0;i<10;i++){
-            DeviceResetLog.ResetLog log = new DeviceResetLog.ResetLog();
+            DeviceResetLog.ResetLog log = new DeviceResetLog.ResetLog(deviceMode, testCaseId);
             buffer.put(log.getResetLog());
         }
 

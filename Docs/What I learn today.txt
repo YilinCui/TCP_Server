@@ -1,0 +1,16 @@
+6/1-8/1
+1. Abstract, polymorphysim, interface, inheritance
+2. The art of refactorizing
+3. Design pattern
+4. Business Logic
+5. Multi version controll(MVC)
+
+8/2
+1. Little Endian in ByteBuffer
+
+8/3
+1. Switch Case Fall through
+2. Enum Data type
+3. Immutable object and mutable object
+4. bit manipulate
+5. Testing Strategy. Half Random tests. Fully random tests and predifined data and expected results. Fuzz Test

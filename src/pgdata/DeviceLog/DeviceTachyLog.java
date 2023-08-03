@@ -31,15 +31,11 @@ public class DeviceTachyLog extends BaseLog {
     }
 
     private class TachyLog{
-        private int deviceMode;
-        private int testCaseId;
         private byte[] timestamp;
         private byte recordReason; // only 5 reasons
         private byte recordMode; // 3 modes in total
 
         public TachyLog(int deviceMode, int testCaseId){
-            this.deviceMode = deviceMode;
-            this.testCaseId = testCaseId;
 
             timestamp = RandomData.getTimePassedInSeconds();
             recordMode = RandomData.generateRandomByte(2); // 3 modes in total
@@ -105,17 +101,6 @@ public class DeviceTachyLog extends BaseLog {
             buffer.put(log.getTachyLog());
             list.add(log);
         }
-//        for(int i = 0;i<19;i++){
-//            DeviceTachyLog.TachyLog log = new DeviceTachyLog.TachyLog(deviceMode, 1);
-//            buffer.put(log.getTachyLog());
-//            list.add(log);
-//        }
-//        for(int i = 0;i<1;i++){
-//            DeviceTachyLog.TachyLog log = new DeviceTachyLog.TachyLog(deviceMode, 0);
-//            buffer.put(log.getTachyLog());
-//            list.add(log);
-//        }
-
 
 
         // List here is used for debug purpose.

@@ -19,8 +19,8 @@ import java.io.File;
  */
 
 public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
-    private int deviceMode = 1;
-    private int testCaseId = 2;
+    private int deviceMode = 0;
+    private int testCaseId = 0;
 
     private int chargeLogCnt = 1;
     private int patienInfoIndex = 1;
@@ -166,11 +166,12 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
 //                }
 
                 li_Local.process(packet);
-                li_Local.setManufacturer(RandomData.generateRandomBytes(16));
-                //li_Local.setManufacturer("自定义");
+
                 bResponseArray = li_Local.getbRetrunData();
-                if (bResponseArray == null)
-                    break;
+                if (bResponseArray == null){
+                    bResponseArray = Constant.PATIENT_LEAD_INFO;
+                }
+                break;
 
             case ICD_CMD_READ_SERIAL_MODEL_NUM: //0x0D Read Device Serial Number
 

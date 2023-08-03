@@ -47,7 +47,7 @@ public class DeviceTachyLog extends BaseLog {
 
             if(deviceMode==0){
                 // default
-                recordReason = 0x00;
+
             }else if(deviceMode==1){
                 timestamp = new byte[4];
                 if(testCaseId==0){

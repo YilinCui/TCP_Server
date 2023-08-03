@@ -14,8 +14,8 @@ public interface FilesHandler {
             System.out.println("Current working directory: " + System.getProperty("user.dir"));
 
             // 检查目录是否存在
-            if (Files.exists(dirPath)) {
-                // 如果目录存在，删除它
+//            if (Files.exists(dirPath)) {
+//                // 如果目录存在，删除它
 //                Files.walk(dirPath)
 //                        .sorted(Comparator.reverseOrder())
 //                        .forEach(path -> {
@@ -25,6 +25,9 @@ public interface FilesHandler {
 //                                throw new RuntimeException(e);
 //                            }
 //                        });
+//            }
+            if (!Files.exists(dirPath)) {
+                System.out.println("File does not exist. Creating new File/Folder");
             }
             // 创建新的目录，包括所有不存在的父目录
             Files.createDirectories(dirPath);

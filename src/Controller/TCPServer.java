@@ -4,9 +4,11 @@ import ParseData.DataConvert;
 import ParseData.DecodingPacket;
 import ParseData.ICDCommandDefinitions;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
@@ -15,13 +17,15 @@ import java.util.HashSet;
 /**
  * Entrance of the program
  */
-public class TCPServer implements ICDCommandDefinitions {
+public class TCPServer implements ICDCommandDefinitions, FilesHandler {
 
     private ServerSocket serverSocket;
     private Socket clientSocket;
+    private String folderPath = "src" + File.separator + "LocalData";
 
     public TCPServer(int port) throws IOException {
         serverSocket = new ServerSocket(port);
+        FilesHandler.creatFolder(folderPath);
     }
 
     public void start() throws IOException {

@@ -47,10 +47,10 @@ public class DeviceTachyLog extends BaseLog {
             }else if(deviceMode==1){
                 timestamp = new byte[4];
                 if(testCaseId==0){
-
-                }else if(testCaseId==1){
                     recordMode = 0x00; // 3 modes in total
                     recordReason = 0x00; //5 reasons
+                }else if(testCaseId==1){
+
                 }else if(testCaseId==2){
                     timestamp = new byte[4];
                     recordReason = 0x00; //5 reasons

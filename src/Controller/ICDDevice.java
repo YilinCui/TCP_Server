@@ -34,7 +34,7 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
 
      */
     private int deviceMode = 1;
-    private int testCaseId = 1;
+    private int testCaseId = 0;
 
     private int chargeLogCnt = 1;
     private int patienInfoIndex = 1;
@@ -238,8 +238,8 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
 
             case ICD_CMD_READ_DEVICE_FAULT_LOG: //0x14 Read Device Fault Log
 
-                // Random Generated Data
-                bResponseArray = faultlog_Local.getbReturnData();
+                DeviceFaultLog faultLog = new DeviceFaultLog(deviceMode, testCaseId);
+                bResponseArray = faultLog.getbReturnData();
 
 
                 //bResponseArray = Constant.READ_DEVICE_FAULT_LOG;

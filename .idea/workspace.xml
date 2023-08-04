@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/Bug.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Bug.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Docs/需求文档.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/需求文档.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceResetLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceResetLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceFaultLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceFaultLog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +112,7 @@
       <workItem from="1690217305885" duration="40698000" />
       <workItem from="1690389530831" duration="56966000" />
       <workItem from="1690820462972" duration="168000" />
-      <workItem from="1690820658513" duration="79282000" />
+      <workItem from="1690820658513" duration="86254000" />
     </task>
     <servers />
   </component>

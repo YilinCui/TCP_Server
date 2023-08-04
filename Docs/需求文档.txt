@@ -6,7 +6,8 @@
 6. Battery Log没有文档  (√）
 7. 虚设备传递数据给Espresso (√）
 8. 每次TCP client发送数据都会if判断，太麻烦（我不觉得这会怎么降低性能）(√）
-9. 如果是新设备连接，在没有本地数据时，虚设备应该返回Constant目录下预先定义好的默认数据，并且在本地生成相应的数据包
+9. （中等优先级）如果是新设备连接，在没有本地数据时，虚设备应该返回Constant目录下预先定义好的默认数据，并且在本地生成相应的数据包
+10. （高优先级）所有可以program+retrieve的参数设置的自动化测试脚本编写
 
 虚设备应该有多种模式。
 1. 非测试模式（deviceMode=0)，设备数据（可以被Program的），比如参数数据都是本地序列化和反序列化方式IO。本地没有的数据就返回默认值。非可program数据就全部返回随机值（比如Device Log，Episode之类）
@@ -15,3 +16,4 @@
 4. Espresso测试脚本模式3 (deviceMode=3)。回归测试。预定义的数据和预期测试结果：Espresso不需要在本地解析数据。每个Testcase都会事先规定好预期的数据和结果。Espresso应直接比较结果正确与否
 5. Espresso测试脚本模式4 (deviceMode=4)。集成测试。多个模块共同作用。比如弹窗测试
 6. 压力/性能测试 (deviceMode=5)。测试Programmer面对大量垃圾/非法数据时的表现
+7. Espresso测试脚本模式5 (deviceMode=5)。针对所有可以program+retrieve的参数进行测试。用Brady举例，Espresso随机地点开参数设置，随机点击一个选项。Program时记录当前UI界面上所有数据，然后retrieve后再进行比对。如果数据相同则测试通过。

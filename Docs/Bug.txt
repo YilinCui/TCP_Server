@@ -1,3 +1,4 @@
 1. 小心little Endian！！ChargeLog 0x0000。0x2610实际读取顺序为0x1026
 2. Tachy Log的读取顺序也是little Endian
 3. Tachy Log日志，在timeStamp相同时，是从下往上塞的。但是Battery Log是从上往下塞
+4. DeviceBatteryLog的EntryList和其他log不同。它是新的Log在下面，但其他DeviceLog是新的Log在最上面

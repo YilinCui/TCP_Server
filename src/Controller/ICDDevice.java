@@ -157,6 +157,9 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
                 fileName = folderName + Constant.TACHY_MODE_PARAMETER;
                 IOCommand(fileName, 1, packet);
 
+                if(bResponseArray==null){
+                    bResponseArray = Constant.READ_TACHY_MODE_PARAMETER;
+                }
                 break;
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
@@ -253,6 +256,10 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
                 fileName = folderName + Constant.TACHY_MODE_ONOFF;
                 IOCommand(fileName, 1, packet);
 
+                if(bResponseArray==null){
+                    bResponseArray = Constant.READ_TACHY_MODE_ONOFF;
+                }
+
                 break;
 
             case ICD_CMD_RETRIEVE_PG_TIMER_AND_RTC_DELTA: //0x19 Retrieve M2 Timer and RTC Timer
@@ -289,6 +296,9 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
                 fileName = folderName + Constant.TACHY_SVT_DETECTION;
                 IOCommand(fileName, 1, packet);
 
+                if(bResponseArray==null){
+                    bResponseArray = Constant.READ_TACHY_SVT_DETECTION;
+                }
                 break;
 
             case ICD_CMD_FIRMWARE_VERSION: //0x27 Read FW Revision
@@ -405,6 +415,10 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
             case ICD_CMD_READ_TACHY_THERAPY_PARAM: //0x54 Read Tachy Therapy Parameters
                 fileName = folderName + Constant.TACHY_THERAPY_PARAMETER;
                 IOCommand(fileName, 1, packet);
+
+                if(bResponseArray==null){
+                    bResponseArray = Constant.READ_TACHY_THERAPY_PARAMETER;
+                }
 
                 break;
 

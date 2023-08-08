@@ -15,5 +15,5 @@
 3. Espresso测试脚本模式2（deviceMode=2)。模糊测试+全随机：Espresso拿到数据后在本地解析，然后再和UI实际数据比对。所有返回的数据全部无规律随机
 4. Espresso测试脚本模式3 (deviceMode=3)。回归测试。预定义的数据和预期测试结果：Espresso不需要在本地解析数据。每个Testcase都会事先规定好预期的数据和结果。Espresso应直接比较结果正确与否
 5. Espresso测试脚本模式4 (deviceMode=4)。集成测试。多个模块共同作用。比如弹窗测试
-6. 压力/性能测试 (deviceMode=5)。测试Programmer面对大量垃圾/非法数据时的表现
-7. Espresso测试脚本模式5 (deviceMode=5)。针对所有可以program+retrieve的参数进行测试。用Brady举例，Espresso随机地点开参数设置，随机点击一个选项。Program时记录当前UI界面上所有数据，然后retrieve后再进行比对。如果数据相同则测试通过。
+6. Espresso测试脚本模式5 (deviceMode=5)。针对所有可以program+retrieve的参数进行测试。用Brady举例，Espresso随机地点开参数设置，随机点击一个选项。Program时记录当前UI界面上所有数据，然后retrieve后再进行比对。如果数据相同则测试通过。
+7. 压力/性能测试 (deviceMode=10)。测试Programmer面对大量垃圾/非法数据时的表现

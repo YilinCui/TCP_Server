@@ -14,3 +14,6 @@
 3. Immutable object and mutable object
 4. bit manipulate
 5. Testing Strategy. Half Random tests. Fully random tests and predifined data and expected results. Fuzz Test
+
+8/7
+1. NIO & BIO

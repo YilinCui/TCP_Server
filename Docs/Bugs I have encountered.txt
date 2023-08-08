@@ -1,0 +1,9 @@
+8/2
+1. 有个mode = 2, reason = 0。也就是Monitor+Therapy; None的不显示。原来Reason为None不会被记录到日志里
+2. OnData方法设计的，ListView在check某个position时，如果当前视图不可见，它会自动下拉列表
+
+8/3
+1. 发的0x0C，返回的却是0x0D ？？？
+
+8/7
+1. ChargeLog，是会有2个发送命令+2个返回命令。但我们只拿到了1个receivedBuffer Array。要想办法解决多个发送命令+多个返回命令的模型.

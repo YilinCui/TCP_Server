@@ -34,7 +34,7 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
 
      */
     private int deviceMode = 1;
-    private int testCaseId = 0;
+    private int testCaseId = 1;
 
     private int chargeLogCnt = 1;
     private int patienInfoIndex = 1;
@@ -480,7 +480,7 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
                 break;
 
             case ICD_CMD_READ_CHARGE_LOG: //0x74 Read Charge Log
-                bResponseArray = chargeLog_local.getbReturnData(packet.getpayload()[0]);
+                bResponseArray = chargeLog_local.getbReturnData(deviceMode, testCaseId, packet.getpayload()[0]);
 //                if(chargeLogCnt==1){
 //                    bResponseArray = chargeLog_local.getbReturnData(chargeLogCnt);
 //                    chargeLogCnt=2;

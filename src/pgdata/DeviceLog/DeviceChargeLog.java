@@ -1,5 +1,6 @@
 package pgdata.DeviceLog;
 
+import Constant.Constant;
 import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
@@ -21,14 +22,50 @@ public class DeviceChargeLog extends BaseLog {
         private byte[] disStart;
         private byte[] disEnd;
         private byte[] impedance;
-        public ChargeLog(){
+        public ChargeLog(){}
+
+        public ChargeLog(int deviceMode, int testCaseId){
+            // 4 bytes
             duration = RandomData.generateRandomLittleEndianBytes(300);
+            // 4 bytes
             timestamp = RandomData.getTimePassedInSeconds();
+            // 2 bytes
             status = RandomData.generateBytesinRange();
-            //status = RandomData.generateRandomBytes(2);
+            // 2 bytes
             disStart = RandomData.generateRandomBytes(2);
+            // 2 bytes
             disEnd = RandomData.generateRandomBytes(2);
+            // 2 bytes
             impedance = RandomData.generateRandomBytes(2);
+
+            if(deviceMode==0){
+
+            }else if(deviceMode==1){
+                switch (testCaseId){
+                    case 0:{
+                        timestamp = new byte[4];
+                        duration = new byte[4];
+                        status = new byte[2];
+                        break;
+                    }
+                    case 1:{
+                        // Randomized test
+                        break;
+                    }
+                    case 2:{
+                        duration = new byte[4];
+                        break;
+                    }
+                    case 3:{
+                        status = new byte[2];
+                        break;
+                    }
+                    case 4:{
+                        timestamp = new byte[4];
+                        break;
+                    }
+                }
+            }
         }
 
         public byte[] getChargeLog(){
@@ -54,11 +91,10 @@ public class DeviceChargeLog extends BaseLog {
 
     @Override
     public byte[] getbReturnData() {
-
         return null;
     }
 
-    public byte[] getbReturnData(int chargeLog){
+    public byte[] getbReturnData(int deviceMode, int testCaseId, int chargeLog){
         DynamicByteBuffer buffer;
         List<ChargeLog> list = new ArrayList<>();
         bRetrunData = null;
@@ -66,10 +102,9 @@ public class DeviceChargeLog extends BaseLog {
             // for packet1, it contains packetHeader1 + 7 entries of ChargeLog + 4 bytes of CRC32
             DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
 
-
             buffer = new DynamicByteBuffer();
             for(int i = 0;i<7;i++){
-                DeviceChargeLog.ChargeLog log = new DeviceChargeLog.ChargeLog();
+                DeviceChargeLog.ChargeLog log = new DeviceChargeLog.ChargeLog(deviceMode, testCaseId);
                 buffer.put(log.getChargeLog());
                 list.add(log);
             }
@@ -94,7 +129,7 @@ public class DeviceChargeLog extends BaseLog {
             DynamicByteBuffer dataBuffer = new DynamicByteBuffer();
             buffer = new DynamicByteBuffer();
             for(int i = 0;i<7;i++){
-                DeviceChargeLog.ChargeLog log = new DeviceChargeLog.ChargeLog();
+                DeviceChargeLog.ChargeLog log = new DeviceChargeLog.ChargeLog(deviceMode, testCaseId);
                 buffer.put(log.getChargeLog());
                 list.add(log);
             }
@@ -121,7 +156,6 @@ public class DeviceChargeLog extends BaseLog {
             returnBuffer.put(0,packetHeader2);
 
             bRetrunData = returnBuffer.toArray();
-
         }
 
 

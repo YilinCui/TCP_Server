@@ -1,13 +1,16 @@
 1. 随机化的数据应该在Reasonable的范围内  (√）
-2. 对于Device Log，虚设备传回去的数据应该能被Espresso捕捉，并且判断回传数据与实际显示的是否相符
-3. Episode的高度自定义化
+2. 对于Device Log，虚设备传回去的数据应该能被Espresso捕捉，并且判断回传数据与实际显示的是否相符 (√）
+3. Episode的高度自定义化（高优先级）
 4. TestCase Manager Configure parameters before each test case. (√）
 5. 动画加载页面，显示19个episode，但加载到13/19就结束了
 6. Battery Log没有文档  (√）
 7. 虚设备传递数据给Espresso (√）
 8. 每次TCP client发送数据都会if判断，太麻烦（我不觉得这会怎么降低性能）(√）
-9. （中等优先级）如果是新设备连接，在没有本地数据时，虚设备应该返回Constant目录下预先定义好的默认数据，并且在本地生成相应的数据包
-10. （高优先级）所有可以program+retrieve的参数设置的自动化测试脚本编写
+9. （中等优先级）如果是新设备连接，在没有本地数据时，虚设备应该返回Constant目录下预先定义好的默认数据 (√）
+10. （高优先级）所有可以program+retrieve的参数设置的自动化测试脚本编写 (√）
+
+
+
 
 虚设备应该有多种模式。
 1. 非测试模式（deviceMode=0)，设备数据（可以被Program的），比如参数数据都是本地序列化和反序列化方式IO。本地没有的数据就返回默认值。非可program数据就全部返回随机值（比如Device Log，Episode之类）

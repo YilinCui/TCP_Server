@@ -145,7 +145,10 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
                 System.out.println("Testing configurations parameters received! deviceMode is: " + deviceMode + ", testCaseId is: " + testCaseId);
 
             case ICD_CMD_READ_ALERT_PARAM: //0x02 Read Alert Parameter
+                fileName = folderName + Constant.ALERTS;
+                IOCommand(fileName, 1, packet);
 
+                if(bResponseArray==null)
                 bResponseArray = Constant.READ_ALERT_PARAMETER;
 
                 break;
@@ -378,6 +381,12 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
                 if (bResponseArray == null) {
                     bResponseArray = Constant.READ_BRADY_PARAMETERS_NORM;
                 }
+
+                break;
+
+            case ICD_CMD_SET_ALERT_PARAM: // 0x4B Write Alert parameters
+                fileName = folderName + Constant.ALERTS;
+                IOCommand(fileName, 2, packet);
 
                 break;
 

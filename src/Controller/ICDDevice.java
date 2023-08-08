@@ -521,8 +521,26 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
                 break;
 
             case ICD_CMD_SAFETY_CORE_PARAM: // 0x87 Safty Core Parameter
+                if(packet.getpayload().length==4){ // Retrieve
+                    fileName = folderName + Constant.SAFETYCORE_BRADY;
+                    IOCommand(fileName, 1, packet);
 
-                bResponseArray = Constant.SAFTY_CORE_PARAMETERS;
+                }else{ // Program
+                    byte[] payload = packet.getpayload();
+                    byte[] newPayload = new byte[payload.length-4];
+                    System.arraycopy(payload, 1, newPayload, 0, payload.length-4);
+                    packet.setPayload(newPayload);
+                    byte[] CRC32 = new byte[4];
+                    CRC32 = DataConvert.calculateCRC32(newPayload,0,newPayload.length);
+                    packet.setCrc32(CRC32);
+
+                    fileName = folderName + Constant.SAFETYCORE_BRADY;
+                    IOCommand(fileName, 2, packet);
+                }
+
+                if(bResponseArray==null){
+                    bResponseArray = Constant.SAFTY_CORE_PARAMETERS;
+                }
 
                 break;
 

@@ -31,6 +31,7 @@ Espresso testing script mode 3 (deviceMode = 3): Regression testing. Predefined 
 Espresso testing script mode 4 (deviceMode = 4): Integration testing. The interaction of multiple modules. For example, pop-up testing.
 
 Stress/Performance testing (deviceMode = 5): Test the programmer's performance when faced with a large amount of garbage/illegal data.
+DeviceMode 11: Storage Mode
 
      */
     private int deviceMode = 1;
@@ -144,6 +145,12 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
                 testCaseId = receivedBytes[3] & 0xFF;
                 System.out.println("Testing configurations parameters received! deviceMode is: " + deviceMode + ", testCaseId is: " + testCaseId);
 
+            case ICD_CMD_EXIT_STORAGE: //0x01 Exit the storage mode
+                deviceMode = 1;
+                IOCommand("", 3, packet);
+
+                break;
+
             case ICD_CMD_READ_ALERT_PARAM: //0x02 Read Alert Parameter
                 fileName = folderName + Constant.ALERTS;
                 IOCommand(fileName, 1, packet);
@@ -160,6 +167,13 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
                 if(bResponseArray==null){
                     bResponseArray = Constant.READ_TACHY_MODE_PARAMETER;
                 }
+                break;
+
+            case ICD_CMD_BACK_TO_STORAGE_MODE: //0x08 Enter Storage Mode
+                fileName = "";
+                IOCommand(fileName, 3, packet);
+
+                deviceMode = 11;
                 break;
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
@@ -400,6 +414,12 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
 
                 break;
 
+            case ICD_CMD_CHARGE_CAPACITOR: // 0x4D Charge the capacitor
+                fileName = folderName + "ChargeCapacitor.per";
+                IOCommand(fileName, 3, packet);
+
+                break;
+
             case ICD_CMD_SET_TACHY_DETECT_PARAM: //0x52 Set Tachy Mode Parameters
                 fileName = folderName + Constant.TACHY_MODE_PARAMETER;
                 IOCommand(fileName, 2, packet);
@@ -532,6 +552,11 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
                 // Android sends you a keep alive signal.
                 // No response needed.
                 //System.out.println(DataConvert.bytesToHex(receivedBytes));
+                if(deviceMode==11){
+                    // if in Storage Mode
+                    bResponseArray = Constant.STORAGE_MODE_STATUS;
+                }
+
                 break;
 
             case ICD_CMD_SAFETY_CORE_PARAM: // 0x87 Safty Core Parameter
@@ -564,9 +589,17 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
 
                 break;
 
-            case ICD_CMD_BLE_READ_EPISODE: // 0x88 Read Battery Detail
+            case ICD_CMD_BLE_WRITE_TX_POWER: // 0xB3 WRITE_TX_POWER
 
-                bResponseArray = Constant.READ_BLE_EPISODE;
+                fileName = folderName + Constant.TX_POWER;
+                IOCommand(fileName, 2, packet);
+
+                break;
+
+            case ICD_CMD_BLE_READ_TX_POWER: // 0xB2 READ_TX_POWER
+
+                fileName = folderName + Constant.TX_POWER;
+                IOCommand(fileName, 1, packet);
 
                 break;
 
@@ -603,21 +636,30 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
      * @param mode     mode 1 == Read; mode 2 == Write
      */
     private void IOCommand(String fileName, int mode, DecodingPacket packet) {
-        // Read
-        if (mode == 1) {
-            encodingPacket = new EncodingPacket(packet, false, fileName);
-            bResponseArray = encodingPacket.getPacketData();
+        switch (mode){
+            // Read
+            case 1:{
+                encodingPacket = new EncodingPacket(packet, false, fileName);
+                bResponseArray = encodingPacket.getPacketData();
+                break;
+            }
+            // Write
+            case 2:{
+                PacketManager.serialize(packet, fileName);
+                encodingPacket = new EncodingPacket(packet, true, fileName);
+                bResponseArray = encodingPacket.getPacketData();
+                break;
+            }
+            // Programmer wants the device to do something.
+            // Device only needs to return ACK.
+            case 3:{
+                encodingPacket = new EncodingPacket(packet, true, fileName);
+                bResponseArray = encodingPacket.getPacketData();
+                break;
+            }
         }
-        // Write
-        else if (mode == 2) {
-            PacketManager.serialize(packet, fileName);
-            encodingPacket = new EncodingPacket(packet, true, fileName);
-            bResponseArray = encodingPacket.getPacketData();
-        } else if (mode == 3) {
-            FilesHandler.deleteFile(fileName);
-            encodingPacket = new EncodingPacket(packet, true, fileName);
-            bResponseArray = encodingPacket.getPacketData();
-        }
+
+
     }
 
 

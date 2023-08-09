@@ -6,17 +6,64 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/Bugs I have encountered.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Bugs I have encountered.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/Note.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Note.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/What I learn today.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/What I learn today.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/~$rtual Device Protocol.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/~$rtual Device Protocol.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/Constant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/AlertParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/ClinicianNote.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/LeadInfo.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/PatientInfo1.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/PatientInfo2.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/SafetyCoreBrady.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeOnOff.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachyModeOnOff.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/TachyModeOnOff.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device10/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device10/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device10/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device10/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device11/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device11/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device11/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device11/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device12/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device12/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device12/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device12/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device13/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device13/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device13/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device13/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device14/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device14/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device14/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device14/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device19/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device19/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device19/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device19/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device20/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device20/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device20/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device20/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device9/BradyParameterPostShock.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device9/TachyModeParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device9/TachySVTDetection.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device9/TachyTherapyParameter.per" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +167,8 @@
       <workItem from="1690820462972" duration="168000" />
       <workItem from="1690820658513" duration="86977000" />
       <workItem from="1691426774786" duration="25570000" />
-      <workItem from="1691527954807" duration="7016000" />
+      <workItem from="1691527954807" duration="9985000" />
+      <workItem from="1691598383173" duration="6695000" />
     </task>
     <servers />
   </component>

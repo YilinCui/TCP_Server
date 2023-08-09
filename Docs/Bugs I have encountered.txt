@@ -7,3 +7,6 @@
 
 8/7
 1. ChargeLog，是会有2个发送命令+2个返回命令。但我们只拿到了1个receivedBuffer Array。要想办法解决多个发送命令+多个返回命令的模型.
+
+8/8
+1. OOM. Caused by running more than 20 test scripts.

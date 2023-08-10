@@ -52,6 +52,12 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
             add(0x67);
         }};
 
+        // Set of command jumps out a lot during test
+        private HashSet<Integer> annoyingCommandSet = new HashSet<>(){{
+           add(0x65);
+           add(0x67);
+        }};
+
         public ClientHandler(Socket clientSocket) {
             this.clientSocket = clientSocket;
         }
@@ -79,7 +85,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                             byte[] TCPServerResponse = myDevice.getResponse();
                             if(TCPServerResponse!=null){
                                 outputStream.write(TCPServerResponse);
-                                if(TCPServerResponse[2]!=(byte)0xA7)
+                                if(!annoyingCommandSet.contains((int)TCPServerResponse[2]))
                                 System.out.println("Sent to client: " + DataConvert.byteDataToHexString(TCPServerResponse) + "\n");
                             }
                         }else{
@@ -90,7 +96,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                                     outputStream.write(response);
                                     // flush the packet to handle TCP packet stickiness
                                     outputStream.flush();
-                                    if(response[2]!=(byte)0xA7)
+                                    if(!annoyingCommandSet.contains((int)response[2]))
                                     System.out.println("Sent to client: " + DataConvert.byteDataToHexString(response) + "\n");
                                     try {
                                         Thread.sleep(20); // sleep to handle TCP packet stickiness

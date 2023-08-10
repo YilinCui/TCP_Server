@@ -8,10 +8,21 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Docs/Note.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Note.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TCPServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeOnOff.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeOnOff.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParseData/ICDCommandDefinitions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/ICDCommandDefinitions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device1/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device10/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device10/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device11/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device11/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device12/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device12/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device13/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device13/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device2/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device3/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device3/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device4/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device5/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device6/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device6/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device7/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device7/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device8/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device8/GlobalConstant.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device9/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device9/GlobalConstant.per" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +127,7 @@
       <workItem from="1690820658513" duration="86977000" />
       <workItem from="1691426774786" duration="25570000" />
       <workItem from="1691527954807" duration="9985000" />
-      <workItem from="1691598383173" duration="13005000" />
+      <workItem from="1691598383173" duration="18469000" />
     </task>
     <servers />
   </component>

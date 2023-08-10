@@ -49,3 +49,6 @@
 8/9
 1. 如何进入Storage Mode
 2. 进入storage mode时，如果Tachy Mode不为off，则会自动变成off。但问题来了：我在LogCat里没看到将Device设为Tachy Off的指令？
+
+8/10
+1. Device Calibration下的Battery-> Program Estimate Values，这项功能如果测试，需要增加需求：之前是每个Command都只对应一个per文件。但现在需要增加command修改其它command所属文件的需求。

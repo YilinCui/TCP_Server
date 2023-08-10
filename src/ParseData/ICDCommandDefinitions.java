@@ -55,10 +55,10 @@ public interface ICDCommandDefinitions {
             ICD_CMD_READ_ALARM_LOG = 0x2E,
             ICD_CMD_READ_BRADY_COUNTERS = 0x2F,
             ICD_CMD_READ_BATTERY_LOG = 0x30,
-    //NULL, //0x31
-    //NULL, //0x32
-    //NULL, //0x33
-    //NULL, //0x34
+            ICD_CMD_BLE_CHALLENGE_RESPONSE_PART1 = 0x31, //Programmer to ICD
+            ICD_CMD_BLE_CHALLENGE_RESPONSE_PART2 = 0x32, //ICD to Programmer
+            ICD_CMD_BLE_QUERY_DEVICE_INFO = 0x33, //
+            ICD_CMD_BLE_CRYPT_RESET = 0x34,
     //NULL, //0x35
     //NULL, //0x36
     //NULL, //0x37

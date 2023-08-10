@@ -76,4 +76,7 @@ public class Constant {
     public static final byte[] READ_TACHY_SVT_DETECTION = DataConvert.hexStringToByteArray("27 C8 26 00 00 00 00 00 00 00 00 00 02 02 00 00 00 00 00 00 00 00 00 00 02 02 00 00 00 00 00 B9 AA 47 2B 1C DF 44 21");
     public static final String TX_POWER = "TxPower.per";
     public static final byte[] STORAGE_MODE_STATUS = DataConvert.hexStringToByteArray("08 34 A7 00 90 00 00 EC 67 57 DC");
+    public static final String SERIAL_NUMBER = "SerialNumber.per";
+    public static final String GLOBAL_CONSTANT = "GlobalConstant.per";
+    public static final String BATTERY_ESTIMATE_CONSTANTS = "BatteryEstimatedConstants.per";
 }

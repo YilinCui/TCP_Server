@@ -208,7 +208,10 @@ DeviceMode 11: Storage Mode
                 break;
 
             case ICD_CMD_READ_SERIAL_MODEL_NUM: //0x0D Read Device Serial Number
+                fileName = folderName + Constant.SERIAL_NUMBER;
+                IOCommand(fileName, 1, packet);
 
+                if(bResponseArray==null)
                 bResponseArray = Constant.DEVICE_SERIAL_NUMBER;
 
                 break;
@@ -302,6 +305,10 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_GLOBAL_CONSTANTS: //0x24 Read Global Constants
 
+                fileName = folderName + Constant.GLOBAL_CONSTANT;
+                IOCommand(fileName, 1, packet);
+
+                if(bResponseArray==null)
                 bResponseArray = Constant.READ_GLOBAL_CONSTANTS;
 
                 break;
@@ -503,6 +510,13 @@ DeviceMode 11: Storage Mode
 
                 break;
 
+            case ICD_CMD_SET_SERIAL_MODEL_NUM: //0x6B Set SERIAL_MODEL_NUM
+
+                fileName = folderName + Constant.SERIAL_NUMBER;
+                IOCommand(fileName, 2, packet);
+
+                break;
+
             case ICD_CMD_SET_CLINICIAN_NOTE: //0x6C Set Clinician Note
 
                 fileName = folderName + Constant.CLINICIAN_NOTE;
@@ -519,6 +533,13 @@ DeviceMode 11: Storage Mode
             case ICD_CMD_SET_MAGNET_MODE: //0x6E Set Magnet Mode
 
                 bResponseArray = Constant.SET_MAGNET_MODE;
+
+                break;
+
+            case ICD_CMD_SET_GLOBAL_CONSTANTS: //0x73 Set GLOBAL_CONSTANTS
+
+                fileName = folderName + Constant.GLOBAL_CONSTANT;
+                IOCommand(fileName, 2, packet);
 
                 break;
 
@@ -586,6 +607,13 @@ DeviceMode 11: Storage Mode
             case ICD_CMD_READ_BATTERY_DETAIL: // 0x88 Read Battery Detail
 
                 bResponseArray = Constant.READ_BATTERY_DETAIL;
+
+                break;
+
+            case ICD_CMD_SET_BATTERY_ESTIMATE_CONSTANTS: // 0x89 BATTERY_ESTIMATE_CONSTANTS
+
+                fileName = folderName + Constant.BATTERY_ESTIMATE_CONSTANTS;
+                IOCommand(fileName, 2, packet);
 
                 break;
 

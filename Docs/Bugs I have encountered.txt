@@ -10,3 +10,5 @@
 
 8/8
 1. OOM. Caused by running more than 20 test scripts.
+2. The data validation logic under debug test mode is not strict. Fix it or not?
+3. 随机乱发Episode会导致程序崩溃

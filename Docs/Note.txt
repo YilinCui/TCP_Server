@@ -48,3 +48,4 @@
 
 8/9
 1. 如何进入Storage Mode
+2. 进入storage mode时，如果Tachy Mode不为off，则会自动变成off。但问题来了：我在LogCat里没看到将Device设为Tachy Off的指令？

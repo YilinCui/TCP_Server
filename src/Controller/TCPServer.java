@@ -79,6 +79,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                             byte[] TCPServerResponse = myDevice.getResponse();
                             if(TCPServerResponse!=null){
                                 outputStream.write(TCPServerResponse);
+                                if(TCPServerResponse[2]!=(byte)0xA7)
                                 System.out.println("Sent to client: " + DataConvert.byteDataToHexString(TCPServerResponse) + "\n");
                             }
                         }else{
@@ -89,6 +90,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                                     outputStream.write(response);
                                     // flush the packet to handle TCP packet stickiness
                                     outputStream.flush();
+                                    if(response[2]!=(byte)0xA7)
                                     System.out.println("Sent to client: " + DataConvert.byteDataToHexString(response) + "\n");
                                     try {
                                         Thread.sleep(20); // sleep to handle TCP packet stickiness

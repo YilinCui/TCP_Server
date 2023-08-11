@@ -1,6 +1,10 @@
 # TCP_Server(Virtual Device)
 This virtual device is based on TCP communication protocol for our Android app. This project is authorized by Singular Medical (Irvine, USA).
 
+# Description
+This Virtual Device aims at simulating a real Device in terms of sending data(in byte[] format) back to Android programmer. Virtual device is using TCP/IP communication protocol instead of BLE in real running environment.
+
+
 ## Copyright and Permissions
 All rights reserved. This project and accompanying materials are owned by Singular Medical. The content is protected by international copyright laws. 
 

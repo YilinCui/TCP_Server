@@ -12,3 +12,6 @@
 1. OOM. Caused by running more than 20 test scripts.
 2. The data validation logic under debug test mode is not strict. Fix it or not?
 3. 随机乱发Episode会导致程序崩溃
+
+8/11
+1. 有时候会出现Device Communication Failed。推测可能是通讯层紊乱。小概率事件

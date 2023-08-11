@@ -44,7 +44,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
 
     private class ClientHandler implements Runnable {
         private Socket clientSocket;
-        private static int clientID;
+        private int clientID;
         // a set of commandId including the command return more than 1 packet.
         private HashSet<Integer> commandSet = new HashSet<>(){{
             add(0x64);
@@ -54,12 +54,16 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
 
         // Set of command jumps out a lot during test
         private HashSet<Integer> annoyingCommandSet = new HashSet<>(){{
-           add(0x65);
-           add(0x67);
+//           add(0x65);
+//           add(0x67);
         }};
-
+        private static int globalClientID = 0;
         public ClientHandler(Socket clientSocket) {
             this.clientSocket = clientSocket;
+            synchronized (ClientHandler.class) { // 同步clientID分配，以防止在多线程环境中出现问题
+                this.clientID = globalClientID++;
+            }
+            //this.clientID = 0;
         }
 
         @Override
@@ -116,6 +120,10 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                 outputStream.close();
                 clientSocket.close();
                 System.out.println("Client disconnected");
+                synchronized (ClientHandler.class) { // 当客户端断开连接时，递减clientID
+                    globalClientID--;
+                }
+                System.out.println("client count is: " + globalClientID);
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -15,3 +15,6 @@
 
 8/11
 1. 有时候会出现Device Communication Failed。推测可能是通讯层紊乱。小概率事件
+
+8/14
+1. Splash stucks at Retrieving episode summary forevery. Caused by infinitely starting timeout count?

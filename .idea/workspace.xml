@@ -8,10 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Docs/Bugs I have encountered.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Bugs I have encountered.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Docs/Espresso Testing Protocol.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Espresso Testing Protocol.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/Test Report.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Test Report.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/Virtual Device Protocol.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Virtual Device Protocol.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/~$presso Testing Protocol.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/~$presso Testing Protocol.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Docs/~$rtual Device Protocol.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +115,7 @@
       <workItem from="1691426774786" duration="25570000" />
       <workItem from="1691527954807" duration="9985000" />
       <workItem from="1691598383173" duration="36511000" />
-      <workItem from="1692030860780" duration="1898000" />
+      <workItem from="1692030860780" duration="9192000" />
     </task>
     <servers />
   </component>

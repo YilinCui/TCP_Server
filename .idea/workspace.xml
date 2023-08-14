@@ -5,43 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Docs/Espresso Testing Protocol.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Docs/~$presso Testing Protocol.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Docs/Bugs I have encountered.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Bugs I have encountered.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/Espresso Testing Protocol.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Espresso Testing Protocol.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Docs/Test Report.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Test Report.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/~$st Report.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/~WRL0005.tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterNormal.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterPostShock.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameterNormal.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameterPostShock.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachyModeParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachySVTDetection.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/TachyTherapyParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/BradyParameterPostShock.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/TachyModeParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/TachySVTDetection.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/TachyTherapyParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device3/BradyParameterPostShock.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device3/TachyModeParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device3/TachySVTDetection.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device3/TachyTherapyParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/BradyParameterPostShock.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/TachyModeParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/TachySVTDetection.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/TachyTherapyParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/BradyParameterPostShock.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/TachyModeParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/TachySVTDetection.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/TachyTherapyParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device6/BradyParameterPostShock.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device6/TachyModeParameter.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device6/TachySVTDetection.per" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device6/TachyTherapyParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/Virtual Device Protocol.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/Virtual Device Protocol.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/~$presso Testing Protocol.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/~$presso Testing Protocol.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/~$rtual Device Protocol.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +116,8 @@
       <workItem from="1690820658513" duration="86977000" />
       <workItem from="1691426774786" duration="25570000" />
       <workItem from="1691527954807" duration="9985000" />
-      <workItem from="1691598383173" duration="33706000" />
+      <workItem from="1691598383173" duration="36511000" />
+      <workItem from="1692030860780" duration="1898000" />
     </task>
     <servers />
   </component>

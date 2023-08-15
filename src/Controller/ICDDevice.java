@@ -426,19 +426,19 @@ DeviceMode 11: Storage Mode
 
                 break;
 
-//            case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
-//
-//                SingleEpisode episode = new SingleEpisode();
-//                bLongResponseArray = episode.getbLongReturnData();
-//
-//                break;
-//
-//            case ICD_CMD_READ_SINGLE_SEGMENT: //0x65 Read single episode segment
-//
-//                EpisodeSegment segment = new EpisodeSegment();
-//                bLongResponseArray = segment.getbLongReturnData();
-//
-//                break;
+            case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
+
+                SingleEpisode episode = new SingleEpisode();
+                bLongResponseArray = episode.getbLongReturnData();
+
+                break;
+
+            case ICD_CMD_READ_SINGLE_SEGMENT: //0x65 Read single episode segment
+
+                EpisodeSegment segment = new EpisodeSegment();
+                bLongResponseArray = segment.getbLongReturnData();
+
+                break;
 //
 //            case ICD_CMD_READ_SEGMENT_MARKERS: //0x67 Read segment marker
 //

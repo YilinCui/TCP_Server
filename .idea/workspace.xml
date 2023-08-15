@@ -6,67 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/~$st Report.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TCPServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterNormal.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterNormal.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameterNormal.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameterNormal.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device1/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device10/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device10/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device10/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device10/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device10/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device10/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device10/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device10/TachyTherapyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device12/AlertParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device12/AlertParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device13/SafetyCoreBrady.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device13/SafetyCoreBrady.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device14/SafetyCoreBrady.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device14/SafetyCoreBrady.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/BradyParameterNormal.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device2/BradyParameterNormal.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device2/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device2/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device2/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device2/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device2/TachyTherapyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device3/BradyParameterNormal.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device3/BradyParameterNormal.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device39/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device39/GlobalConstant.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device4/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device4/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device4/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device4/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device4/TachyTherapyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device40/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device40/GlobalConstant.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device41/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device41/GlobalConstant.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device42/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device42/GlobalConstant.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device43/GlobalConstant.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device43/GlobalConstant.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device44/LeadInfo.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device44/LeadInfo.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device45/PatientInfo1.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device45/PatientInfo1.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device45/PatientInfo2.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device45/PatientInfo2.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device46/ClinicianNote.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device46/ClinicianNote.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device5/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device5/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device5/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device5/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device5/TachyTherapyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device6/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device6/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device6/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device6/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device6/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device6/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device6/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device6/TachyTherapyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device7/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device7/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device7/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device7/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device7/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device7/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device7/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device7/TachyTherapyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device8/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device8/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device8/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device8/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device8/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device8/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device8/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device8/TachyTherapyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device9/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device9/BradyParameterPostShock.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device9/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device9/TachyModeParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device9/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device9/TachySVTDetection.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LocalData/Device9/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device9/TachyTherapyParameter.per" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/BaseFakeDataGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/ClinicianNote.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RandomData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RandomData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/PatientInformation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/TachyATPTherapy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/TachyDetection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/TachyShockTherapy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +76,14 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.TCPServer">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCP_Server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TCPServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Controller.TCPServer" />
       <module name="TCP_Server" />
@@ -149,6 +100,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.TCPServer" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -172,7 +124,7 @@
       <workItem from="1691426774786" duration="25570000" />
       <workItem from="1691527954807" duration="9985000" />
       <workItem from="1691598383173" duration="36511000" />
-      <workItem from="1692030860780" duration="14264000" />
+      <workItem from="1692030860780" duration="24738000" />
     </task>
     <servers />
   </component>

@@ -63,8 +63,9 @@ public class SingleEpisode extends BaseLog {
         DynamicByteBuffer buffer2 = new DynamicByteBuffer();
         DynamicByteBuffer payloadBuffer = new DynamicByteBuffer();
 
-        startTime = RandomData.generateRandomBytes(4);
-        endTime = RandomData.generateRandomBytes(4);
+        byte[] time = RandomData.getTimePassedInSeconds();
+        startTime = time;
+        endTime = RandomData.addSecondsToTime(time, 20);
         //episodeNumber = RandomData.generateRandomBytes(2);
         vf_initial_duration = RandomData.generateRandomByte();
         vf_re_duration = RandomData.generateRandomByte();
@@ -133,10 +134,15 @@ public class SingleEpisode extends BaseLog {
         list.add(packetBuffer1.toArray());
         // End of Constructing packet1
 
-        estimatedImpedance = RandomData.generateRandomBytes(20);
-        segmentsTimestamp = RandomData.generateRandomBytes(20);
-        nearSegments = RandomData.generateRandomBytes(20);
-        farSegments = RandomData.generateRandomBytes(20);
+//        estimatedImpedance = RandomData.generateRandomBytes(20);
+//        segmentsTimestamp = RandomData.generateRandomBytes(20);
+//        nearSegments = RandomData.generateRandomBytes(20);
+//        farSegments = RandomData.generateRandomBytes(20);
+
+        estimatedImpedance = new byte[20];
+        segmentsTimestamp = new byte[20];
+        nearSegments = new byte[20];
+        farSegments = new byte[20];
 
         buffer2.put(tachy_treat_part2); // 17
         buffer2.put(estimatedImpedance); // 37

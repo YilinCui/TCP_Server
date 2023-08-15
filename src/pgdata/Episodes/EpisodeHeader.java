@@ -7,7 +7,7 @@ import pgdata.DeviceLog.BaseLog;
 
 public class EpisodeHeader extends BaseLog {
     private byte maxEpisodeCount = 0x20;
-    private byte[] EpisodeHeader;
+    private byte[] EpisodeHeader = new byte[5];
     private byte latestEpisode;
     private byte[] EpisodeCount;
     private byte[] supplement = new byte[3];
@@ -47,7 +47,7 @@ public class EpisodeHeader extends BaseLog {
     public byte[] getbReturnData(){
         setEpisodeHeader(5);
         latestEpisode = 0x00;
-        EpisodeCount = new byte[]{0x00,0x00};
+        EpisodeCount = new byte[]{0x05,0x00};
 
         DynamicByteBuffer buffer = new DynamicByteBuffer();
         buffer.put(EpisodeHeader);

@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class RandomData {
     /**
-     * Generate a byte array, and fill in the array with random bytes.
+     * Generate a byte array with size = length, and fill in the array with random bytes.
      * @param length
      * @return byte array
      */
@@ -65,6 +65,22 @@ public class RandomData {
         ByteBuffer byteBuffer = ByteBuffer.allocate(4);
         byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
         byteBuffer.putInt((int) secondsPassed);
+        return byteBuffer.array();
+    }
+
+    public static byte[] addSecondsToTime(byte[] time, int secondsToAdd) {
+        // Convert the 4-byte array to an integer using Little-Endian order.
+        ByteBuffer byteBuffer = ByteBuffer.wrap(time);
+        byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
+        int secondsPassed = byteBuffer.getInt();
+
+        // Add the specified number of seconds.
+        secondsPassed += secondsToAdd;
+
+        // Convert the modified number of seconds back to a 4-byte array.
+        byteBuffer = ByteBuffer.allocate(4);
+        byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt(secondsPassed);
         return byteBuffer.array();
     }
 

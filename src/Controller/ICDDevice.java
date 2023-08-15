@@ -45,9 +45,6 @@ DeviceMode 11: Storage Mode
     private String folderName;
     private EncodingPacket encodingPacket;
     public BradyParameter bp_Local;
-    public TachyDetection td_Local;
-    public TachyATPTherapy atp_Local;
-    public TachyShockTherapy shock_Local;
     public DeviceResetLog resetlog_Local;
     public DeviceFaultLog faultlog_Local;
     public DeviceTachyLog tachylog_local;
@@ -57,8 +54,6 @@ DeviceMode 11: Storage Mode
     public EpisodeHeader episodeHeader_local;
 
     public LeadInfo li_Local;
-    public PatientInformation pi_Local;
-    public ClinicianNote cn_Local;
     // There are several device modes of the virtual device
     // 0: Normal Mode. All of the device data are randomized.
     // 1: Espresso Testing Mode. How to return the data is determined by the configuration paramters from Espresso.
@@ -92,9 +87,6 @@ DeviceMode 11: Storage Mode
 
     private void initializeDevice() {
         bp_Local = new BradyParameter();
-        td_Local = new TachyDetection();
-        atp_Local = new TachyATPTherapy();
-        shock_Local = new TachyShockTherapy();
 
         // Device Log Randomized Generating.
         resetlog_Local = new DeviceResetLog();
@@ -104,8 +96,6 @@ DeviceMode 11: Storage Mode
         batteryLog_local = new DeviceBatteryLog();
 
         li_Local = new LeadInfo(folderName);
-        pi_Local = new PatientInformation();
-        cn_Local = new ClinicianNote(folderName);
 
         episodeHeader_local = new EpisodeHeader();
         SingleEpisode.episodeIndex = 0;
@@ -178,26 +168,13 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
 
-                //bResponseArray = episodeHeader_local.getbReturnData();
+                bResponseArray = episodeHeader_local.getbReturnData();
 
                 //bResponseArray = Constant.READ_EPESODE_HEADER;
 
                 break;
 
             case ICD_CMD_READ_PATIENT_LEADS_INFO: //0x0C Read Patient Lead Info
-//                if(dataMode==1){
-//                    fileName = folderName + Constant.LEAD_INFO;
-//                    IOCommand(fileName, 1, packet);
-//
-//                    if(bResponseArray==null){
-//                        bResponseArray = Constant.PATIENT_LEAD_INFO;
-//                    }
-//                }else if(dataMode==2){
-//                    li_Local.process(packet);
-//                    li_Local.setManufacturer(RandomData.generateRandomBytes(16));
-//                    //li_Local.setManufacturer("自定义");
-//                    bResponseArray = li_Local.getbRetrunData();
-//                }
 
                 li_Local.process(packet);
 
@@ -449,26 +426,26 @@ DeviceMode 11: Storage Mode
 
                 break;
 
-            case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
-
+//            case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
+//
 //                SingleEpisode episode = new SingleEpisode();
 //                bLongResponseArray = episode.getbLongReturnData();
-
-                break;
-
-            case ICD_CMD_READ_SINGLE_SEGMENT: //0x65 Read single episode segment
-
+//
+//                break;
+//
+//            case ICD_CMD_READ_SINGLE_SEGMENT: //0x65 Read single episode segment
+//
 //                EpisodeSegment segment = new EpisodeSegment();
 //                bLongResponseArray = segment.getbLongReturnData();
-
-                break;
-
-            case ICD_CMD_READ_SEGMENT_MARKERS: //0x67 Read segment marker
-
+//
+//                break;
+//
+//            case ICD_CMD_READ_SEGMENT_MARKERS: //0x67 Read segment marker
+//
 //                EpisodeMarker marker = new EpisodeMarker();
 //                bLongResponseArray = marker.getbLongReturnData();
-
-                break;
+//
+//                break;
 
             case ICD_CMD_SET_PATIENT_INFO: //0x68 Set Patient Info
                 if (patienInfoIndex == 1) {

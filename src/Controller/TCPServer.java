@@ -100,7 +100,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                                     outputStream.write(response);
                                     // flush the packet to handle TCP packet stickiness
                                     outputStream.flush();
-                                    if(!annoyingCommandSet.contains((int)response[2]))
+                                    //if(!annoyingCommandSet.contains((int)response[2]))
                                     System.out.println("Sent to client: " + DataConvert.byteDataToHexString(response) + "\n");
                                     try {
                                         Thread.sleep(20); // sleep to handle TCP packet stickiness
@@ -123,7 +123,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                 synchronized (ClientHandler.class) { // 当客户端断开连接时，递减clientID
                     globalClientID--;
                 }
-                System.out.println("client count is: " + globalClientID);
+              //  System.out.println("client count is: " + globalClientID);
             } catch (IOException e) {
                 e.printStackTrace();
             }

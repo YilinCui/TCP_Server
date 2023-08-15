@@ -8,7 +8,7 @@ import ParseData.EncodingPacket;
 /**
  * This module needs Parameter CRC32 check
  */
-public class LeadInfo extends BaseFakeDataGenerator {
+public class LeadInfo {
     // Payload could contain CRC32, or doesn't.
     //private byte[] defaultProgramPayload = DataConvert.hexStringToByteArray("E5 B4 94 E7 9A 84 E9 BB 91 E5 BF 83 E5 8E 82 00 31 31 34 35 31 34 00 00 00 00 00 00 00 00 00 00 E6 9E 81 E4 B9 90 E5 87 80 E5 9C 9F 00 00 00 00 32 30 32 33 30 37 32 31 00 00 00 00 E5 B4 94 E7 9A 84 E9 BB 91 E5 BF 83 E5 8E 82 00 31 31 34 35 31 34 00 00 00 00 00 00 00 00 00 00 E6 9E 81 E4 B9 90 E5 87 80 E5 9C 9F 00 00 00 00 32 30 32 33 30 37 32 31 00 00 00 00 17 42 73 74");
     private byte[] Manufacturer = new byte[16];
@@ -20,6 +20,10 @@ public class LeadInfo extends BaseFakeDataGenerator {
     private byte[] Reserved = {0x00,0x00};
     private byte[] payload;
     private byte[] CRC32;
+
+    private String fileName;
+    private byte[] bRetrunData;
+    private byte[] packetHeader = new byte[3];
     public LeadInfo(String folderName){
         fileName = folderName + Constant.LEAD_INFO;
         initialize();
@@ -31,7 +35,7 @@ public class LeadInfo extends BaseFakeDataGenerator {
     }
 
     public void process(DecodingPacket packet){
-        super.process(packet);
+
         EncodingPacket encodingPacket = new EncodingPacket(packet, false, fileName);
         bRetrunData = encodingPacket.getPacketData();
 

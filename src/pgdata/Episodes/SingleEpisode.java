@@ -6,6 +6,7 @@ import ParseData.DataConvert;
 import pgdata.DeviceLog.BaseLog;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SingleEpisode extends BaseLog {
     public static int episodeIndex = 0;
@@ -50,6 +51,14 @@ public class SingleEpisode extends BaseLog {
     public SingleEpisode() {
         episodeNumber[0] = (byte) episodeIndex++;
     }
+    private List<Byte> episodeTypeList = new ArrayList<>(){{
+        add((byte) 0x10);
+        add((byte) 0x20);
+        add((byte) 0x30);
+        add((byte) 0x40);
+        add((byte) 0x80);
+        add((byte) 0xC0);
+    }};
 
     @Override
     public byte[] getbReturnData() {
@@ -78,7 +87,7 @@ public class SingleEpisode extends BaseLog {
         vt_post_shock_duration = RandomData.generateRandomByte();
         Segments_number = RandomData.generateRandomByte(10);
         Gain_value = RandomData.generateRandomByte(2);
-        Episode_type = RandomData.generateRandomByte(10);
+        Episode_type = RandomData.getRandomIntegerFromList(episodeTypeList);
         Shock_impedance_val = RandomData.generateRandomByte();
         Tachy_detect_zone = RandomData.generateRandomByte();
         vf_tachy_rate = RandomData.generateRandomByte();

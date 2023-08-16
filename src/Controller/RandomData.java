@@ -5,6 +5,7 @@ import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -157,6 +158,22 @@ public class RandomData {
 
         // Return the byte array
         return new byte[] {firstByte, secondByte};
+    }
+
+    public static byte getRandomIntegerFromList(List<Byte> list) {
+        // 检查列表是否为空或为null
+        if (list == null || list.isEmpty()) {
+            throw new IllegalArgumentException("List must not be null or empty");
+        }
+
+        // 创建Random对象用于生成随机索引
+        Random random = new Random();
+
+        // 从列表的范围内随机选择一个索引
+        int randomIndex = random.nextInt(list.size());
+
+        // 返回对应索引处的整数
+        return list.get(randomIndex);
     }
 
 }

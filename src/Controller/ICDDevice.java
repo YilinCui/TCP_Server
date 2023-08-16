@@ -439,13 +439,13 @@ DeviceMode 11: Storage Mode
                 bLongResponseArray = segment.getbLongReturnData();
 
                 break;
-//
-//            case ICD_CMD_READ_SEGMENT_MARKERS: //0x67 Read segment marker
-//
-//                EpisodeMarker marker = new EpisodeMarker();
-//                bLongResponseArray = marker.getbLongReturnData();
-//
-//                break;
+
+            case ICD_CMD_READ_SEGMENT_MARKERS: //0x67 Read segment marker
+
+                EpisodeMarker marker = new EpisodeMarker();
+                bLongResponseArray = marker.getbLongReturnData();
+
+                break;
 
             case ICD_CMD_SET_PATIENT_INFO: //0x68 Set Patient Info
                 if (patienInfoIndex == 1) {

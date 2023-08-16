@@ -25,9 +25,11 @@ public class EpisodeMarker extends BaseLog {
         for(int i=0;i<5;i++){
             DynamicByteBuffer buffer = new DynamicByteBuffer();
             buffer.put(markerIndex++);
-            markerData = RandomData.generateRandomBytes(31);
+            //markerData = RandomData.generateRandomBytes(32);
+            markerData = new byte[32];
             buffer.put(markerData);
-
+            byte[] supplement = new byte[3];
+            buffer.put(supplement);
             byte[] CRC32 = DataConvert.calculateCRC32(buffer.toArray(),0,buffer.toArray().length);
             buffer.put(CRC32);
             buffer.put(0, packetHeader);

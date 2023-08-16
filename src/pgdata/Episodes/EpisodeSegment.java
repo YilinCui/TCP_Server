@@ -25,9 +25,11 @@ public class EpisodeSegment extends BaseLog {
         for(int i=0;i<5;i++){
             DynamicByteBuffer buffer = new DynamicByteBuffer();
             buffer.put(segmentIndex++);
-            segmentData = RandomData.generateRandomBytes(125);
+           // segmentData = RandomData.generateRandomBytes(125);
+            segmentData = new byte[125];
             buffer.put(segmentData);
-
+            byte[] supplement = new byte[2];
+            buffer.put(supplement);
             byte[] CRC32 = DataConvert.calculateCRC32(buffer.toArray(),0,buffer.toArray().length);
             buffer.put(CRC32);
             buffer.put(0, packetHeader);

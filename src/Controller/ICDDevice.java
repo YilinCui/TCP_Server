@@ -10,6 +10,9 @@ import pgdata.Episodes.EpisodeSegment;
 import pgdata.Episodes.SingleEpisode;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Every Device connected to TCP Server would instantiate an ICDDevice
@@ -51,9 +54,11 @@ DeviceMode 11: Storage Mode
     public DeviceChargeLog chargeLog_local;
     public DeviceBatteryLog batteryLog_local;
 
-    public EpisodeHeader episodeHeader_local;
+    public EpisodeHeader episode_local;
 
     public LeadInfo li_Local;
+
+
     // There are several device modes of the virtual device
     // 0: Normal Mode. All of the device data are randomized.
     // 1: Espresso Testing Mode. How to return the data is determined by the configuration paramters from Espresso.
@@ -97,8 +102,7 @@ DeviceMode 11: Storage Mode
 
         li_Local = new LeadInfo(folderName);
 
-        episodeHeader_local = new EpisodeHeader();
-        SingleEpisode.episodeIndex = 0;
+        episode_local = new EpisodeHeader(5);
     }
 
     // export/save to local XML document
@@ -168,7 +172,7 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
 
-                bResponseArray = episodeHeader_local.getbReturnData();
+                bResponseArray = episode_local.getbReturnData();
 
                 //bResponseArray = Constant.READ_EPESODE_HEADER;
 
@@ -428,8 +432,8 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
 
-                SingleEpisode episode = new SingleEpisode();
-                bLongResponseArray = episode.getbLongReturnData();
+                int index = packet.getpayload()[0];
+                bLongResponseArray = episode_local.getEpisodeList().get(index);
 
                 break;
 

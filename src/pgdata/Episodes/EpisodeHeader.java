@@ -5,6 +5,10 @@ import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 import pgdata.DeviceLog.BaseLog;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 public class EpisodeHeader extends BaseLog {
     private byte maxEpisodeCount = 0x20;
     private byte[] EpisodeHeader = new byte[5];
@@ -12,9 +16,36 @@ public class EpisodeHeader extends BaseLog {
     private byte[] EpisodeCount;
     private byte[] supplement = new byte[3];
     private byte[] CRC32;
+    private int episodesNum;
+    private List<byte[][]> episodeList = new ArrayList<>();
 
-    public EpisodeHeader(){
+    public EpisodeHeader(int episodesNum){
+        this.episodesNum = episodesNum;
         packetHeader = new byte[]{0x14, 0x07, 0x0B};
+        setEpisodeHeader(episodesNum);
+        creatEpisode(episodesNum);
+        latestEpisode = 0x00;
+        EpisodeCount = new byte[]{0x05,0x00};
+
+        DynamicByteBuffer buffer = new DynamicByteBuffer();
+        buffer.put(EpisodeHeader);
+        buffer.put(latestEpisode);
+        buffer.put(EpisodeCount);
+
+        byte[] payload = buffer.toArray();
+        byte[] payloadCRC32 = DataConvert.calculateCRC32(payload, 0, payload.length);
+
+        buffer.put(0, maxEpisodeCount);
+        buffer.put(payloadCRC32);
+        buffer.put(supplement);
+
+        byte[] packetBody = buffer.toArray();
+        byte[] CRC32 = DataConvert.calculateCRC32(packetBody, 0, packetBody.length);
+
+        buffer.put(CRC32);
+        buffer.put(0,packetHeader);
+
+        bRetrunData = buffer.toArray();
     }
 
     // 设置Episode的数量
@@ -39,35 +70,18 @@ public class EpisodeHeader extends BaseLog {
         }
     }
 
-    // 为了方便测试，提供一个获取EpisodeHeader的方法
-    public byte[] getEpisodeHeader() {
-        return EpisodeHeader;
+    public void creatEpisode(int episodesNum){
+        for(int i=0;i<episodesNum;i++){
+            SingleEpisode episode = new SingleEpisode();
+            episodeList.add(episode.getbLongReturnData());
+        }
+    }
+
+    public List<byte[][]> getEpisodeList(){
+        return episodeList;
     }
 
     public byte[] getbReturnData(){
-        setEpisodeHeader(5);
-        latestEpisode = 0x00;
-        EpisodeCount = new byte[]{0x05,0x00};
-
-        DynamicByteBuffer buffer = new DynamicByteBuffer();
-        buffer.put(EpisodeHeader);
-        buffer.put(latestEpisode);
-        buffer.put(EpisodeCount);
-
-        byte[] payload = buffer.toArray();
-        byte[] payloadCRC32 = DataConvert.calculateCRC32(payload, 0, payload.length);
-
-        buffer.put(0, maxEpisodeCount);
-        buffer.put(payloadCRC32);
-        buffer.put(supplement);
-
-        byte[] packetBody = buffer.toArray();
-        byte[] CRC32 = DataConvert.calculateCRC32(packetBody, 0, packetBody.length);
-
-        buffer.put(CRC32);
-        buffer.put(0,packetHeader);
-
-        bRetrunData = buffer.toArray();
         return bRetrunData;
     }
 }

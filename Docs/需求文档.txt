@@ -11,12 +11,7 @@
 11. 另起一个Channel用于传输EGM Data，时间和Device Status等信号
 12.Episode Marker 挨个尝试生成
 13. Episode Header和Single Episode的测试脚本，验证数值显示正确与否
-
-
-1. 整理Test Protocol
-2. 整理专业Test Report
-3. 大规模测试都跑完，bug报告和测试脚本鲁棒性增强
-4. Episode work on
+14. Episode 应该在每个虚设备连上时给定数据。并且不应该在refresh后被随机化
 
 
 虚设备应该有多种模式。

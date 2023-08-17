@@ -4,10 +4,11 @@ import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 import pgdata.DeviceLog.BaseLog;
-
+import java.util.Random;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class EpisodeSegment extends BaseLog {
+public class EpisodeSegment extends BaseLog implements WaveGenerator{
     private byte segmentIndex = 0x00;
     private byte[] segmentData;
 
@@ -22,11 +23,28 @@ public class EpisodeSegment extends BaseLog {
 
     public byte[][] getbLongReturnData(){
         ArrayList<byte[]> list = new ArrayList<>();
+        Random random = new Random();
+// 随机选择波形
+        int waveType = random.nextInt(4);
+        switch (waveType) {
+            case 0:
+                segmentData = WaveGenerator.generateSinWave();
+                break;
+            case 1:
+                segmentData = WaveGenerator.generateSquareWave();
+                break;
+            case 2:
+                segmentData = WaveGenerator.generateTriangleWave();
+                break;
+            case 3:
+                segmentData = WaveGenerator.generateSawtoothWave();
+                break;
+        }
         for(int i=0;i<5;i++){
             DynamicByteBuffer buffer = new DynamicByteBuffer();
             buffer.put(segmentIndex++);
            // segmentData = RandomData.generateRandomBytes(125);
-            segmentData = new byte[125];
+            Arrays.fill(segmentData, (byte) 0x7F);
             buffer.put(segmentData);
             byte[] supplement = new byte[2];
             buffer.put(supplement);

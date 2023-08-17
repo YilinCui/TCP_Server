@@ -175,5 +175,4 @@ public class RandomData {
         // 返回对应索引处的整数
         return list.get(randomIndex);
     }
-
 }

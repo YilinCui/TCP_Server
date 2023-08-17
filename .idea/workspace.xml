@@ -6,11 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RandomData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RandomData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeMarker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeMarker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeSegment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeSegment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/需求文档.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/需求文档.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterNormal.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterNormal.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterPostShock.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/BradyParameterPostShock.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyModeParameter.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachySVTDetection.per" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalData/Device0/TachyTherapyParameter.per" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -124,7 +125,7 @@
       <workItem from="1691426774786" duration="25570000" />
       <workItem from="1691527954807" duration="9985000" />
       <workItem from="1691598383173" duration="36511000" />
-      <workItem from="1692030860780" duration="31451000" />
+      <workItem from="1692030860780" duration="42625000" />
     </task>
     <servers />
   </component>

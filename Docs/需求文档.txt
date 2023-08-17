@@ -8,6 +8,9 @@
 8. 每次TCP client发送数据都会if判断，太麻烦（我不觉得这会怎么降低性能）(√）
 9. （中等优先级）如果是新设备连接，在没有本地数据时，虚设备应该返回Constant目录下预先定义好的默认数据 (√）
 10. （高优先级）所有可以program+retrieve的参数设置的自动化测试脚本编写 (√）
+11. 另起一个Channel用于传输EGM Data，时间和Device Status等信号
+12.Episode Marker 挨个尝试生成
+13. Episode Header和Single Episode的测试脚本，验证数值显示正确与否
 
 
 1. 整理Test Protocol
@@ -24,3 +27,7 @@
 5. Espresso测试脚本模式4 (deviceMode=4)。集成测试。多个模块共同作用。比如弹窗测试
 6. Espresso测试脚本模式5 (deviceMode=5)。针对所有可以program+retrieve的参数进行测试。用Brady举例，Espresso随机地点开参数设置，随机点击一个选项。Program时记录当前UI界面上所有数据，然后retrieve后再进行比对。如果数据相同则测试通过。
 7. 压力/性能测试 (deviceMode=10)。测试Programmer面对大量垃圾/非法数据时的表现
+
+plan
+1. 按照产品使用说明书挨个进行测试
+2.

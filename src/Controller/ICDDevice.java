@@ -594,6 +594,12 @@ DeviceMode 11: Storage Mode
 
                 break;
 
+            case ICD_CMD_BLE_READ_EPISODE: // 0xA3 Read Episode
+
+                bResponseArray = Constant.READ_EPISODE_HEADER;
+
+                break;
+
             case ICD_CMD_BLE_WRITE_TX_POWER: // 0xB3 WRITE_TX_POWER
 
                 fileName = folderName + Constant.TX_POWER;

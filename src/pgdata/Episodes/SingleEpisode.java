@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SingleEpisode extends BaseLog {
-    public static int episodeIndex = 0;
     // part I : payload length = 100
     private byte[] startTime;
     private byte[] endTime;
@@ -48,8 +47,8 @@ public class SingleEpisode extends BaseLog {
     private byte[] packetHeader1 = new byte[]{0x6C, 0x2A, 0x64};
     private byte[] packetHeader2 = new byte[]{0x6C, 0x2D, 0x64};
 
-    public SingleEpisode() {
-        episodeNumber[0] = (byte) episodeIndex++;
+    public SingleEpisode(int episodeIndex) {
+        episodeNumber[0] = (byte) episodeIndex;
     }
     private List<Byte> episodeTypeList = new ArrayList<>(){{
         add((byte) 0x10);

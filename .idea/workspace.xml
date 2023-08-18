@@ -7,9 +7,8 @@
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Docs/需求文档.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/需求文档.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +122,7 @@
       <workItem from="1691426774786" duration="25570000" />
       <workItem from="1691527954807" duration="9985000" />
       <workItem from="1691598383173" duration="36511000" />
-      <workItem from="1692030860780" duration="48953000" />
+      <workItem from="1692030860780" duration="53468000" />
     </task>
     <servers />
   </component>

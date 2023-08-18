@@ -72,7 +72,7 @@ public class EpisodeHeader extends BaseLog {
 
     public void creatEpisode(int episodesNum){
         for(int i=0;i<episodesNum;i++){
-            SingleEpisode episode = new SingleEpisode();
+            SingleEpisode episode = new SingleEpisode(i);
             episodeList.add(episode.getbLongReturnData());
         }
     }

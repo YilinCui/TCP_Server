@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/需求文档.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/需求文档.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/Espresso Testing Protocol.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/Test Report.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/Virtual Device Protocol.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +50,10 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/TCP_Server&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -122,11 +127,22 @@
       <workItem from="1691426774786" duration="25570000" />
       <workItem from="1691527954807" duration="9985000" />
       <workItem from="1691598383173" duration="36511000" />
-      <workItem from="1692030860780" duration="53468000" />
+      <workItem from="1692030860780" duration="55697000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

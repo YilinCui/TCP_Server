@@ -37,7 +37,7 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
 DeviceMode 11: Storage Mode
 
      */
-    private int deviceMode = 1;
+    private int deviceMode = 0;
     private int testCaseId = 1;
 
     private int chargeLogCnt = 1;
@@ -57,7 +57,7 @@ DeviceMode 11: Storage Mode
     public EpisodeHeader episode_local;
 
     public LeadInfo li_Local;
-
+    private int episodeCnt = 0;
 
     // There are several device modes of the virtual device
     // 0: Normal Mode. All of the device data are randomized.
@@ -134,7 +134,7 @@ DeviceMode 11: Storage Mode
             case 0x00:
                 // 0x00 is used to set up the device mode
                 // commandId refers to the testing configurations
-
+                episodeCnt = packet.getSize();
                 deviceMode = iSequenceNumber;
                 testCaseId = receivedBytes[3] & 0xFF;
                 System.out.println("Testing configurations parameters received! deviceMode is: " + deviceMode + ", testCaseId is: " + testCaseId);
@@ -171,8 +171,14 @@ DeviceMode 11: Storage Mode
                 break;
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
+                if(deviceMode==0){
+                    bResponseArray = episode_local.getbReturnData();
+                }else{
+                    int num = episodeCnt;
+                    EpisodeHeader header = new EpisodeHeader(num);
+                    bResponseArray = header.getbReturnData();
+                }
 
-                bResponseArray = episode_local.getbReturnData();
 
                 //bResponseArray = Constant.READ_EPESODE_HEADER;
 

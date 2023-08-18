@@ -25,7 +25,7 @@ public class EpisodeHeader extends BaseLog {
         setEpisodeHeader(episodesNum);
         creatEpisode(episodesNum);
         latestEpisode = 0x00;
-        EpisodeCount = new byte[]{0x05,0x00};
+        EpisodeCount = new byte[]{(byte) episodesNum,0x00};
 
         DynamicByteBuffer buffer = new DynamicByteBuffer();
         buffer.put(EpisodeHeader);

@@ -55,9 +55,9 @@ DeviceMode 11: Storage Mode
     public DeviceBatteryLog batteryLog_local;
 
     public EpisodeHeader episode_local;
+    public EpisodeHeader episode_test;
 
     public LeadInfo li_Local;
-    private int episodeCnt = 0;
 
     // There are several device modes of the virtual device
     // 0: Normal Mode. All of the device data are randomized.
@@ -102,7 +102,8 @@ DeviceMode 11: Storage Mode
 
         li_Local = new LeadInfo(folderName);
 
-        episode_local = new EpisodeHeader(5);
+        episode_local = new EpisodeHeader(3);
+        episode_test = null;
     }
 
     // export/save to local XML document
@@ -134,7 +135,6 @@ DeviceMode 11: Storage Mode
             case 0x00:
                 // 0x00 is used to set up the device mode
                 // commandId refers to the testing configurations
-                episodeCnt = packet.getSize();
                 deviceMode = iSequenceNumber;
                 testCaseId = receivedBytes[3] & 0xFF;
                 System.out.println("Testing configurations parameters received! deviceMode is: " + deviceMode + ", testCaseId is: " + testCaseId);
@@ -174,9 +174,8 @@ DeviceMode 11: Storage Mode
                 if(deviceMode==0){
                     bResponseArray = episode_local.getbReturnData();
                 }else{
-                    int num = episodeCnt;
-                    EpisodeHeader header = new EpisodeHeader(num);
-                    bResponseArray = header.getbReturnData();
+                    episode_test = new EpisodeHeader(testCaseId);
+                    bResponseArray = episode_test.getbReturnData();
                 }
 
 
@@ -437,10 +436,13 @@ DeviceMode 11: Storage Mode
                 break;
 
             case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
-
                 int index = packet.getpayload()[0];
-                bLongResponseArray = episode_local.getEpisodeList().get(index);
-
+                if(deviceMode==0){
+                    bLongResponseArray = episode_local.getEpisodeList().get(index);
+                }
+                else{
+                    bLongResponseArray = episode_test.getEpisodeList().get(index);
+                }
                 break;
 
             case ICD_CMD_READ_SINGLE_SEGMENT: //0x65 Read single episode segment

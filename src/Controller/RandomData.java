@@ -37,14 +37,13 @@ public class RandomData {
     }
     // Generate a random byte no larger than length
     public static byte generateRandomByte(int max) {
-        Random rand = new Random();
-        int limit = Math.min(max, 127);
-        return (byte) rand.nextInt(limit + 1);
-    }
+        if (max < 0 || max > 255) {
+            throw new IllegalArgumentException("Max must be between 0 and 255.");
+        }
 
-    public static int generateRandomInt(int length) {
-        Random random = new Random();
-        return random.nextInt(length); // 这里的16是生成随机数的上限，不包括这个数本身。
+        Random rand = new Random();
+        int randomInt = rand.nextInt(max + 1); // 0到max之间
+        return (byte) randomInt; // 转换为字节
     }
 
     public static byte[] getTimePassedInSeconds() {

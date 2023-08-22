@@ -75,25 +75,41 @@ public class SingleEpisode extends BaseLog {
         startTime = time;
         endTime = RandomData.addSecondsToTime(time, 20);
         //episodeNumber = RandomData.generateRandomBytes(2);
-        vf_initial_duration = RandomData.generateRandomByte();
-        vf_re_duration = RandomData.generateRandomByte();
-        vf_post_shock_duration = RandomData.generateRandomByte();
-        fvt_initial_duration = RandomData.generateRandomByte();
-        fvt_re_duration = RandomData.generateRandomByte();
-        fvt_post_shock_duration = RandomData.generateRandomByte();
-        vt_initial_duration = RandomData.generateRandomByte();
-        vt_re_duration = RandomData.generateRandomByte();
-        vt_post_shock_duration = RandomData.generateRandomByte();
+
+//        vf_initial_duration = RandomData.generateRandomByte();
+//        vf_re_duration = RandomData.generateRandomByte();
+//        vf_post_shock_duration = RandomData.generateRandomByte();
+//        fvt_initial_duration = RandomData.generateRandomByte();
+//        fvt_re_duration = RandomData.generateRandomByte();
+//        fvt_post_shock_duration = RandomData.generateRandomByte();
+//        vt_initial_duration = RandomData.generateRandomByte();
+//        vt_re_duration = RandomData.generateRandomByte();
+//        vt_post_shock_duration = RandomData.generateRandomByte();
+
+        vf_initial_duration = RandomData.generateRandomByte(0);
+        vf_re_duration = RandomData.generateRandomByte(0);
+        vf_post_shock_duration = RandomData.generateRandomByte(0);
+        fvt_initial_duration = RandomData.generateRandomByte(0);
+        fvt_re_duration = RandomData.generateRandomByte(0);
+        fvt_post_shock_duration = RandomData.generateRandomByte(0);
+        vt_initial_duration = RandomData.generateRandomByte(0);
+        vt_re_duration = RandomData.generateRandomByte(0);
+        vt_post_shock_duration = RandomData.generateRandomByte(0);
+
         Segments_number = RandomData.generateRandomByte(10);
-        Gain_value = RandomData.generateRandomByte(2);
+        Gain_value = RandomData.generateRandomByte(0);
         Episode_type = RandomData.getRandomIntegerFromList(episodeTypeList);
-        Shock_impedance_val = RandomData.generateRandomByte();
-        Tachy_detect_zone = RandomData.generateRandomByte();
-        vf_tachy_rate = RandomData.generateRandomByte();
-        fvt_tachy_rate = RandomData.generateRandomByte();
-        vt_tachy_rate = RandomData.generateRandomByte();
-        EPISODE_FORMAT_VER = RandomData.generateRandomByte();
-        svt_params = RandomData.generateRandomBytes(24);
+        Shock_impedance_val = RandomData.generateRandomByte(0);
+        Tachy_detect_zone = 0x00;
+//        vf_tachy_rate = RandomData.generateRandomByte(60);
+//        fvt_tachy_rate = RandomData.generateRandomByte(0);
+//        vt_tachy_rate = RandomData.generateRandomByte(0);
+        vf_tachy_rate = (byte) 0x80;
+        fvt_tachy_rate = (byte) 0x90;
+        vt_tachy_rate = (byte) 0xFF;
+        EPISODE_FORMAT_VER = RandomData.generateRandomByte(0);
+        //svt_params = RandomData.generateRandomBytes(24);
+        svt_params = new byte[24];
 
         buffer1.put(startTime);
         buffer1.put(endTime);
@@ -123,7 +139,10 @@ public class SingleEpisode extends BaseLog {
         // Last 4 bytes are CRC32 105-108
 
         // Gotta to tear Tachy_treat packet apart
-        tachy_treat = RandomData.generateRandomBytes(40);
+
+        //tachy_treat = RandomData.generateRandomBytes(40);
+        tachy_treat = new byte[40];
+
         byte[] tachy_treat_part1 = new byte[24];
         byte[] tachy_treat_part2 = new byte[16];
         System.arraycopy(tachy_treat, 0, tachy_treat_part1, 0, tachy_treat_part1.length);
@@ -148,7 +167,7 @@ public class SingleEpisode extends BaseLog {
 //        farSegments = RandomData.generateRandomBytes(20);
 
         estimatedImpedance = new byte[20];
-        segmentsTimestamp = new byte[20];
+        segmentsTimestamp = RandomData.generateRandomBytes(20);
         nearSegments = new byte[20];
         farSegments = new byte[20];
 

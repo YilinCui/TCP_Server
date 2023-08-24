@@ -45,12 +45,12 @@ public class DeviceResetLog extends BaseLog {
             if(deviceMode==0){
                 // default
             }else if(deviceMode==1){
-                timestamp = new byte[4];
                 switch (testCaseId){
                     case 0:{
                         deviceId = 0x00;
                         resetReason = 0x00;
                         operataionIdLog = new byte[6];
+                        timestamp = new byte[4];
                         break;
                     }
                     case 1:{
@@ -63,6 +63,36 @@ public class DeviceResetLog extends BaseLog {
                     }
                     case 3:{
                         operataionIdLog = new byte[6];
+                        break;
+                    }
+                }
+            }else if(deviceMode==2){
+                resetReason = 0x00;
+                switch (testCaseId){
+                    case 0:{
+                        deviceId = DeviceIdList[3];
+                        operataionIdLog = new byte[]{0x11,0x11,0x11,0x11,0x11,0x11};
+                        break;
+                    }
+                    case 1:{
+                        deviceId = DeviceIdList[0];
+                        operataionIdLog = new byte[]{0x22,0x22,0x22,0x22,0x22,0x22};
+                        break;
+                    }
+                    case 2:{
+                        deviceId = DeviceIdList[1];
+                        operataionIdLog = new byte[]{0x33,0x33,0x33,0x33,0x33,0x33};
+                        break;
+                    }
+                    case 3:{
+                        deviceId = DeviceIdList[2];
+                        operataionIdLog = new byte[]{0x44,0x44,0x44,0x44,0x44,0x44};
+                        break;
+                    }
+                    case 4:{
+                        deviceId = DeviceIdList[3];
+                        operataionIdLog = new byte[]{0x44,0x44,0x44,0x44,0x44,0x44};
+                        resetReason = 0x40;
                         break;
                     }
                 }

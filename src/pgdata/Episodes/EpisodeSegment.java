@@ -43,8 +43,6 @@ public class EpisodeSegment extends BaseLog implements WaveGenerator{
         for(int i=0;i<5;i++){
             DynamicByteBuffer buffer = new DynamicByteBuffer();
             buffer.put(segmentIndex++);
-           // segmentData = RandomData.generateRandomBytes(125);
-            Arrays.fill(segmentData, (byte) 0x7F);
             buffer.put(segmentData);
             byte[] supplement = new byte[2];
             buffer.put(supplement);

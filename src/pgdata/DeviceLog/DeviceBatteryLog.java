@@ -29,6 +29,7 @@ public class DeviceBatteryLog extends BaseLog {
         // Other: NA
         private byte[] batteryStatus = new byte[]{0x00, 0x01, 0x02, 0x03, 0x04};
         public BatteryLog(int deviceMode, int testCaseId){
+
             if(deviceMode==0){
                 timestamp = RandomData.getTimePassedInSeconds();
                 while (oldStatus == newStatus){
@@ -55,6 +56,35 @@ public class DeviceBatteryLog extends BaseLog {
                 } else if(testCaseId==3){
                     // ListView should be all empty
                 }
+            }else if(deviceMode==2){
+                timestamp = new byte[4];
+                switch (testCaseId){
+                    case 0:{
+                        oldStatus = 0x01;
+                        newStatus = 0x01;
+                        break;
+                    }
+                    case 1:{
+                        oldStatus = 0x02;
+                        newStatus = 0x02;
+                        break;
+                    }
+                    case 2:{
+                        oldStatus = 0x03;
+                        newStatus = 0x03;
+                        break;
+                    }
+                    case 3:{
+                        oldStatus = 0x04;
+                        newStatus = 0x04;
+                        break;
+                    }
+                    case 4:{
+                        oldStatus = 0x05;
+                        newStatus = 0x05;
+                        break;
+                    }
+                }
             }
         }
 
@@ -73,12 +103,8 @@ public class DeviceBatteryLog extends BaseLog {
         }
     }
 
-    public DeviceBatteryLog(){
-        packetHeader = new byte[]{0x34, 0x0F, 0x30};
-    }
-
     public DeviceBatteryLog(int deviceMode, int testCaseId){
-        this();
+        packetHeader = new byte[]{0x34, 0x0F, 0x30};
         this.deviceMode = deviceMode;
         this.testCaseId = testCaseId;
 

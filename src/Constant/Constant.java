@@ -4,9 +4,7 @@ import ParseData.DataConvert;
 
 /**
  * Constant/Default Values
- * I used to convert Hex String to byte[], and assign the byte array to Constant directly
- * However, I used GPT for the data transition, which often came with data loss.
- * Thus, I am currently using Hex->Byte[] conversion method.
+ * The values listed below are used when LocalData is not available
  */
 public class Constant {
     public static final String BRADY_PARAMETER_POSTSHOCK = "BradyParameterPostShock.per";

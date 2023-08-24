@@ -46,6 +46,16 @@ public class RandomData {
         return (byte) randomInt; // 转换为字节
     }
 
+    public static int getRandomNumberInRange(int min, int max) {
+        if (min >= max) {
+            throw new IllegalArgumentException("最大值必须大于最小值");
+        }
+
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
+    }
+
+
     public static byte[] getTimePassedInSeconds() {
         // Get the current date and the date one month ago.
         LocalDateTime now = LocalDateTime.now();

@@ -17,10 +17,18 @@ public class EpisodeHeader extends BaseLog {
     private byte[] supplement = new byte[3];
     private byte[] CRC32;
     private int episodesNum;
+    private int testCaseId;
+    private int deviceMode;
     private List<byte[][]> episodeList = new ArrayList<>();
 
-    public EpisodeHeader(int episodesNum){
-        this.episodesNum = episodesNum;
+    public EpisodeHeader(int deviceMode, int testCaseId){
+        initialEpisode(deviceMode, testCaseId);
+    }
+
+    private void initialEpisode(int deviceMode, int testCaseId){
+        this.testCaseId = testCaseId;
+        this.deviceMode = deviceMode;
+        episodesNum = RandomData.getRandomNumberInRange(0,32);
         packetHeader = new byte[]{0x14, 0x07, 0x0B};
         setEpisodeHeader(episodesNum);
         creatEpisode(episodesNum);
@@ -70,9 +78,9 @@ public class EpisodeHeader extends BaseLog {
         }
     }
 
-    public void creatEpisode(int episodesNum){
+    private void creatEpisode(int episodesNum){
         for(int i=0;i<episodesNum;i++){
-            SingleEpisode episode = new SingleEpisode(i);
+            SingleEpisode episode = new SingleEpisode(i,deviceMode,testCaseId);
             episodeList.add(episode.getbLongReturnData());
         }
     }

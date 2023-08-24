@@ -52,38 +52,10 @@ DeviceMode 11: Storage Mode
     public DeviceFaultLog faultlog_Local;
     public DeviceTachyLog tachylog_local;
     public DeviceChargeLog chargeLog_local;
-    public DeviceBatteryLog batteryLog_local;
-
-    public EpisodeHeader episode_local;
     public EpisodeHeader episode_test;
 
     public LeadInfo li_Local;
 
-    // There are several device modes of the virtual device
-    // 0: Normal Mode. All of the device data are randomized.
-    // 1: Espresso Testing Mode. How to return the data is determined by the configuration paramters from Espresso.
-
-
-    // runtime status
-    // DeviceStatus
-
-    // Event
-
-    // ECG realtime
-
-    // Device Mode
-    // Storage/Normal (MRI, Electrocautery ... )
-
-    // Error conditions
-    // Fault conditions
-
-    // Episode History
-
-    // OTA
-
-    // constructor
-    // load from local XML document
-    // initialize with specific value
     public ICDDevice(int clientID) {
         folderName = "src" + File.separator + "LocalData" + File.separator + "Device" + clientID + File.separator;
         FilesHandler.creatFolder(folderName);
@@ -92,27 +64,21 @@ DeviceMode 11: Storage Mode
 
     private void initializeDevice() {
         bp_Local = new BradyParameter();
-
         // Device Log Randomized Generating.
         resetlog_Local = new DeviceResetLog();
         tachylog_local = new DeviceTachyLog();
         faultlog_Local = new DeviceFaultLog();
         chargeLog_local = new DeviceChargeLog();
-        batteryLog_local = new DeviceBatteryLog();
-
         li_Local = new LeadInfo(folderName);
-
-        episode_local = new EpisodeHeader(3);
-        episode_test = null;
     }
 
     // export/save to local XML document
-
     /**
      * Process the message sent from Android APP
      *
      * @param receivedBytes byte array sent from Android app(TCP client)
      */
+
     public void process(byte[] receivedBytes) {
         // Reset/Initialize parameters to null/default state;
         encodingPacket = null;
@@ -135,14 +101,16 @@ DeviceMode 11: Storage Mode
             case 0x00:
                 // 0x00 is used to set up the device mode
                 // commandId refers to the testing configurations
-                deviceMode = iSequenceNumber;
+                deviceMode = receivedBytes[1] & 0xFF;
                 testCaseId = receivedBytes[3] & 0xFF;
                 System.out.println("Testing configurations parameters received! deviceMode is: " + deviceMode + ", testCaseId is: " + testCaseId);
 
             case ICD_CMD_EXIT_STORAGE: //0x01 Exit the storage mode
-                deviceMode = 1;
-                IOCommand("", 3, packet);
-
+                if(deviceMode==11) {
+                    deviceMode = 1;
+                    System.out.println("Exit the storage mode, deviceMode is: " + deviceMode);
+                    IOCommand("", 3, packet);
+                }
                 break;
 
             case ICD_CMD_READ_ALERT_PARAM: //0x02 Read Alert Parameter
@@ -166,19 +134,17 @@ DeviceMode 11: Storage Mode
             case ICD_CMD_BACK_TO_STORAGE_MODE: //0x08 Enter Storage Mode
                 fileName = "";
                 IOCommand(fileName, 3, packet);
-
                 deviceMode = 11;
+                System.out.println("Enter the storage mode, deviceMode is: " + deviceMode);
                 break;
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
                 if(deviceMode==0){
-                    bResponseArray = episode_local.getbReturnData();
+                    break;
                 }else{
-                    episode_test = new EpisodeHeader(testCaseId);
+                    episode_test = new EpisodeHeader(deviceMode, testCaseId);
                     bResponseArray = episode_test.getbReturnData();
                 }
-
-
                 //bResponseArray = Constant.READ_EPESODE_HEADER;
 
                 break;
@@ -346,7 +312,7 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_BATTERY_LOG: //0x30 Read Battery Log
 
-
+                System.out.println("DeviceMode is: " + deviceMode + ", and testCaseId is: " + testCaseId);
                 // use sequenceNumber as testCase indicator
                 DeviceBatteryLog batteryLog = new DeviceBatteryLog(deviceMode, testCaseId);
                 //DeviceBatteryLog batteryLog = new DeviceBatteryLog(1, 2);
@@ -438,7 +404,7 @@ DeviceMode 11: Storage Mode
             case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
                 int index = packet.getpayload()[0];
                 if(deviceMode==0){
-                    bLongResponseArray = episode_local.getEpisodeList().get(index);
+                    bLongResponseArray = null;
                 }
                 else{
                     bLongResponseArray = episode_test.getEpisodeList().get(index);

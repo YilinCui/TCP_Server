@@ -46,8 +46,12 @@ public class SingleEpisode extends BaseLog {
     private byte[] supplement = new byte[3];
     private byte[] packetHeader1 = new byte[]{0x6C, 0x2A, 0x64};
     private byte[] packetHeader2 = new byte[]{0x6C, 0x2D, 0x64};
+    private int deviceMode;
+    private int testCaseId;
 
-    public SingleEpisode(int episodeIndex) {
+    public SingleEpisode(int episodeIndex, int deviceMode, int testCaseId) {
+        this.deviceMode = deviceMode;
+        this.testCaseId = testCaseId;
         episodeNumber[0] = (byte) episodeIndex;
     }
     private List<Byte> episodeTypeList = new ArrayList<>(){{

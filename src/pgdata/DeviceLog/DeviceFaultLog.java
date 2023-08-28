@@ -63,9 +63,11 @@ public class DeviceFaultLog extends BaseLog {
 
                     }
                 }
+            }else if (deviceMode==2){
+                timestamp = new byte[4];
+                faultId = (byte) testCaseId;
             }
         }
-        public FaultLog(){}
 
         public byte[] getFaultLog(){
             DynamicByteBuffer buffer = new DynamicByteBuffer();

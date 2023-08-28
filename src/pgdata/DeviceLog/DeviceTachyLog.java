@@ -37,7 +37,7 @@ public class DeviceTachyLog extends BaseLog {
 
         public TachyLog(int deviceMode, int testCaseId){
 
-            timestamp = RandomData.getTimePassedInSeconds();
+            timestamp = new byte[4];
             recordMode = RandomData.generateRandomByte(2); // 3 modes in total
             recordReason = RandomData.generateRandomByte(4); //5 reasons
 
@@ -57,7 +57,7 @@ public class DeviceTachyLog extends BaseLog {
                     recordReason = RandomData.generateRandomByte(4); //5 reasons
                 }
             }else if(deviceMode==2){
-                timestamp = new byte[4];
+
                 switch (testCaseId){
                     case 0->{
                         recordMode = 0x00; // 3 modes in total

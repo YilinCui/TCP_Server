@@ -133,29 +133,24 @@ public class DataConvert {
     }
 
     public static String getFormattedTimestampFromBytes(byte[] byteArray) {
-        // Check if array length is 4
         if (byteArray == null || byteArray.length != 4) {
             throw new IllegalArgumentException("Array is null or its length is not 4.");
         }
 
-        // Convert the byte array to an integer with Little-Endian order
+        // Create a ZoneId for UTC-8
+        ZoneId zoneId = ZoneId.of("America/Los_Angeles");
+
         ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);
         byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
         int secondsPassed = byteBuffer.getInt();
 
-        // Get the starting date
-        ZonedDateTime startingDate = ZonedDateTime.of(2021, 1, 1, 0, 0, 0, 0, ZoneId.systemDefault());
-        long startingEpochSecond = startingDate.toEpochSecond();
+        ZonedDateTime startingDate = ZonedDateTime.of(2021, 1, 1, 0, 0, 0, 0, zoneId);
+        ZonedDateTime targetDate = startingDate.plusSeconds(secondsPassed);
 
-        // Calculate the timestamp
-        long randomEpochSecond = startingEpochSecond + secondsPassed;
-        ZonedDateTime randomDate = ZonedDateTime.ofInstant(Instant.ofEpochSecond(randomEpochSecond), ZoneId.systemDefault());
-
-        // Format the timestamp as a string
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedTimestamp = randomDate.format(formatter);
-
-        return formattedTimestamp;
+        return targetDate.format(formatter);
     }
+
+
 
 }

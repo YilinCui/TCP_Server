@@ -95,6 +95,12 @@ public class DeviceResetLog extends BaseLog {
                         resetReason = 0x40;
                         break;
                     }
+                    case 5:{
+                        deviceId = DeviceIdList[3];
+                        operataionIdLog = new byte[]{0x44,0x44,0x44,0x44,0x44,0x44};
+                        resetReason = 0x01;
+                        break;
+                    }
                 }
             }
         }

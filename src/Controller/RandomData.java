@@ -57,18 +57,21 @@ public class RandomData {
 
 
     public static byte[] getTimePassedInSeconds() {
-        // Get the current date and the date one month ago.
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime oneMonthAgo = now.minusMonths(1);
+        // Create a ZoneId for UTC-8
+        ZoneId zoneId = ZoneId.of("America/Los_Angeles");
 
-        // Generate a random date between one month ago and now.
-        long secondsOneMonthAgo = oneMonthAgo.toEpochSecond(ZoneOffset.UTC);
-        long secondsNow = now.toEpochSecond(ZoneOffset.UTC);
-        long randomEpochSecond = ThreadLocalRandom.current().nextLong(secondsOneMonthAgo, secondsNow);
+        // Get the current date and the date one hour ago in UTC-8.
+        ZonedDateTime now = ZonedDateTime.now(zoneId);
+        ZonedDateTime oneHourAgo = now.minusHours(1);
 
-        // Calculate the number of seconds from 2021/1/1 to the random date.
-        LocalDateTime startingDate = LocalDateTime.of(2021, 1, 1, 0, 0);
-        long startingEpochSecond = startingDate.toEpochSecond(ZoneOffset.UTC);
+        // Convert them to epoch seconds
+        long secondsOneHourAgo = oneHourAgo.toEpochSecond();
+        long secondsNow = now.toEpochSecond();
+        long randomEpochSecond = ThreadLocalRandom.current().nextLong(secondsOneHourAgo, secondsNow);
+
+        // Calculate the number of seconds from 2021/1/1 to the random date in UTC-8
+        ZonedDateTime startingDate = ZonedDateTime.of(2021, 1, 1, 0, 0, 0, 0, zoneId);
+        long startingEpochSecond = startingDate.toEpochSecond();
         long secondsPassed = randomEpochSecond - startingEpochSecond;
 
         // Convert the number of seconds to a 4-byte array with Little-Endian order.
@@ -77,6 +80,9 @@ public class RandomData {
         byteBuffer.putInt((int) secondsPassed);
         return byteBuffer.array();
     }
+
+
+
 
     public static byte[] addSecondsToTime(byte[] time, int secondsToAdd) {
         // Convert the 4-byte array to an integer using Little-Endian order.

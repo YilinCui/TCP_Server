@@ -45,7 +45,6 @@ public class DeviceTachyLog extends BaseLog {
                 // default
 
             }else if(deviceMode==1){
-                timestamp = new byte[4];
                 if(testCaseId==0){
                     recordMode = 0x00; // 3 modes in total
                     recordReason = 0x00; //5 reasons
@@ -57,10 +56,29 @@ public class DeviceTachyLog extends BaseLog {
                     recordMode = 0x00; // 3 modes in total
                     recordReason = RandomData.generateRandomByte(4); //5 reasons
                 }
+            }else if(deviceMode==2){
+                timestamp = new byte[4];
+                switch (testCaseId){
+                    case 0->{
+                        recordMode = 0x00; // 3 modes in total
+                        recordReason = 0x01; //5 reasons
+                    }
+                    case 1->{
+                        recordMode = 0x01; // 3 modes in total
+                        recordReason = 0x02; //5 reasons
+                    }
+                    case 2->{
+                        recordMode = 0x02; // 3 modes in total
+                        recordReason = 0x03; //5 reasons
+                    }
+                    case 3->{
+                        recordMode = 0x02; // 3 modes in total
+                        recordReason = 0x04; //5 reasons
+                    }
+                }
             }
 
         }
-        public TachyLog(){}
 
         public byte[] getTachyLog(){
             DynamicByteBuffer buffer = new DynamicByteBuffer();
@@ -99,7 +117,6 @@ public class DeviceTachyLog extends BaseLog {
             buffer.put(log.getTachyLog());
             list.add(log);
         }
-
 
         // List here is used for debug purpose.
         // It will print out BatteryLog in timestamp order

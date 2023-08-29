@@ -102,6 +102,8 @@ public class DeviceResetLog extends BaseLog {
                         break;
                     }
                 }
+            }else if(deviceMode==3){
+
             }
         }
 

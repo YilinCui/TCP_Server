@@ -151,6 +151,15 @@ public class DataConvert {
         return targetDate.format(formatter);
     }
 
+    public static byte[] intToTwoBytes(int value) {
+        byte[] result = new byte[2];
+
+        // Using bit-wise AND and bit-shift to isolate each byte
+        result[1] = (byte) ((value >> 8) & 0xFF);  // High byte (Most Significant Byte)
+        result[0] = (byte) (value & 0xFF);        // Low byte (Least Significant Byte)
+
+        return result;
+    }
 
 
 }

@@ -500,14 +500,6 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_CHARGE_LOG: //0x74 Read Charge Log
                 bResponseArray = chargeLog_local.getbReturnData(deviceMode, testCaseId, packet.getpayload()[0]);
-//                if(chargeLogCnt==1){
-//                    bResponseArray = chargeLog_local.getbReturnData(chargeLogCnt);
-//                    chargeLogCnt=2;
-//                }else if(chargeLogCnt==2){
-//                    bResponseArray = chargeLog_local.getbReturnData(chargeLogCnt);
-//                    chargeLogCnt = 1;
-//                }
-
 
                 break;
 

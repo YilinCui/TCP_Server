@@ -57,29 +57,31 @@ public class RandomData {
 
 
     public static byte[] getTimePassedInSeconds() {
-        // Create a ZoneId for UTC-8
-        ZoneId zoneId = ZoneId.of("America/Los_Angeles");
+        // 使用系统默认的时区
+        ZoneId zoneId = ZoneId.systemDefault();
 
-        // Get the current date and the date one hour ago in UTC-8.
+        // 获取当前日期和一个小时之前的日期
         ZonedDateTime now = ZonedDateTime.now(zoneId);
         ZonedDateTime oneHourAgo = now.minusHours(1);
 
-        // Convert them to epoch seconds
+        // 转换为epoch秒
         long secondsOneHourAgo = oneHourAgo.toEpochSecond();
         long secondsNow = now.toEpochSecond();
         long randomEpochSecond = ThreadLocalRandom.current().nextLong(secondsOneHourAgo, secondsNow);
 
-        // Calculate the number of seconds from 2021/1/1 to the random date in UTC-8
-        ZonedDateTime startingDate = ZonedDateTime.of(2021, 1, 1, 0, 0, 0, 0, zoneId);
-        long startingEpochSecond = startingDate.toEpochSecond();
+        // 这应该是你在uint32ToTimeString中使用的相同的EPOCH_TIME_20210101
+        long startingEpochSecond = 1609459200/* 在这里插入EPOCH_TIME_20210101的值 */;
+
+        // 从2021/1/1计算到随机日期的秒数
         long secondsPassed = randomEpochSecond - startingEpochSecond;
 
-        // Convert the number of seconds to a 4-byte array with Little-Endian order.
+        // 将秒数转换为一个4字节的数组（小端序）
         ByteBuffer byteBuffer = ByteBuffer.allocate(4);
         byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
         byteBuffer.putInt((int) secondsPassed);
         return byteBuffer.array();
     }
+
 
 
 

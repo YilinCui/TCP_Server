@@ -33,7 +33,6 @@ public class DeviceFaultLog extends BaseLog {
             if(deviceMode==0){
                 // default
             }else if (deviceMode==1){
-                timestamp = new byte[4];
                 switch (testCaseId){
                     case 0:{
                         // ListView should be Empty
@@ -64,7 +63,6 @@ public class DeviceFaultLog extends BaseLog {
                     }
                 }
             }else if (deviceMode==2){
-                timestamp = new byte[4];
                 faultId = (byte) testCaseId;
             }
         }

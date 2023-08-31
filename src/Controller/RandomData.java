@@ -82,7 +82,29 @@ public class RandomData {
         return byteBuffer.array();
     }
 
+    public static byte[] getTimePassedInSeconds(int years, int months, int days) {
+        ZoneId zoneId = ZoneId.systemDefault();
 
+        // Base date is 2021/01/01
+        ZonedDateTime baseTime = ZonedDateTime.of(2021, 1, 1, 0, 0, 0, 0, zoneId);
+
+        // Add years, months, and days to the base date
+        ZonedDateTime specificTime = baseTime.plusYears(years).plusMonths(months).plusDays(days);
+
+        long specificEpochSecond = specificTime.toEpochSecond();
+
+        // This should be the same EPOCH_TIME_20210101 that you use in uint32ToTimeString
+        long startingEpochSecond = 1609459200L;
+
+        // Calculate the number of seconds from 2021/1/1 to the specific date
+        long secondsPassed = specificEpochSecond - startingEpochSecond;
+
+        // Convert the number of seconds to a 4-byte array (little-endian)
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4);
+        byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt((int) secondsPassed);
+        return byteBuffer.array();
+    }
 
 
 
@@ -191,5 +213,57 @@ public class RandomData {
 
         // 返回对应索引处的整数
         return list.get(randomIndex);
+    }
+
+    public static byte[] generateTherapy(int testCaseId) {
+        byte[] therapies = new byte[40];
+        Random rand = new Random();
+
+        if (testCaseId == 0) {
+            return therapies;
+        }
+
+        if (testCaseId == 1) {
+            for (int i = 0; i < 40; i += 4) {
+                therapies[i] = generateNonShock(rand);
+            }
+            return therapies;
+        }
+
+        if (testCaseId == 2) {
+            for (int i = 0; i < 40; i += 4) {
+                therapies[i] = generateShock(rand);
+            }
+            return therapies;
+        }
+
+        if (testCaseId == 3) {
+            for (int i = 0; i < 40; i += 4) {
+                if (i < 20) {
+                    therapies[i] = generateNonShock(rand);
+                } else {
+                    therapies[i] = generateShock(rand);
+                }
+            }
+            return therapies;
+        }
+
+        return therapies;
+    }
+
+    // Generate a random Shock byte
+    public static byte generateShock(Random rand) {
+        int base = rand.nextInt(4) * 0x40; // Randomly choose between 0x00, 0x40, 0x80, 0xC0
+        int offset = rand.nextInt(16); // Randomly choose between 0x0 to 0xF
+        return (byte) (base + offset);
+    }
+
+    // Generate a random non-Shock byte
+    public static byte generateNonShock(Random rand) {
+        byte result;
+        do {
+            result = (byte) rand.nextInt(256); // Generate a random byte between 0x00 and 0xFF
+        } while ((result & 0xF0) == 0x00 || (result & 0xF0) == 0x40 || (result & 0xF0) == 0x80 || (result & 0xF0) == 0xC0);
+        return result;
     }
 }

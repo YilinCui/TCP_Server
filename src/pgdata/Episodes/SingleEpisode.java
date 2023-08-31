@@ -72,20 +72,6 @@ public class SingleEpisode extends BaseLog {
         return null;
     }
 
-    public byte[] generateByteArray(int testCaseId) {
-        if(testCaseId==0){
-            return new byte[40];
-        }else if (testCaseId == 1) {
-            byte[] result = new byte[40]; // The total length is 40 bytes
-            for (int i = 0; i < 10; i++) { // There are 10 small byte[] in this big byte[]
-                result[i * 4] = 0x10; // The first byte of each small byte[] is 0x10
-                // The rest of the bytes in each small byte[] are 0x00, which are already set when the byte[] was initialized
-            }
-            return result;
-        }
-        // Add more cases here based on other testCaseIds
-        return null;
-    }
 
     public byte[][] getbLongReturnData() {
         // 创建一个ArrayList来存放byte[]
@@ -97,7 +83,36 @@ public class SingleEpisode extends BaseLog {
         byte[] time = RandomData.getTimePassedInSeconds();
         startTime = time;
         endTime = RandomData.addSecondsToTime(time, 20);
-        //episodeNumber = RandomData.generateRandomBytes(2);
+
+        if(deviceMode==2){
+
+        }else if (deviceMode==3){
+            switch (testCaseId){
+                case 0->{
+                    time = RandomData.getTimePassedInSeconds(0,0,0);
+                    startTime = time;
+                    endTime = RandomData.addSecondsToTime(time, 20);
+                }
+                case 1->{
+                    time = RandomData.getTimePassedInSeconds(1,1,1);
+                    startTime = time;
+                    endTime = RandomData.addSecondsToTime(time, 30);
+                }
+                case 2->{
+                    time = RandomData.getTimePassedInSeconds(2,2,2);
+                    startTime = time;
+                    endTime = RandomData.addSecondsToTime(time, 40);
+                }
+                case 3->{
+                    time = RandomData.getTimePassedInSeconds(3,3,3);
+                    startTime = time;
+                    endTime = RandomData.addSecondsToTime(time, 50);
+                }
+            }
+
+        }
+
+
 
         vf_initial_duration = RandomData.generateRandomByte();
         vf_re_duration = RandomData.generateRandomByte();
@@ -110,6 +125,9 @@ public class SingleEpisode extends BaseLog {
         vt_post_shock_duration = RandomData.generateRandomByte();
 
         Segments_number = RandomData.generateRandomByte(10);
+        if(deviceMode==4){
+            Segments_number = 0x00;
+        }
         Gain_value = RandomData.generateRandomByte();
         Episode_type = RandomData.getRandomIntegerFromList(episodeTypeList);
         Shock_impedance_val = RandomData.generateRandomByte();
@@ -123,8 +141,9 @@ public class SingleEpisode extends BaseLog {
 
         tachy_treat = new byte[40];
         tachy_treat[0] = (byte) 0xB0;
-        // ATP: 0x1x;0x2x;0x3x
+        // ATP: 0x1x;0x2x;0x3x;0x5X;0x6X;
         // Shock: 0x0X;0x4x;0x8X;0xCX;
+        // If not Shock, then must be ATP
 
 
         if(deviceMode==0){
@@ -132,8 +151,7 @@ public class SingleEpisode extends BaseLog {
         }else if(deviceMode==1){
             Episode_type = episodeTypeList.get(testCaseId % episodeTypeList.size());
         }else if(deviceMode==2){
-            tachy_treat = generateByteArray(testCaseId);
-            System.out.println("Enter 2, testID: " + testCaseId);
+            tachy_treat = RandomData.generateTherapy(testCaseId);
         }
         buffer1.put(startTime);
         buffer1.put(endTime);

@@ -139,6 +139,7 @@ DeviceMode 11: Storage Mode
                 break;
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
+                System.out.println("Entering 0x0B, deviceMode is: " + deviceMode);
                 if(deviceMode==0){
                     break;
                 }else{

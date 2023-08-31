@@ -31,8 +31,10 @@ public class EpisodeHeader extends BaseLog {
         //episodesNum = RandomData.getRandomNumberInRange(0,32);
         episodesNum = 0x0A;
         packetHeader = new byte[]{0x14, 0x07, 0x0B};
+
         setEpisodeHeader(episodesNum);
         creatEpisode(episodesNum);
+
         latestEpisode = 0x00;
         EpisodeCount = new byte[]{(byte) episodesNum,0x00};
 
@@ -43,7 +45,6 @@ public class EpisodeHeader extends BaseLog {
 
         byte[] payload = buffer.toArray();
         byte[] payloadCRC32 = DataConvert.calculateCRC32(payload, 0, payload.length);
-
         buffer.put(0, maxEpisodeCount);
         buffer.put(payloadCRC32);
         buffer.put(supplement);
@@ -53,7 +54,6 @@ public class EpisodeHeader extends BaseLog {
 
         buffer.put(CRC32);
         buffer.put(0,packetHeader);
-
         bRetrunData = buffer.toArray();
     }
 

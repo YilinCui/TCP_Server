@@ -8,6 +8,8 @@ import pgdata.DeviceLog.BaseLog;
 import java.util.ArrayList;
 import java.util.List;
 
+// ATP: 0x1x;0x2x;0x3x
+// Shock: 0x0X;0x4x
 public class SingleEpisode extends BaseLog {
     // part I : payload length = 100
     private byte[] startTime;
@@ -54,17 +56,34 @@ public class SingleEpisode extends BaseLog {
         this.testCaseId = testCaseId;
         episodeNumber[0] = (byte) episodeIndex;
     }
-    private List<Byte> episodeTypeList = new ArrayList<>(){{
+
+    private List<Byte> episodeTypeList = new ArrayList<>() {{
         add((byte) 0x10);
         add((byte) 0x20);
         add((byte) 0x30);
         add((byte) 0x40);
         add((byte) 0x80);
         add((byte) 0xC0);
+        add((byte) 0x00);
     }};
 
     @Override
     public byte[] getbReturnData() {
+        return null;
+    }
+
+    public byte[] generateByteArray(int testCaseId) {
+        if(testCaseId==0){
+            return new byte[40];
+        }else if (testCaseId == 1) {
+            byte[] result = new byte[40]; // The total length is 40 bytes
+            for (int i = 0; i < 10; i++) { // There are 10 small byte[] in this big byte[]
+                result[i * 4] = 0x10; // The first byte of each small byte[] is 0x10
+                // The rest of the bytes in each small byte[] are 0x00, which are already set when the byte[] was initialized
+            }
+            return result;
+        }
+        // Add more cases here based on other testCaseIds
         return null;
     }
 
@@ -80,41 +99,42 @@ public class SingleEpisode extends BaseLog {
         endTime = RandomData.addSecondsToTime(time, 20);
         //episodeNumber = RandomData.generateRandomBytes(2);
 
-//        vf_initial_duration = RandomData.generateRandomByte();
-//        vf_re_duration = RandomData.generateRandomByte();
-//        vf_post_shock_duration = RandomData.generateRandomByte();
-//        fvt_initial_duration = RandomData.generateRandomByte();
-//        fvt_re_duration = RandomData.generateRandomByte();
-//        fvt_post_shock_duration = RandomData.generateRandomByte();
-//        vt_initial_duration = RandomData.generateRandomByte();
-//        vt_re_duration = RandomData.generateRandomByte();
-//        vt_post_shock_duration = RandomData.generateRandomByte();
-
-        vf_initial_duration = RandomData.generateRandomByte(0);
-        vf_re_duration = RandomData.generateRandomByte(0);
-        vf_post_shock_duration = RandomData.generateRandomByte(0);
-        fvt_initial_duration = RandomData.generateRandomByte(0);
-        fvt_re_duration = RandomData.generateRandomByte(0);
-        fvt_post_shock_duration = RandomData.generateRandomByte(0);
-        vt_initial_duration = RandomData.generateRandomByte(0);
-        vt_re_duration = RandomData.generateRandomByte(0);
-        vt_post_shock_duration = RandomData.generateRandomByte(0);
+        vf_initial_duration = RandomData.generateRandomByte();
+        vf_re_duration = RandomData.generateRandomByte();
+        vf_post_shock_duration = RandomData.generateRandomByte();
+        fvt_initial_duration = RandomData.generateRandomByte();
+        fvt_re_duration = RandomData.generateRandomByte();
+        fvt_post_shock_duration = RandomData.generateRandomByte();
+        vt_initial_duration = RandomData.generateRandomByte();
+        vt_re_duration = RandomData.generateRandomByte();
+        vt_post_shock_duration = RandomData.generateRandomByte();
 
         Segments_number = RandomData.generateRandomByte(10);
-        Gain_value = RandomData.generateRandomByte(0);
+        Gain_value = RandomData.generateRandomByte();
         Episode_type = RandomData.getRandomIntegerFromList(episodeTypeList);
-        Shock_impedance_val = RandomData.generateRandomByte(0);
+        Shock_impedance_val = RandomData.generateRandomByte();
         Tachy_detect_zone = 0x00;
-//        vf_tachy_rate = RandomData.generateRandomByte(60);
-//        fvt_tachy_rate = RandomData.generateRandomByte(0);
-//        vt_tachy_rate = RandomData.generateRandomByte(0);
         vf_tachy_rate = (byte) 0x80;
         fvt_tachy_rate = (byte) 0x90;
         vt_tachy_rate = (byte) 0xFF;
+
         EPISODE_FORMAT_VER = RandomData.generateRandomByte(0);
-        //svt_params = RandomData.generateRandomBytes(24);
         svt_params = new byte[24];
 
+        tachy_treat = new byte[40];
+        tachy_treat[0] = (byte) 0xB0;
+        // ATP: 0x1x;0x2x;0x3x
+        // Shock: 0x0X;0x4x;0x8X;0xCX;
+
+
+        if(deviceMode==0){
+            // default random
+        }else if(deviceMode==1){
+            Episode_type = episodeTypeList.get(testCaseId % episodeTypeList.size());
+        }else if(deviceMode==2){
+            tachy_treat = generateByteArray(testCaseId);
+            System.out.println("Enter 2, testID: " + testCaseId);
+        }
         buffer1.put(startTime);
         buffer1.put(endTime);
         buffer1.put(episodeNumber);
@@ -144,13 +164,11 @@ public class SingleEpisode extends BaseLog {
 
         // Gotta to tear Tachy_treat packet apart
 
-        //tachy_treat = RandomData.generateRandomBytes(40);
-        tachy_treat = new byte[40];
-
         byte[] tachy_treat_part1 = new byte[24];
         byte[] tachy_treat_part2 = new byte[16];
         System.arraycopy(tachy_treat, 0, tachy_treat_part1, 0, tachy_treat_part1.length);
         System.arraycopy(tachy_treat, 24, tachy_treat_part2, 0, tachy_treat_part2.length);
+
         buffer1.put(tachy_treat_part1);
         // payloadCRC32 calculation does not include supplement!!!!
         payloadBuffer.put(buffer1.toArray());
@@ -165,11 +183,6 @@ public class SingleEpisode extends BaseLog {
         list.add(packetBuffer1.toArray());
         // End of Constructing packet1
 
-//        estimatedImpedance = RandomData.generateRandomBytes(20);
-//        segmentsTimestamp = RandomData.generateRandomBytes(20);
-//        nearSegments = RandomData.generateRandomBytes(20);
-//        farSegments = RandomData.generateRandomBytes(20);
-
         estimatedImpedance = new byte[20];
         segmentsTimestamp = RandomData.generateRandomBytes(20);
         nearSegments = new byte[20];
@@ -183,7 +196,7 @@ public class SingleEpisode extends BaseLog {
         payloadBuffer.put(buffer2.toArray());
         buffer2.put(0, (byte) 0x01); // 1
 
-        byte[] payloadCRC32 = DataConvert.calculateCRC32(payloadBuffer.toArray(),0, payloadBuffer.toArray().length);
+        byte[] payloadCRC32 = DataConvert.calculateCRC32(payloadBuffer.toArray(), 0, payloadBuffer.toArray().length);
         buffer2.put(payloadCRC32); //101
         buffer2.put(supplement); //104
         byte[] packetBodyWithCRC = DataConvert.addCRC32(buffer2.toArray()); // 108

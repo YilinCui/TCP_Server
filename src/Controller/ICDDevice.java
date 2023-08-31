@@ -37,7 +37,7 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
 DeviceMode 11: Storage Mode
 
      */
-    private int deviceMode = 0;
+    private int deviceMode = 1;
     private int testCaseId = 0;
 
     private int chargeLogCnt = 1;
@@ -401,6 +401,11 @@ DeviceMode 11: Storage Mode
 
                 break;
 
+            case ICD_CMD_START_SHOCK_ON_T: //0x57 Start to shock on T
+                IOCommand("", 3, packet);
+
+                break;
+
             case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
                 int index = packet.getpayload()[0];
                 if(deviceMode==0){
@@ -491,6 +496,12 @@ DeviceMode 11: Storage Mode
 
                 break;
 
+            case ICD_CMD_UNIVERSAL_ABORT: //0x71 Universal Abort
+
+                IOCommand("", 3, packet);
+
+                break;
+
             case ICD_CMD_SET_GLOBAL_CONSTANTS: //0x73 Set GLOBAL_CONSTANTS
 
                 fileName = folderName + Constant.GLOBAL_CONSTANT;
@@ -570,6 +581,18 @@ DeviceMode 11: Storage Mode
 
                 break;
 
+            case ICD_CMD_CHARGE_DURATION: // 0xA6 Last Charge Duration Reported
+
+                bResponseArray = Constant.CHARGE_DURATION;
+
+                break;
+
+            case ICD_CMD_CHARGE_DONE: // 0xB0 Charge Down
+
+                bResponseArray = Constant.CHARGE_DONE;
+
+                break;
+
             case ICD_CMD_BLE_WRITE_TX_POWER: // 0xB3 WRITE_TX_POWER
 
                 fileName = folderName + Constant.TX_POWER;
@@ -631,8 +654,8 @@ DeviceMode 11: Storage Mode
                 bResponseArray = encodingPacket.getPacketData();
                 break;
             }
-            // Programmer wants the device to do something.
-            // Device only needs to return ACK.
+            // The programmer requests an action from the device
+            // which only needs to respond with an ACK (Acknowledgment)
             case 3:{
                 encodingPacket = new EncodingPacket(packet, true, fileName);
                 bResponseArray = encodingPacket.getPacketData();

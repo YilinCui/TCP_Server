@@ -78,4 +78,7 @@ public class Constant {
     public static final String GLOBAL_CONSTANT = "GlobalConstant.per";
     public static final String BATTERY_ESTIMATE_CONSTANTS = "BatteryEstimatedConstants.per";
     public static final byte[] READ_EPISODE_HEADER = DataConvert.hexStringToByteArray("08 0C A3 1A 00 00 00 E7 68 E0 1E");
+    public static final byte[] CHARGE_DURATION = DataConvert.hexStringToByteArray("08 0C A6 71 00 00 00 E5 18 C7 F2");
+    public static final byte[] CHARGE_DONE = DataConvert.hexStringToByteArray("08 0D B0 00 00 00 00 1C DF 44 21");
+    public static final byte[] UNIVERSAL_ABORT = DataConvert.hexStringToByteArray("08 0D B0 00 00 00 00 1C DF 44 21");
 }

@@ -112,8 +112,6 @@ public class SingleEpisode extends BaseLog {
 
         }
 
-
-
         vf_initial_duration = RandomData.generateRandomByte();
         vf_re_duration = RandomData.generateRandomByte();
         vf_post_shock_duration = RandomData.generateRandomByte();
@@ -202,7 +200,8 @@ public class SingleEpisode extends BaseLog {
         // End of Constructing packet1
 
         estimatedImpedance = new byte[20];
-        segmentsTimestamp = RandomData.generateRandomBytes(20);
+//        segmentsTimestamp = RandomData.generateRandomBytes(20);
+        segmentsTimestamp = new byte[20];
         nearSegments = new byte[20];
         farSegments = new byte[20];
 

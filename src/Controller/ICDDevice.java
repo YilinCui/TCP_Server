@@ -38,7 +38,7 @@ DeviceMode 11: Storage Mode
 
      */
     private int deviceMode = 1;
-    private int testCaseId = 0;
+    private int testCaseId = 1;
 
     private int chargeLogCnt = 1;
     private int patienInfoIndex = 1;

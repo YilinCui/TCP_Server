@@ -43,6 +43,7 @@ public class DeviceFaultLog extends BaseLog {
                     }
                     case 1:{
                         // ListView should have contents
+                        timestamp = RandomData.getTimePassedInSeconds(0,0,0);
                         break;
                     }
                     case 2:{
@@ -52,11 +53,13 @@ public class DeviceFaultLog extends BaseLog {
                     }
                     case 3:{
                         // ListView should be Empty
+                        timestamp = RandomData.getTimePassedInSeconds(1,1,1);
                         faultCount = new byte[2];
                         break;
                     }
                     case 4:{
                         // ListView should have contents
+                        timestamp = RandomData.getTimePassedInSeconds(2,2,2);
                         status = 0x00;
                         break;
 

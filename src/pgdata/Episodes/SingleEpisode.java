@@ -6,6 +6,7 @@ import ParseData.DataConvert;
 import pgdata.DeviceLog.BaseLog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // ATP: 0x1x;0x2x;0x3x
@@ -108,6 +109,11 @@ public class SingleEpisode extends BaseLog {
                     startTime = time;
                     endTime = RandomData.addSecondsToTime(time, 50);
                 }
+                case 4->{
+                    time = RandomData.getTimePassedInSeconds(4,4,4);
+                    startTime = time;
+                    endTime = RandomData.addSecondsToTime(time, 121);
+                }
             }
 
         }
@@ -129,20 +135,87 @@ public class SingleEpisode extends BaseLog {
         Gain_value = RandomData.generateRandomByte();
         Episode_type = RandomData.getRandomIntegerFromList(episodeTypeList);
         Shock_impedance_val = RandomData.generateRandomByte();
-        Tachy_detect_zone = 0x00;
-        vf_tachy_rate = (byte) 0x80;
+
+        Tachy_detect_zone = 0x02;
+        vf_tachy_rate = (byte) 0x00;
         fvt_tachy_rate = (byte) 0x90;
         vt_tachy_rate = (byte) 0xFF;
 
-        EPISODE_FORMAT_VER = RandomData.generateRandomByte(0);
         svt_params = new byte[24];
+        svt_params[6] = 0x10;
+        svt_params[8] = 0x20;
+        svt_params[11] = 0x01;
+        svt_params[18] = 0x01;
+        svt_params[20] = 0x02;
+//        svt_params = RandomData.generateRandomBytes(24);
 
-        tachy_treat = new byte[40];
-        tachy_treat[0] = (byte) 0xB0;
+        if(deviceMode==2){
+            switch (testCaseId){
+                case 0->{
+                    Tachy_detect_zone = 0x00;
+                    vf_tachy_rate = (byte) 0x70;
+                }
+                case 1->{
+                    Tachy_detect_zone = 0x01;
+                    vf_tachy_rate = (byte) 0x80;
+                    fvt_tachy_rate = (byte) 0x80;
+                }
+                case 2->{
+                    Tachy_detect_zone = 0x02;
+                    vf_tachy_rate = (byte) 0xA0;
+                    fvt_tachy_rate = (byte) 0xA0;
+                    vt_tachy_rate = (byte) 0xA0;
+                }
+                case 3->{
+                    svt_params = RandomData.generateRandomBytes(24);
+                    Tachy_detect_zone = 0x00;
+                    vf_tachy_rate = (byte) 0x00;
+                }
+                case 4->{
+                    Tachy_detect_zone = 0x02;
+                    svt_params = new byte[24];
+                    svt_params[6] = 0x10;
+                    svt_params[8] = 0x20;
+                    svt_params[11] = 0x01;
+                }
+                case 5->{
+                    Tachy_detect_zone = 0x02;
+                    svt_params = new byte[24];
+                    svt_params[6] = 0x10;
+                    svt_params[8] = 0x20;
+                    svt_params[11] = 0x01;
+                    svt_params[18] = 0x01;
+                    svt_params[20] = 0x02;
+                    svt_params[23] = 0x08;
+                }
+                case 6->{
+                    Tachy_detect_zone = 0x02;
+                    svt_params = new byte[24];
+                    svt_params[6] = 0x10;
+                    svt_params[8] = 0x20;
+                    svt_params[18] = 0x01;
+                    svt_params[20] = 0x02;
+                    svt_params[23] = 0x08;
+                }
+            }
+        }
+
+        EPISODE_FORMAT_VER = RandomData.generateRandomByte(0);
+
+//        tachy_treat = new byte[40];
+//        tachy_treat[0] = (byte) 0xB0;
+        tachy_treat = RandomData.generateRandomBytes(40);
         // ATP: 0x1x;0x2x;0x3x;0x5X;0x6X;
         // Shock: 0x0X;0x4x;0x8X;0xCX;
         // If not Shock, then must be ATP
 
+//        TachyTreatment(byte zoneTreatType, byte treatInfo, short treatStart) {
+//            shockIdx = zoneTreatType & 0x0F;
+//            treatType = zoneTreatType & 0b00110000;
+//            treatZone = zoneTreatType & 0b11000000;
+//            this.treatInfo = treatInfo & 0xFF;
+//            this.treatStart = (treatStart & 0xFFFF) * 4; //duration in ecg samples -> ms
+//        }
 
         if(deviceMode==0){
             // default random

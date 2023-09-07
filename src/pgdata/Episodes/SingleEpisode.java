@@ -12,6 +12,7 @@ import java.util.List;
 // ATP: 0x1x;0x2x;0x3x
 // Shock: 0x0X;0x4x
 public class SingleEpisode extends BaseLog {
+    private boolean t = true, f = false;
     // part I : payload length = 100
     private byte[] startTime;
     private byte[] endTime;
@@ -85,32 +86,32 @@ public class SingleEpisode extends BaseLog {
         startTime = time;
         endTime = RandomData.addSecondsToTime(time, 20);
 
-        if(deviceMode==2){
+        if (deviceMode == 2) {
 
-        }else if (deviceMode==3){
-            switch (testCaseId){
-                case 0->{
-                    time = RandomData.getTimePassedInSeconds(0,0,0);
+        } else if (deviceMode == 3) {
+            switch (testCaseId) {
+                case 0 -> {
+                    time = RandomData.getTimePassedInSeconds(0, 0, 0);
                     startTime = time;
                     endTime = RandomData.addSecondsToTime(time, 20);
                 }
-                case 1->{
-                    time = RandomData.getTimePassedInSeconds(1,1,1);
+                case 1 -> {
+                    time = RandomData.getTimePassedInSeconds(1, 1, 1);
                     startTime = time;
                     endTime = RandomData.addSecondsToTime(time, 30);
                 }
-                case 2->{
-                    time = RandomData.getTimePassedInSeconds(2,2,2);
+                case 2 -> {
+                    time = RandomData.getTimePassedInSeconds(2, 2, 2);
                     startTime = time;
                     endTime = RandomData.addSecondsToTime(time, 40);
                 }
-                case 3->{
-                    time = RandomData.getTimePassedInSeconds(3,3,3);
+                case 3 -> {
+                    time = RandomData.getTimePassedInSeconds(3, 3, 3);
                     startTime = time;
                     endTime = RandomData.addSecondsToTime(time, 50);
                 }
-                case 4->{
-                    time = RandomData.getTimePassedInSeconds(4,4,4);
+                case 4 -> {
+                    time = RandomData.getTimePassedInSeconds(4, 4, 4);
                     startTime = time;
                     endTime = RandomData.addSecondsToTime(time, 121);
                 }
@@ -129,14 +130,14 @@ public class SingleEpisode extends BaseLog {
         vt_post_shock_duration = RandomData.generateRandomByte();
 
         Segments_number = RandomData.generateRandomByte(10);
-        if(deviceMode==4){
+        if (deviceMode == 4) {
             Segments_number = 0x00;
         }
         Gain_value = RandomData.generateRandomByte();
         Episode_type = RandomData.getRandomIntegerFromList(episodeTypeList);
         Shock_impedance_val = RandomData.generateRandomByte();
 
-        Tachy_detect_zone = 0x02;
+        Tachy_detect_zone = 0x00;
         vf_tachy_rate = (byte) 0x00;
         fvt_tachy_rate = (byte) 0x90;
         vt_tachy_rate = (byte) 0xFF;
@@ -149,36 +150,36 @@ public class SingleEpisode extends BaseLog {
         svt_params[20] = 0x02;
 //        svt_params = RandomData.generateRandomBytes(24);
 
-        if(deviceMode==2){
-            switch (testCaseId){
-                case 0->{
+        if (deviceMode == 2) {
+            switch (testCaseId) {
+                case 0 -> {
                     Tachy_detect_zone = 0x00;
                     vf_tachy_rate = (byte) 0x70;
                 }
-                case 1->{
+                case 1 -> {
                     Tachy_detect_zone = 0x01;
                     vf_tachy_rate = (byte) 0x80;
                     fvt_tachy_rate = (byte) 0x80;
                 }
-                case 2->{
+                case 2 -> {
                     Tachy_detect_zone = 0x02;
                     vf_tachy_rate = (byte) 0xA0;
                     fvt_tachy_rate = (byte) 0xA0;
                     vt_tachy_rate = (byte) 0xA0;
                 }
-                case 3->{
+                case 3 -> {
                     svt_params = RandomData.generateRandomBytes(24);
                     Tachy_detect_zone = 0x00;
                     vf_tachy_rate = (byte) 0x00;
                 }
-                case 4->{
+                case 4 -> {
                     Tachy_detect_zone = 0x02;
                     svt_params = new byte[24];
                     svt_params[6] = 0x10;
                     svt_params[8] = 0x20;
                     svt_params[11] = 0x01;
                 }
-                case 5->{
+                case 5 -> {
                     Tachy_detect_zone = 0x02;
                     svt_params = new byte[24];
                     svt_params[6] = 0x10;
@@ -188,7 +189,7 @@ public class SingleEpisode extends BaseLog {
                     svt_params[20] = 0x02;
                     svt_params[23] = 0x08;
                 }
-                case 6->{
+                case 6 -> {
                     Tachy_detect_zone = 0x02;
                     svt_params = new byte[24];
                     svt_params[6] = 0x10;
@@ -202,28 +203,86 @@ public class SingleEpisode extends BaseLog {
 
         EPISODE_FORMAT_VER = RandomData.generateRandomByte(0);
 
-//        tachy_treat = new byte[40];
-//        tachy_treat[0] = (byte) 0xB0;
-        tachy_treat = RandomData.generateRandomBytes(40);
+        tachy_treat = new byte[40];
+        tachy_treat[0] = RandomData.getRandomByte((byte) 0xC, (byte) 0xF, (byte) 1, (byte) 3); // Commanded Therapy
+//        tachy_treat = RandomData.generateRandomBytes(40);
         // ATP: 0x1x;0x2x;0x3x;0x5X;0x6X;
         // Shock: 0x0X;0x4x;0x8X;0xCX;
         // If not Shock, then must be ATP
 
-//        TachyTreatment(byte zoneTreatType, byte treatInfo, short treatStart) {
-//            shockIdx = zoneTreatType & 0x0F;
-//            treatType = zoneTreatType & 0b00110000;
-//            treatZone = zoneTreatType & 0b11000000;
-//            this.treatInfo = treatInfo & 0xFF;
-//            this.treatStart = (treatStart & 0xFFFF) * 4; //duration in ecg samples -> ms
-//        }
 
-        if(deviceMode==0){
+        if (deviceMode == 0) {
             // default random
-        }else if(deviceMode==1){
+        } else if (deviceMode == 1) {
             Episode_type = episodeTypeList.get(testCaseId % episodeTypeList.size());
-        }else if(deviceMode==2){
+        } else if (deviceMode == 2) {
             tachy_treat = RandomData.generateTherapy(testCaseId);
+        } else if (deviceMode == 4) {
+            tachy_treat = new byte[40];
+            switch (testCaseId) {
+                case 0 -> {
+                    tachy_treat[0] = RandomData.getRandomByte((byte) 0, (byte) 3, (byte) 1, (byte) 9); // VF
+                }
+                case 1 -> {
+                    tachy_treat[0] = RandomData.getRandomByte((byte) 4, (byte) 7, (byte) 1, (byte) 9); // FVT
+                }
+                case 2 -> {
+                    tachy_treat[0] = RandomData.getRandomByte((byte) 8, (byte) 11, (byte) 1, (byte) 9); // VT
+                }
+                case 3 -> {
+                    tachy_treat[0] = RandomData.getRandomByte((byte) 0xC, (byte) 0xF, (byte) 1, (byte) 9); // Commanded Therapy
+                }
+                default -> {
+                    break;
+                }
+            }
+        } else if (deviceMode == 5) {
+            tachy_treat = new byte[40];
+            switch (testCaseId) {
+                case 0 -> {
+                    tachy_treat[0] = RandomData.generateByte(1, 1, 0, 0); // Commanded Shock
+                }
+                case 1 -> {
+                    do {
+                        tachy_treat[0] = RandomData.generateByte(1, 1, -1, -1); // Commanded ATP
+                    } while (tachy_treat[0] == 0xC0);
+                }
+                case 2 -> {
+                    do {
+                        tachy_treat[0] = RandomData.generateByte(-1, -1, 0, 0); // Shock
+                    } while ((tachy_treat[0] & 0b11000000) == 0b11000000);
+
+                }
+                case 3 -> {
+                    do {
+                        tachy_treat[0] = RandomData.generateByte(-1, -1, -1, -1); // ATP
+                    } while (((tachy_treat[0] & 0b11000000) == 0b11000000) || ((tachy_treat[0] & 0b00110000) == 0));
+                }
+                default -> {
+                    break;
+                }
+            }
+        } else if (deviceMode == 6) {
+            tachy_treat = new byte[40];
+            switch (testCaseId) {
+                case 0 -> {
+                    tachy_treat[0] = RandomData.generateByte(-1, -1, 0, 1); // Burst
+                }
+                case 1 -> {
+                    tachy_treat[0] = RandomData.generateByte(-1, -1, 1, 0); // Ramp
+                }
+                case 2 -> {
+                    tachy_treat[0] = RandomData.generateByte(-1, -1, 1, 1); // Ramp+
+
+                }
+                default -> {
+                    break;
+                }
+            }
+
         }
+
+
         buffer1.put(startTime);
         buffer1.put(endTime);
         buffer1.put(episodeNumber);

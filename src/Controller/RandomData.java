@@ -266,4 +266,47 @@ public class RandomData {
         } while ((result & 0xF0) == 0x00 || (result & 0xF0) == 0x40 || (result & 0xF0) == 0x80 || (result & 0xF0) == 0xC0);
         return result;
     }
+
+    public static byte getRandomByte(byte min1, byte max1, byte min2, byte max2) {
+        int rand1 = (int)min1 + (int)(Math.random() * ((int)max1 - (int)min1 + 1));
+        int rand2 = (int)min2 + (int)(Math.random() * ((int)max2 - (int)min2 + 1));
+
+        // Convert to unsigned integers for bit manipulation
+        int unsignedRand1 = rand1 & 0xFF;
+        int unsignedRand2 = rand2 & 0xFF;
+
+        return (byte) ((unsignedRand1 << 4) | unsignedRand2);
+    }
+
+    public static byte generateByte(int bit3, int bit2, int bit1, int bit0) {
+        // Initialize to 0
+        byte result = 0b00000000;
+        Random rand = new Random();
+
+        // Set or randomize the bits based on the int values
+        result |= handleBit(bit3, 7);
+        result |= handleBit(bit2, 6);
+        result |= handleBit(bit1, 5);
+        result |= handleBit(bit0, 4);
+
+        // Generate 4 random bits for the least significant bits
+        byte randomBits = (byte) (rand.nextInt(16)); // Generate a random number between 0 and 15 (inclusive)
+
+        // Combine the random bits with the existing result
+        result |= randomBits;
+
+        return result;
+    }
+
+    private static int handleBit(int bitValue, int position) {
+        Random rand = new Random();
+        if (bitValue == 1) {
+            return 1 << position;
+        } else if (bitValue == -1) {
+            return rand.nextInt(2) << position;
+        }
+        return 0;
+    }
+
+
 }

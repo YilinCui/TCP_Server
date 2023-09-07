@@ -205,11 +205,11 @@ public class SingleEpisode extends BaseLog {
 
         tachy_treat = new byte[40];
         tachy_treat[0] = RandomData.getRandomByte((byte) 0xC, (byte) 0xF, (byte) 1, (byte) 3); // Commanded Therapy
-//        tachy_treat = RandomData.generateRandomBytes(40);
+        tachy_treat[1] = 0x10;
         // ATP: 0x1x;0x2x;0x3x;0x5X;0x6X;
         // Shock: 0x0X;0x4x;0x8X;0xCX;
         // If not Shock, then must be ATP
-
+        estimatedImpedance = new byte[20];
 
         if (deviceMode == 0) {
             // default random
@@ -233,7 +233,6 @@ public class SingleEpisode extends BaseLog {
                     tachy_treat[0] = RandomData.getRandomByte((byte) 0xC, (byte) 0xF, (byte) 1, (byte) 9); // Commanded Therapy
                 }
                 default -> {
-                    break;
                 }
             }
         } else if (deviceMode == 5) {
@@ -245,7 +244,7 @@ public class SingleEpisode extends BaseLog {
                 case 1 -> {
                     do {
                         tachy_treat[0] = RandomData.generateByte(1, 1, -1, -1); // Commanded ATP
-                    } while (tachy_treat[0] == 0xC0);
+                    } while ((tachy_treat[0] & 0b11000000) == 0xC0);
                 }
                 case 2 -> {
                     do {
@@ -279,9 +278,48 @@ public class SingleEpisode extends BaseLog {
                     break;
                 }
             }
-
+        }else if (deviceMode == 7) {
+            tachy_treat = new byte[40];
+            tachy_treat[0] = (byte) (0b11000000 | testCaseId);
+        }else if (deviceMode == 8) {
+            tachy_treat = new byte[40];
+            tachy_treat[0] = (byte) (0b11000000);
+            switch (testCaseId){
+                case 0->{
+                    tachy_treat[1] = (byte) 0xFF;
+                    estimatedImpedance[0] = (byte) 0xFF;
+                    estimatedImpedance[1] = (byte) 0xFF;
+                    tachy_treat[2] = 0x10; //0.06s
+                }
+                case 1->{
+                    tachy_treat[1] = (byte) 0xFE;
+                    estimatedImpedance[0] = (byte) 0xFD;
+                    estimatedImpedance[1] = (byte) 0xFF;
+                    tachy_treat[2] = 0x01; // 0.00s;
+                }
+                case 2->{
+                    tachy_treat[1] = (byte) 0xFD;
+                    estimatedImpedance[0] = 0x10;
+                    tachy_treat[2] = 0x20; //0.13s
+                }
+                case 3->{
+                    tachy_treat[1] = 0x10;
+                    estimatedImpedance[1] = 0x01; //256/20 = 12.8
+                    tachy_treat[3] = 0x01; // 1.02s
+                }
+                case 4->{
+                    tachy_treat[1] = (byte) 0xFC; // 16.13 s
+                    estimatedImpedance[0] = (byte) 0xFE;
+                    estimatedImpedance[1] = (byte) 0xFF; // 3276.7 Ω
+                    tachy_treat[2] = (byte) 0xFF;
+                    tachy_treat[3] = (byte) 0xFF; // 262.14 s
+                }
+            }
+        }else if (deviceMode == 9) {
+            tachy_treat = new byte[40];
+            tachy_treat[0] = 0b01010000;
+            tachy_treat[1] = (byte) testCaseId;
         }
-
 
         buffer1.put(startTime);
         buffer1.put(endTime);
@@ -331,7 +369,7 @@ public class SingleEpisode extends BaseLog {
         list.add(packetBuffer1.toArray());
         // End of Constructing packet1
 
-        estimatedImpedance = new byte[20];
+
 //        segmentsTimestamp = RandomData.generateRandomBytes(20);
         segmentsTimestamp = new byte[20];
         nearSegments = new byte[20];

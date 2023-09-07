@@ -22,8 +22,12 @@ public class Main {
 //        byte bb = 0x01;
 //        System.out.println(bb);
 
-        byte[] timestamp = new byte[]{0x53, (byte) 0xBA, 0x03, 0x05};
-        System.out.println("timeStamp is: " + parseTimeFromBytes(timestamp));
+//        byte[] timestamp = new byte[]{0x53, (byte) 0xBA, 0x03, 0x05};
+//        System.out.println("timeStamp is: " + parseTimeFromBytes(timestamp));
+        byte b;
+        int num = 2;
+        b = (byte) (0b11000000 | num);
+        System.out.print(b & 0xFF);
     }
 
     public static int getDataLength (String data){
@@ -46,4 +50,5 @@ public class Main {
             return "Error";
         }
     }
+
 }

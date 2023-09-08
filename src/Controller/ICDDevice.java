@@ -4,6 +4,7 @@ import Constant.Constant;
 import ParseData.*;
 import pgdata.*;
 import pgdata.DeviceLog.*;
+import pgdata.DeviceTest.BatteryCapacitor;
 import pgdata.Episodes.EpisodeHeader;
 import pgdata.Episodes.EpisodeMarker;
 import pgdata.Episodes.EpisodeSegment;
@@ -252,7 +253,8 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_CAPACITOR_REFORM: //0x20 Read Cap Reform Log
 
-                bResponseArray = Constant.READ_CAP_REFORM_LOG;
+                BatteryCapacitor capacitor = new BatteryCapacitor();
+                bResponseArray = capacitor.getbReturnData();
 
                 break;
 

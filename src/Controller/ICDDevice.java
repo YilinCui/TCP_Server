@@ -253,7 +253,7 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_CAPACITOR_REFORM: //0x20 Read Cap Reform Log
 
-                BatteryCapacitor capacitor = new BatteryCapacitor();
+                BatteryCapacitor capacitor = new BatteryCapacitor(deviceMode, testCaseId);
                 bResponseArray = capacitor.getbReturnData();
 
                 break;

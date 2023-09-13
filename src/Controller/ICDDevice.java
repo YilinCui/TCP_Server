@@ -3,6 +3,8 @@ package Controller;
 import Constant.Constant;
 import ParseData.*;
 import pgdata.*;
+import pgdata.Data.RateHistogramLast;
+import pgdata.Data.RateHistogramLife;
 import pgdata.DeviceLog.*;
 import pgdata.DeviceTest.BatteryCapacitor;
 import pgdata.Episodes.EpisodeHeader;
@@ -241,14 +243,16 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_RETRIEVE_RATE_HISTOGRAM: //0x1B RETRIEVE RATE HISTOGRAM
 
-                bResponseArray = Constant.RETRIEVE_RATE_HISTOGRAM;
-
+//                bResponseArray = Constant.RETRIEVE_RATE_HISTOGRAM;
+                RateHistogramLast histogram = new RateHistogramLast(deviceMode,testCaseId);
+                bResponseArray = histogram.getbReturnData();
                 break;
 
             case ICD_CMD_RETRIEVE_RATE_HISTOGRAM_LIFETIME: //0x1C RETRIEVE RATE HISTOGRAM LIFETIME
 
-                bResponseArray = Constant.RETRIEVE_RATE_HISTOGRAM_LIFETIME;
-
+//                bResponseArray = Constant.RETRIEVE_RATE_HISTOGRAM_LIFETIME;
+                RateHistogramLife histogramLifeTime = new RateHistogramLife(deviceMode,testCaseId);
+                bResponseArray = histogramLifeTime.getbReturnData();
                 break;
 
             case ICD_CMD_READ_CAPACITOR_REFORM: //0x20 Read Cap Reform Log

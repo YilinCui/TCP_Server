@@ -308,5 +308,29 @@ public class RandomData {
         return 0;
     }
 
+    public static byte[] createByteArray(int length, int minValue, int maxValue) {
+        if (length <= 0 || length > 4) {
+            throw new IllegalArgumentException("The length should be between 1 and 4.");
+        }
+
+        if (minValue < 0 || maxValue < 0 || maxValue < minValue) {
+            throw new IllegalArgumentException("minValue and maxValue should be non-negative, and maxValue should be greater than or equal to minValue.");
+        }
+
+        byte[] result = new byte[length];
+        Random random = new Random();
+
+        // 生成一个在 minValue 和 maxValue 之间的随机整数
+        int randomValue = random.nextInt((maxValue - minValue) + 1) + minValue;
+
+        // 使用位操作来填充数组，这里假设系统是小端序（Least Significant Byte first）
+        for (int i = 0; i < length; i++) {
+            result[i] = (byte) (randomValue & 0xFF);  // 取最低8位
+            randomValue >>= 8;  // 右移8位，准备取下一个 byte
+        }
+
+        return result;
+    }
+
 
 }

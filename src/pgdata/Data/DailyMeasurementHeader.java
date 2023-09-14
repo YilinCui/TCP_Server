@@ -13,7 +13,7 @@ public class DailyMeasurementHeader extends BaseLog {
         this.testCaseId = testCaseId;
     }
     public void buildPayload(DynamicByteBuffer buffer){
-        byte[] days = new byte[]{0x07,0x00};
+        byte[] days = new byte[]{0x07, 0x00};
         byte[] reserved = new byte[2];
         buffer.put(days);
         buffer.put(reserved);

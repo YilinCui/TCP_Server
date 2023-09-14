@@ -3,6 +3,8 @@ package Controller;
 import Constant.Constant;
 import ParseData.*;
 import pgdata.*;
+import pgdata.Data.DailyMeasurement;
+import pgdata.Data.DailyMeasurementHeader;
 import pgdata.Data.RateHistogramLast;
 import pgdata.Data.RateHistogramLife;
 import pgdata.DeviceLog.*;
@@ -174,8 +176,9 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_DAILY_MMT_HEADER: //0x0E Read Daily Measurement Header
 
-                bResponseArray = Constant.READ_DAILY_MEASUREMENT_HEADER;
-
+//                bResponseArray = Constant.READ_DAILY_MEASUREMENT_HEADER;
+                DailyMeasurementHeader header = new DailyMeasurementHeader(deviceMode, testCaseId);
+                bResponseArray = header.getbReturnData();
                 break;
 
             case ICD_CMD_READ_CLINICIAN_NOTE: //0x0F Read Clinician Note
@@ -411,6 +414,12 @@ DeviceMode 11: Storage Mode
             case ICD_CMD_START_SHOCK_ON_T: //0x57 Start to shock on T
                 IOCommand("", 3, packet);
 
+                break;
+
+            case ICD_CMD_READ_DAILY_MMT: //0x58 Daily Measurement
+
+                DailyMeasurement measurement = new DailyMeasurement(packet, deviceMode, testCaseId);
+                bResponseArray = measurement.getbReturnData();
                 break;
 
             case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode

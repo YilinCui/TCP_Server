@@ -14,15 +14,6 @@ This project is intended for use solely by authorized individuals or entities, a
 
 By accessing or using this project, you agree to abide by the above terms.
 
-# Device Mode
-1. Non-testing mode (deviceMode=0): Device data (which can be programmed), such as parameter data, is serialized and deserialized locally through IO. If local data is not available, default values are returned. Non-programmable data will return random values (such as Device Log, Episode, etc.).
-2. Espresso testing script mode 1 (deviceMode=1): Fuzzy testing + Semi-random: Espresso retrieves the data and parses it locally, then compares it with the actual UI data. All returned data is randomly generated within a reasonable range.
-3. Espresso testing script mode 2 (deviceMode=2): Fuzzy testing + Fully random: Espresso retrieves the data and parses it locally, then compares it with the actual UI data. All returned data is randomly generated without any pattern.
-4. Espresso testing script mode 3 (deviceMode=3): Regression testing. Predefined data and expected test results: Espresso does not need to parse the data locally. Each Testcase will have predetermined expected data and results. Espresso should directly compare whether the results are correct.
-5. Espresso testing script mode 4 (deviceMode=4): Integration testing. Collaboration of multiple modules, such as popup testing.
-6. Espresso testing script mode 5 (deviceMode=5): Testing is aimed at all programmable+retrievable parameters. For example, using Brady, Espresso randomly opens parameter settings, randomly clicks an option. During the program, it records all data on the current UI screen, then retrieves it for comparison. If the data matches, the test passes.
-7. Stress/Performance testing (deviceMode=10): Testing the Programmer's performance when faced with a large amount of garbage/illegitimate data.
-
 ### TCP Server-Client Interaction and Data Processing Workflow
 - Start
 - TCP Server Listens on port 8888

@@ -36,7 +36,7 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
 DeviceMode 11: Storage Mode
 
      */
-    private int deviceMode = 1;
+    private int deviceMode = 0;
     private int testCaseId = 1;
 
     private int chargeLogCnt = 1;

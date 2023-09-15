@@ -364,5 +364,30 @@ public class RandomData {
         return result;
     }
 
+    public static byte[] generateByteArray(int length, int value) {
+        // 创建一个ByteBuffer实例，设置为小端序
+        ByteBuffer byteBuffer = ByteBuffer.allocate(length);
+        byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
+
+        // 检查长度并相应地填充ByteBuffer
+        if (length >= 4) {
+            // 如果长度大于等于4，直接使用putInt
+            byteBuffer.putInt(value);
+
+            // 如果给定长度大于4（因为一个int占用4字节），余下的空间将用0填充
+            for (int i = 4; i < length; i++) {
+                byteBuffer.put((byte) 0);
+            }
+        } else {
+            // 如果长度小于4，只取低length个字节
+            for (int i = 0; i < length; i++) {
+                byteBuffer.put((byte) (value & 0xFF));
+                value >>= 8;
+            }
+        }
+
+        return byteBuffer.array();
+    }
+
 
 }

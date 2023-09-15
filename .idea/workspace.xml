@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/RandomData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RandomData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParseData/DataConvert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/DataConvert.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/Data/DailyMeasurement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Data/DailyMeasurement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pgdata/Data/DailyMeasurementHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Data/DailyMeasurementHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/BaseLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/BaseLog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +135,7 @@
       <workItem from="1693932568869" duration="59577000" />
       <workItem from="1694450000667" duration="14544000" />
       <workItem from="1694550562198" duration="2464000" />
-      <workItem from="1694623338225" duration="23539000" />
+      <workItem from="1694623338225" duration="30773000" />
     </task>
     <servers />
   </component>

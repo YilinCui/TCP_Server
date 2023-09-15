@@ -3,16 +3,10 @@ package Controller;
 import Constant.Constant;
 import ParseData.*;
 import pgdata.*;
-import pgdata.Data.DailyMeasurement;
-import pgdata.Data.DailyMeasurementHeader;
-import pgdata.Data.RateHistogramLast;
-import pgdata.Data.RateHistogramLife;
+import pgdata.Data.*;
 import pgdata.DeviceLog.*;
 import pgdata.DeviceTest.BatteryCapacitor;
-import pgdata.Episodes.EpisodeHeader;
-import pgdata.Episodes.EpisodeMarker;
-import pgdata.Episodes.EpisodeSegment;
-import pgdata.Episodes.SingleEpisode;
+import pgdata.Episodes.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -304,7 +298,14 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_GLOBAL_COUNTERS: //0x2B Read Global COUNTERS
 
-                bResponseArray = Constant.READ_GLOBAL_COUNTERS;
+//                bResponseArray = Constant.READ_GLOBAL_COUNTERS;
+                TherapyOverview overview = new TherapyOverview(deviceMode, testCaseId);
+                bResponseArray = overview.getbReturnData();
+                break;
+
+            case ICD_CMD_CLEAR_LAST_SESSION_COUNTERS: //0x2C clear last session COUNTERS
+
+                IOCommand("", 3, packet);
 
                 break;
 
@@ -316,13 +317,13 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_BRADY_COUNTERS: //0x2F Read Brady COUNTERS
 
-                bResponseArray = Constant.READ_BRADY_COUNTERS;
-
+//                bResponseArray = Constant.READ_BRADY_COUNTERS;
+                DeviceCounter counter = new DeviceCounter(deviceMode,testCaseId);
+                bResponseArray = counter.getbReturnData();
                 break;
 
             case ICD_CMD_READ_BATTERY_LOG: //0x30 Read Battery Log
 
-                System.out.println("DeviceMode is: " + deviceMode + ", and testCaseId is: " + testCaseId);
                 // use sequenceNumber as testCase indicator
                 DeviceBatteryLog batteryLog = new DeviceBatteryLog(deviceMode, testCaseId);
                 //DeviceBatteryLog batteryLog = new DeviceBatteryLog(1, 2);

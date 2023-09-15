@@ -82,6 +82,38 @@ public class RandomData {
         return byteBuffer.array();
     }
 
+    public static byte[] getTimePassedInSeconds(boolean useOneHourWindow) {
+        // Use system's default timezone
+        ZoneId zoneId = ZoneId.systemDefault();
+
+        // Get the current date and an hour ago date
+        ZonedDateTime now = ZonedDateTime.now(zoneId);
+        long secondsNow = now.toEpochSecond();
+
+        long randomEpochSecond;
+
+        // Choose calculation logic based on the boolean parameter
+        if (useOneHourWindow) {
+            ZonedDateTime oneHourAgo = now.minusHours(1);
+            long secondsOneHourAgo = oneHourAgo.toEpochSecond();
+            randomEpochSecond = ThreadLocalRandom.current().nextLong(secondsOneHourAgo, secondsNow);
+        } else {
+            // Here you put the EPOCH_TIME_20210101 value, which is 1609459200
+            long startingEpochSecond = 1609459200;
+            randomEpochSecond = ThreadLocalRandom.current().nextLong(startingEpochSecond, secondsNow);
+        }
+
+        // Calculate seconds passed since 2021/1/1
+        long startingEpochSecond = 1609459200; // Insert EPOCH_TIME_20210101 value here
+        long secondsPassed = randomEpochSecond - startingEpochSecond;
+
+        // Convert the seconds into a 4-byte array (little-endian)
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4);
+        byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt((int) secondsPassed);
+        return byteBuffer.array();
+    }
+
     public static byte[] getTimePassedInSeconds(int years, int months, int days) {
         ZoneId zoneId = ZoneId.systemDefault();
 

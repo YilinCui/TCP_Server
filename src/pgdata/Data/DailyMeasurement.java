@@ -30,10 +30,10 @@ public class DailyMeasurement extends BaseLog {
         private byte crc8;
 
         public Measurement(int deviceMode, int testCaseId) {
-            meansTime = RandomData.getTimePassedInSeconds();
+            meansTime = RandomData.getTimePassedInSeconds(false);
             paceLeadImpedance = RandomData.createByteArray(2, 200, 3000);
             shockLeadImpedance = RandomData.createByteArray(2, 40,200);
-            batteryValue = RandomData.generateRandomBytes(2);
+            batteryValue = RandomData.createByteArray(2,2000,3500);
             RV = new byte[]{RandomData.generateRandomByte(), 0x1F};
             vSensed = RandomData.generateRandomByte();
             batteryLevel = RandomData.generateRandomByte();

@@ -2,6 +2,7 @@ package pgdata.Data;
 
 import Controller.RandomData;
 import DataStructure.DynamicByteBuffer;
+import ParseData.DataConvert;
 import pgdata.DeviceLog.BaseLog;
 
 public class DailyMeasurementHeader extends BaseLog {
@@ -13,7 +14,7 @@ public class DailyMeasurementHeader extends BaseLog {
         this.testCaseId = testCaseId;
     }
     public void buildPayload(DynamicByteBuffer buffer){
-        byte[] days = new byte[]{0x0B, 0x00};
+        byte[] days = RandomData.generateByteArray(2,21);
         byte[] reserved = new byte[2];
         buffer.put(days);
         buffer.put(reserved);

@@ -23,6 +23,8 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
 
     private void parsePacket(){
         size = receivedBuffer[0] & 0xFF;
+        // Instruction ID
+        commandID = receivedBuffer[2];
         if(size==0){
             System.out.println("TestCase Configuration received!");
             System.out.println("receivedBuffer is " + Arrays.toString(receivedBuffer));
@@ -58,8 +60,7 @@ public class DecodingPacket implements ICDCommandDefinitions, Serializable {
             }
         }
 
-        // Instruction ID
-        commandID = receivedBuffer[2];
+
 
         // crc32
         if (payloadSize > 3) { // Ensure we have at least 4 bytes

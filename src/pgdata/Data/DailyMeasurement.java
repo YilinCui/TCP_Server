@@ -13,7 +13,7 @@ public class DailyMeasurement extends BaseLog {
 
     public DailyMeasurement(DecodingPacket packet, int deviceMode, int testCaseId) {
         days = packet.getpayload()[2];
-        packetHeader = new byte[]{(byte) (days * 16 + 4), 0x04, 0x58};
+        packetHeader = new byte[]{(byte) (3 + days * 16 + 4), 0x04, 0x58};
         this.deviceMode++;
         this.deviceMode %= 4;
         this.testCaseId = testCaseId;

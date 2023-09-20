@@ -13,7 +13,7 @@ public class EpisodeSegment extends BaseLog implements WaveGenerator{
     private byte[] segmentData;
 
     public EpisodeSegment(){
-        packetHeader = new byte[]{(byte) 0x84, 0x30, 0x65};
+        packetHeader = new byte[]{(byte) 0x87, 0x30, 0x65};
     }
 
     @Override

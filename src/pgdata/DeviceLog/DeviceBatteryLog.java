@@ -104,7 +104,7 @@ public class DeviceBatteryLog extends BaseLog {
     }
 
     public DeviceBatteryLog(int deviceMode, int testCaseId){
-        packetHeader = new byte[]{0x34, 0x0F, 0x30};
+        packetHeader = new byte[]{0x37, 0x0F, 0x30};
         this.deviceMode = deviceMode;
         this.testCaseId = testCaseId;
 

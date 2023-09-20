@@ -54,7 +54,7 @@ public class TherapyOverview extends BaseLog {
     public TherapyOverview(int deviceMode, int testCaseId){
         this.deviceMode = deviceMode;
         this.testCaseId = testCaseId;
-        packetHeader = new byte[]{(byte) 0x84, 0x39, 0x2B};
+        packetHeader = new byte[]{(byte) 0x87, 0x39, 0x2B};
         initialOverview();
     }
     private void initialOverview(){

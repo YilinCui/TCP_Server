@@ -11,8 +11,8 @@ import java.nio.ByteOrder;
 import java.util.*;
 
 public class DeviceChargeLog extends BaseLog {
-    private byte[] packetHeader1 = new byte[]{0x74, 0x05, 0x74};
-    private byte[] packetHeader2 = new byte[]{(byte) 0x80, 0x09, 0x74};
+    private byte[] packetHeader1 = new byte[]{0x77, 0x05, 0x74};
+    private byte[] packetHeader2 = new byte[]{(byte) 0x83, 0x09, 0x74};
     private byte[] payload1 = null;
     private byte[] payload2 = null;
 

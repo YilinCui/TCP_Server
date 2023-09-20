@@ -30,7 +30,7 @@ public class DeviceResetLog extends BaseLog {
     private List<Integer> exceptionResetTypesList;
     private List<Integer> bleResetTypesList;
     public DeviceResetLog(){
-        packetHeader = new byte[]{(byte) 0x84, 0x59, 0x11};
+        packetHeader = new byte[]{(byte) 0x87, 0x59, 0x11};
         rstcResetTypes.put(0x0, "NONE"); // NO RESET
         rstcResetTypes.put(0x01, "PWR"); // POWER ON
         rstcResetTypes.put(0x02, "BODVDD"); // BODVDD

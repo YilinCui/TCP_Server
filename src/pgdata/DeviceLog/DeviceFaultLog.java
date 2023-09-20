@@ -12,7 +12,7 @@ public class DeviceFaultLog extends BaseLog {
     private int deviceMode;
     private int testCaseId;
     public DeviceFaultLog(){
-        packetHeader = new byte[]{(byte) 0x80, 0x63, 0x14};
+        packetHeader = new byte[]{(byte) 0x83, 0x63, 0x14};
     }
     public DeviceFaultLog(int deviceMode, int testCaseId){
         this();

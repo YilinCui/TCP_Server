@@ -12,7 +12,7 @@ public class EpisodeMarker extends BaseLog {
     private byte[] markerData;
 
     public EpisodeMarker(){
-        packetHeader = new byte[]{(byte) 0x28, 0x56, 0x67};
+        packetHeader = new byte[]{(byte) 0x2B, 0x56, 0x67};
     }
 
     @Override

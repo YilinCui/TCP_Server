@@ -12,7 +12,7 @@ public class BatteryCapacitor extends BaseLog {
     private int deviceMode;
     private int testCaseId;
     public BatteryCapacitor(int deviceMode, int testCaseId){
-        packetHeader = new byte[]{0x6C, 0x53, 0x20};
+        packetHeader = new byte[]{0x6B, 0x53, 0x20};
         this.deviceMode = deviceMode;
         this.testCaseId = testCaseId;
     }

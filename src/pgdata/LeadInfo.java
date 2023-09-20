@@ -23,7 +23,7 @@ public class LeadInfo {
 
     private String fileName;
     private byte[] bRetrunData;
-    private byte[] packetHeader = new byte[3];
+    private byte[] packetHeader = new byte[]{(byte) 0x83, 0x04, 0x0C};
     public LeadInfo(String folderName){
         fileName = folderName + Constant.LEAD_INFO;
         initialize();
@@ -41,7 +41,7 @@ public class LeadInfo {
 
         if(bRetrunData!=null){
             //System.out.println(DataConvert.bytesToHex(bRetrunData));
-            System.arraycopy(bRetrunData, 0, packetHeader, 0, 3);
+            //System.arraycopy(bRetrunData, 0, packetHeader, 0, 3);
             System.arraycopy(bRetrunData, 3, Manufacturer, 0, 16);
             System.arraycopy(bRetrunData, 19, ModelNumber, 0, 16);
             System.arraycopy(bRetrunData, 35, SerialNumber, 0, 16);

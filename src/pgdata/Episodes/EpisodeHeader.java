@@ -30,7 +30,7 @@ public class EpisodeHeader extends BaseLog {
         this.deviceMode = deviceMode;
         //episodesNum = RandomData.getRandomNumberInRange(0,32);
         episodesNum = 0x0A;
-        packetHeader = new byte[]{0x14, 0x07, 0x0B};
+        packetHeader = new byte[]{0x17, 0x07, 0x0B};
 
         setEpisodeHeader(episodesNum);
         creatEpisode(episodesNum);

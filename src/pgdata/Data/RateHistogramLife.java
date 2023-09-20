@@ -9,7 +9,7 @@ public class RateHistogramLife extends BaseLog {
     private int deviceMode;
     private int testCaseId;
     public RateHistogramLife(int deviceMode, int testCaseId){
-        packetHeader = new byte[]{(byte) 0x84, 0x44, 0x1C};
+        packetHeader = new byte[]{(byte) 0x8B, 0x44, 0x1C};
         this.deviceMode = deviceMode;
         this.testCaseId = testCaseId;
     }

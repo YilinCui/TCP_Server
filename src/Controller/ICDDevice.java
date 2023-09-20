@@ -36,7 +36,7 @@ Stress/Performance testing (deviceMode = 5): Test the programmer's performance w
 DeviceMode 11: Storage Mode
 
      */
-    private int deviceMode = 1;
+    private int deviceMode = 5;
     private int testCaseId = 1;
 
     private int chargeLogCnt = 1;
@@ -138,7 +138,6 @@ DeviceMode 11: Storage Mode
                 break;
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
-                System.out.println("Entering 0x0B, deviceMode is: " + deviceMode);
                 if(deviceMode==0){
                     break;
                 }else{

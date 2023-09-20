@@ -1,5 +1,6 @@
 package ParseData;
 
+import DataStructure.DynamicByteBuffer;
 import ParseData.DecodingPacket;
 
 import java.io.FileInputStream;
@@ -66,9 +67,9 @@ public class EncodingPacket implements ICDCommandDefinitions {
     public void constructPacket() {
         // 首先计算出新的byte数组的大小
         int totalLength = 3 + payload.length + crc32.length;  // 3->size, sequenceID, CommandID
-
+//        int totalLength = payload.length + crc32.length;  // 3->size, sequenceID, CommandID
         // 初始化ByteBuffer
-        ByteBuffer buffer = ByteBuffer.allocate(totalLength);
+        DynamicByteBuffer buffer = new DynamicByteBuffer();
 
         // 将变量按照顺序添加到ByteBuffer中
         buffer.put((byte) totalLength);
@@ -78,12 +79,12 @@ public class EncodingPacket implements ICDCommandDefinitions {
         buffer.put(crc32);
 
         // 将ByteBuffer转化为byte数组
-        data = buffer.array();
+        data = buffer.toArray();
     }
 
     private void ConstructACK() {
         ByteBuffer buffer = ByteBuffer.allocate(11);
-        buffer.put((byte) 0x0C);  // Starts with 0x0C
+        buffer.put((byte) 0x0F);  // Starts with 0x0C
         buffer.put(sequenceNumber);  // Followed by parameter
         buffer.put((byte) 0xBF);  // Then 0xBF
         buffer.put(commandID);  // Then commandID

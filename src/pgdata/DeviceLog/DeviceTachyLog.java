@@ -21,7 +21,7 @@ public class DeviceTachyLog extends BaseLog {
     private byte[] CRC32;
 
     public DeviceTachyLog(){
-        packetHeader = new byte[]{(byte) 0x84, 0x5E, 0x10};
+        packetHeader = new byte[]{(byte) 0x87, 0x5E, 0x10};
     }
 
     public DeviceTachyLog(int deviceMode, int testCaseId){

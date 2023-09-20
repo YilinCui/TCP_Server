@@ -48,8 +48,8 @@ public class SingleEpisode extends BaseLog {
     private byte[] CRC32;
     // 最后3个补位
     private byte[] supplement = new byte[3];
-    private byte[] packetHeader1 = new byte[]{0x6C, 0x2A, 0x64};
-    private byte[] packetHeader2 = new byte[]{0x6C, 0x2D, 0x64};
+    private byte[] packetHeader1 = new byte[]{0x6F, 0x2A, 0x64};
+    private byte[] packetHeader2 = new byte[]{0x6F, 0x2D, 0x64};
     private int deviceMode;
     private int testCaseId;
 
@@ -244,7 +244,7 @@ public class SingleEpisode extends BaseLog {
                 case 1 -> {
                     do {
                         tachy_treat[0] = RandomData.generateByte(1, 1, -1, -1); // Commanded ATP
-                    } while ((tachy_treat[0] & 0b11000000) == 0xC0);
+                    } while (tachy_treat[0] == (byte)0b11000000);
                 }
                 case 2 -> {
                     do {

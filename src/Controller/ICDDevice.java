@@ -291,8 +291,9 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_LAST_MEASUREMENTS: //0x2A Read Most Recent Measurement
 
-                bResponseArray = Constant.READ_MOST_RECENT_MEASUREMENT;
-
+                MostRecentMeasurement mostRecentMeasurement = new MostRecentMeasurement(deviceMode, testCaseId);
+//                bResponseArray = Constant.READ_MOST_RECENT_MEASUREMENT;
+                bResponseArray = mostRecentMeasurement.getbReturnData();
                 break;
 
             case ICD_CMD_READ_GLOBAL_COUNTERS: //0x2B Read Global COUNTERS

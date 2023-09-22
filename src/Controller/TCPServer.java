@@ -18,7 +18,6 @@ import java.util.HashSet;
  * Entrance of the program
  */
 public class TCPServer implements ICDCommandDefinitions, FilesHandler {
-
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private String folderPath = "src" + File.separator + "LocalData";
@@ -64,7 +63,6 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
             synchronized (ClientHandler.class) { // 同步clientID分配，以防止在多线程环境中出现问题
                 this.clientID = globalClientID++;
             }
-            //this.clientID = 0;
         }
 
         @Override
@@ -86,7 +84,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                     if (bytesRead < 3) {
                         // Flush the InputStream and continue
                         inputStream.skip(inputStream.available());
-                        continue;
+                        break;
                     }
                     byte[] receivedBytes;
                     int totalPacketLength = headerBuffer[0] & 0xFF;  // Total length of the packet
@@ -98,7 +96,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                         if (bytesRead < 1) {
                             // Flush the InputStream and continue
                             inputStream.skip(inputStream.available());
-                            continue;
+                            break;
                         }
                         System.arraycopy(headerBuffer, 0, specialPacket, 0, 3);
                         receivedBytes = specialPacket;
@@ -111,7 +109,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                         if (bytesRead < payloadLength) {
                             // Flush the InputStream and continue
                             inputStream.skip(inputStream.available());
-                            continue;
+                            break;
                         }
 
                         receivedBytes = new byte[totalPacketLength];
@@ -145,11 +143,6 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                                     outputStream.flush();
                                     //if(!annoyingCommandSet.contains((int)response[2]))
                                     System.out.println("Sent to client: " + DataConvert.byteDataToHexString(response) + "\n");
-//                                    try {
-//                                        Thread.sleep(20); // sleep to handle TCP packet stickiness
-//                                    } catch (InterruptedException e) {
-//                                        e.printStackTrace();
-//                                    }
                                 }
                             }
                         }
@@ -159,23 +152,14 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                     }
                 }
 
-//                inputStream.close();
-//                outputStream.close();
-//                clientSocket.close();
-//                System.out.println("Client disconnected");
-//                synchronized (ClientHandler.class) { // 当客户端断开连接时，递减clientID
-//                    globalClientID--;
-//                }
-                //  System.out.println("client count is: " + globalClientID);
+                inputStream.close();
+                outputStream.close();
+                clientSocket.close();
+                System.out.println("Client disconnected");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-    }
-
-    public static void main(String[] args) throws IOException {
-        new TCPServer(8888).start();
     }
 
 }

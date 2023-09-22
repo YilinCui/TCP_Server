@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="TCP_Server:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/Constant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TCPServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/DecodingPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Data/DailyMeasurement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Data/DailyMeasurement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Data/DailyMeasurementHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Data/DailyMeasurementHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Data/DeviceCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Data/DeviceCounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Data/RateHistogramLast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Data/RateHistogramLast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Data/RateHistogramLife.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Data/RateHistogramLife.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceBatteryLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceBatteryLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceChargeLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceChargeLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceFaultLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceFaultLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceResetLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceResetLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceLog/DeviceTachyLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceTest/BatteryCapacitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceTest/BatteryCapacitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeMarker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeMarker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeSegment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/EpisodeSegment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/SingleEpisode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Episodes/TherapyOverview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Episodes/TherapyOverview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,28 +48,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/TCP_Server&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "ToolWindowRun.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/TCP_Server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -96,9 +82,16 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TCPServer">
+  <component name="RunManager" selected="Application.StartServer">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCP_Server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StartServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StartServer" />
       <module name="TCP_Server" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -119,6 +112,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StartServer" />
         <item itemvalue="Application.TCPServer" />
         <item itemvalue="Application.Main" />
       </list>
@@ -154,7 +148,11 @@
       <workItem from="1694450000667" duration="14544000" />
       <workItem from="1694550562198" duration="2464000" />
       <workItem from="1694623338225" duration="41585000" />
-      <workItem from="1695055334852" duration="40392000" />
+      <workItem from="1695055334852" duration="41780000" />
+      <workItem from="1695229089884" duration="6852000" />
+      <workItem from="1695314288619" duration="4121000" />
+      <workItem from="1695328695370" duration="9304000" />
+      <workItem from="1695343460682" duration="14700000" />
     </task>
     <servers />
   </component>

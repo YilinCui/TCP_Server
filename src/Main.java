@@ -14,17 +14,8 @@ import java.nio.ByteOrder;
 public class Main {
     public static final int EPOCH_TIME_20210101= 1609459200;
     public static void main(String[] args) {
-        String hexData = "6F 2D 64 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 1C 56 EB B0 00 00 00 C6 67 7E E3";
+        String hexData = "4B 36 2A 05 00 00 00 BA 8C C2 04 1C 10 FF 0F FF 0F 00 00 B6 0A 3C 01 EE FE EE FE FF 7F 00 00 C0 9B 1E 05 C0 9B 1E 05 C7 96 C2 04 C7 96 C2 04 B2 75 1E 05 1B 99 1E 05 B2 75 1E 05 B4 01 00 00 04 00 00 00 A4 9C B6 9F 1C DF 44 21";
         System.out.println("数据长度: " + getDataLength(hexData));
-
-//        String data = "AC 7A D2 04";
-//        byte[] arr = DataConvert.hexStringToByteArray(data);
-//        System.out.println(DataConvert.getFormattedTimestampFromBytes(arr));
-//        byte bb = 0x01;
-//        System.out.println(bb);
-
-//        byte[] timestamp = new byte[]{0x53, (byte) 0xBA, 0x03, 0x05};
-//        System.out.println("timeStamp is: " + parseTimeFromBytes(timestamp));
 
     }
 

@@ -162,4 +162,14 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
         }
     }
 
+    public static void main(String[] args) throws IOException {
+        Thread serverThread = new Thread(() -> {
+            try {
+                new TCPServer(8888).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        serverThread.start();
+    }
 }

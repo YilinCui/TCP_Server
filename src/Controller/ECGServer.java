@@ -1,6 +1,7 @@
 package Controller;
 
 import ParseData.DataConvert;
+import pgdata.Data.ECGData;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,9 +13,12 @@ import java.util.HashSet;
 public class ECGServer {
     private ServerSocket serverSocket;
     private Socket clientSocket;
+    private ECGData ecg;
+    private int deviceMode = 0;
 
     public ECGServer(int port) throws IOException {
         serverSocket = new ServerSocket(port);
+        ecg = new ECGData(deviceMode);
     }
 
     public void start() throws IOException {
@@ -47,10 +51,12 @@ public class ECGServer {
                 int bytesRead;
 
                 while (true) {
-                    byte[] data = new byte[34];
+                    byte[] data = ecg.getECG();
+                    if(ecg.getStatus()!=null)
+                    System.out.println(ecg.getStatus());
                     outputStream.write(data);
                     outputStream.flush();
-                    System.out.println("ECG data flushed to Client: " + DataConvert.byteDataToHexString(data));
+//                    System.out.println("ECG data flushed to Client: " + DataConvert.byteDataToHexString(data));
                     Thread.sleep(24);
                 }
             } catch (Exception e) {

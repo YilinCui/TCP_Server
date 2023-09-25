@@ -189,4 +189,50 @@ public class DataConvert {
         }
         return (byte) (crc & 0xFF);
     }
+    public static byte[] intToByteArray(int data, int length) {
+        if (length <= 0 || length > 4) {
+            throw new IllegalArgumentException("Length must be between 1 and 4.");
+        }
+
+        // Allocate a ByteBuffer with a capacity of 4 bytes
+        ByteBuffer buffer = ByteBuffer.allocate(4);
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+
+        // Insert the integer
+        buffer.putInt(data);
+
+        // Extract the array
+        byte[] tempArray = buffer.array();
+
+        // Create the result array
+        byte[] result = new byte[length];
+
+        // Copy the required bytes from tempArray to result
+        System.arraycopy(tempArray, 4 - length, result, 0, length);
+
+        return result;
+    }
+
+    public static int byteArrayToInt(byte[] byteArray) {
+        if (byteArray.length > 4) {
+            throw new IllegalArgumentException("Byte array length must not exceed 4.");
+        }
+
+        // 创建一个ByteBuffer并设置为小端序
+        ByteBuffer buffer = ByteBuffer.allocate(4).order(java.nio.ByteOrder.LITTLE_ENDIAN);
+
+        // 在转换之前填充0（如果必要）
+        for (int i = 0; i < 4 - byteArray.length; i++) {
+            buffer.put((byte) 0);
+        }
+
+        // 填充输入的byteArray
+        buffer.put(byteArray);
+
+        // 重置buffer的position
+        buffer.rewind();
+
+        // 将buffer转换为一个int并返回
+        return buffer.getInt();
+    }
 }

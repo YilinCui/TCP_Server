@@ -389,5 +389,23 @@ public class RandomData {
         return byteBuffer.array();
     }
 
+    public static byte[] getCurrentTimeInSeconds() {
+        // Use system's default timezone
+        ZoneId zoneId = ZoneId.systemDefault();
+
+        // Get the current date and time
+        ZonedDateTime now = ZonedDateTime.now(zoneId);
+        long secondsNow = now.toEpochSecond();
+
+        // Explicitly cast to int, knowing that this will give us data until 2038
+        int secondsNowInt = (int) secondsNow;
+        long startingEpochSecond = 1609459200; // Insert EPOCH_TIME_20210101 value here
+        long secondsPassed = secondsNow - startingEpochSecond;
+        // Convert the current epoch time in seconds to a 4-byte array (little-endian)
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4);
+        byteBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt((int) secondsPassed);
+        return byteBuffer.array();
+    }
 
 }

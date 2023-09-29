@@ -5,7 +5,7 @@ import ParseData.*;
 import pgdata.*;
 import pgdata.Data.*;
 import pgdata.DeviceLog.*;
-import pgdata.DeviceTest.BatteryCapacitor;
+import pgdata.DeviceTest.*;
 import pgdata.Episodes.*;
 
 import java.io.File;
@@ -258,6 +258,13 @@ DeviceMode 11: Storage Mode
 
                 break;
 
+            case ICD_CMD_MANUAL_INTRINSIC_MEASUREMENT: //0x22 Intrinsic Measurement
+
+                IntrinsicMeasure intrinsic = new IntrinsicMeasure(deviceMode,testCaseId);
+                bResponseArray = intrinsic.getbReturnData();
+
+                break;
+
             case ICD_CMD_READ_GLOBAL_CONSTANTS: //0x24 Read Global Constants
 
                 fileName = folderName + Constant.GLOBAL_CONSTANT;
@@ -285,7 +292,9 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_PACE_THRESHOLD_LOG: //0x29 Read Pace Threshold Log
 
-                bResponseArray = Constant.READ_PACE_THRESHOLD_LOG;
+//                bResponseArray = Constant.READ_PACE_THRESHOLD_LOG;
+                PaceThreshold testLog = new PaceThreshold(deviceMode, testCaseId);
+                bResponseArray = testLog.getbReturnData();
 
                 break;
 
@@ -390,6 +399,26 @@ DeviceMode 11: Storage Mode
 
                 break;
 
+            case ICD_CMD_MEASURE_PACE_IMPEDANCE: // 0x4F Measure Pace Impedance
+
+                PaceImpedance paceImpedance = new PaceImpedance(deviceMode, testCaseId);
+                bResponseArray = paceImpedance.getbReturnData();
+
+                break;
+
+            case ICD_CMD_MEASURE_SHOCK_IMPEDANCE: // 0x50 Measure Shock Impedance
+
+                ShockImpedance shockImpedance = new ShockImpedance(deviceMode, testCaseId);
+                bResponseArray = shockImpedance.getbReturnData();
+
+                break;
+
+            case ICD_CMD_MEASURE_BATTERY_VOLTAGE: // 0x51 Measure battery voltage
+                BatteryVoltage battery = new BatteryVoltage(deviceMode,testCaseId);
+                bResponseArray = battery.getbReturnData();
+
+                break;
+
             case ICD_CMD_SET_TACHY_DETECT_PARAM: //0x52 Set Tachy Mode Parameters
                 fileName = folderName + Constant.TACHY_MODE_PARAMETER;
                 IOCommand(fileName, 2, packet);
@@ -421,6 +450,13 @@ DeviceMode 11: Storage Mode
 
                 DailyMeasurement measurement = new DailyMeasurement(packet, deviceMode, testCaseId);
                 bResponseArray = measurement.getbReturnData();
+                break;
+
+            case ICD_CMD_MEASURE_BODY_TEMPERATURE: //0x59 Device Temperature
+
+                Temperature temperature = new Temperature(deviceMode, testCaseId);
+                bResponseArray = temperature.getbReturnData();
+
                 break;
 
             case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
@@ -581,8 +617,9 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_BATTERY_DETAIL: // 0x88 Read Battery Detail
 
-                bResponseArray = Constant.READ_BATTERY_DETAIL;
-
+//                bResponseArray = Constant.READ_BATTERY_DETAIL;
+                BatteryDetail detail = new BatteryDetail(deviceMode,testCaseId);
+                bResponseArray = detail.getbReturnData();
                 break;
 
             case ICD_CMD_SET_BATTERY_ESTIMATE_CONSTANTS: // 0x89 BATTERY_ESTIMATE_CONSTANTS

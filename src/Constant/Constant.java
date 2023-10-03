@@ -21,6 +21,7 @@ public class Constant {
     public static final String ALERTS = "AlertParameter.per";
     public static final String SAFETYCORE_BRADY = "SafetyCoreBrady.per";
     public static final String SAFETYCORE_TACHY = "SafetyCoreTachy.per";
+    public static final String HOME_MONITOR = "HomeMonitor.per";
     public static final byte[] FIRMWARE_VERSION = new byte[]{
             0x1F, 0x48, 0x27, 0x01, 0x00, 0x12, 0x01, 0x12, 0x00, 0x12, 0x00, 0x12, 0x00,
             0x20, 0x20, 0x20, 0x20, 0x31, 0x2E, 0x30, 0x2E, 0x31, 0x39, 0x1A, 0x2B, 0x3C,
@@ -81,4 +82,5 @@ public class Constant {
     public static final byte[] CHARGE_DURATION = DataConvert.hexStringToByteArray("0B 0C A6 71 00 00 00 E5 18 C7 F2");
     public static final byte[] CHARGE_DONE = DataConvert.hexStringToByteArray("0B 0D B0 00 00 00 00 1C DF 44 21");
     public static final byte[] UNIVERSAL_ABORT = DataConvert.hexStringToByteArray("0B 0D B0 00 00 00 00 1C DF 44 21");
+    public static final byte[] HOME_MONITORING = DataConvert.hexStringToByteArray("17 7B 05 00 00 00 00 00 00 00 00 00 00 00 00 6F C6 D5 7B 1C DF 44 21");
 }

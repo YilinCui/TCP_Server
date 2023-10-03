@@ -1,6 +1,7 @@
 package pgdata.Data;
 
 import Controller.RandomData;
+import DataStructure.DynamicByteBuffer;
 import ParseData.DataConvert;
 
 import java.util.Arrays;
@@ -72,7 +73,12 @@ public class ECGData{
 
             }
         }
-        return data;
+        byte header = 0x23;
+        DynamicByteBuffer buffer = new DynamicByteBuffer();
+        buffer.put(header);
+        buffer.put(data);
+
+        return buffer.toArray();
     }
 
     public String getStatus(){

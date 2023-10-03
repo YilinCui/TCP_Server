@@ -14,7 +14,7 @@ public class Temperature extends BaseLog {
         packetHeader = new byte[]{0x13, 0x53, 0x59};
         this.deviceMode = deviceMode;
         this.testCaseId = testCaseId;
-        temperature = new byte[]{0x00, 0x11};
+        temperature = RandomData.generateByteArray(2,testCaseId*123);
         timeStamp = RandomData.getTimePassedInSeconds(testCaseId % 9, testCaseId % 9, testCaseId % 9);
     }
 

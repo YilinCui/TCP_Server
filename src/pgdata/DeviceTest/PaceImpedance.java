@@ -15,7 +15,7 @@ public class PaceImpedance extends BaseLog {
         packetHeader = new byte[]{0x31, 0x53, 0x4F};
         this.deviceMode = deviceMode;
         this.testCaseId = testCaseId;
-        impedance = new byte[]{0x00, 0x11};
+        impedance = RandomData.generateByteArray(2,testCaseId*123);
         timeStamp = RandomData.getTimePassedInSeconds(testCaseId % 9, testCaseId % 9, testCaseId % 9);
         actual = RandomData.generateRandomBytes(32);
     }

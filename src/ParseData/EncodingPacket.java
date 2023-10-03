@@ -100,10 +100,6 @@ public class EncodingPacket implements ICDCommandDefinitions {
         System.arraycopy(array, 0, ACK, 0, array.length);
         System.arraycopy(crc32, 0, ACK, array.length, crc32.length);
 
-        // print the ack to console in hexadecimal form
-//        for (byte b : ack) {
-//            System.out.print(String.format("%02X ", b));
-//        }
     }
 
 

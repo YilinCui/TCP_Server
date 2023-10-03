@@ -72,6 +72,7 @@ DeviceMode 11: Storage Mode
     }
 
     // export/save to local XML document
+
     /**
      * Process the message sent from Android APP
      *
@@ -105,7 +106,7 @@ DeviceMode 11: Storage Mode
                 System.out.println("Testing configurations parameters received! deviceMode is: " + deviceMode + ", testCaseId is: " + testCaseId);
 
             case ICD_CMD_EXIT_STORAGE: //0x01 Exit the storage mode
-                if(deviceMode==11) {
+                if (deviceMode == 11) {
                     deviceMode = 1;
                     System.out.println("Exit the storage mode, deviceMode is: " + deviceMode);
                     IOCommand("", 3, packet);
@@ -116,8 +117,8 @@ DeviceMode 11: Storage Mode
                 fileName = folderName + Constant.ALERTS;
                 IOCommand(fileName, 1, packet);
 
-                if(bResponseArray==null)
-                bResponseArray = Constant.READ_ALERT_PARAMETER;
+                if (bResponseArray == null)
+                    bResponseArray = Constant.READ_ALERT_PARAMETER;
 
                 break;
 
@@ -125,8 +126,18 @@ DeviceMode 11: Storage Mode
                 fileName = folderName + Constant.TACHY_MODE_PARAMETER;
                 IOCommand(fileName, 1, packet);
 
-                if(bResponseArray==null){
+                if (bResponseArray == null) {
                     bResponseArray = Constant.READ_TACHY_MODE_PARAMETER;
+                }
+                break;
+
+            case ICD_CMD_MANUAL_ATP_EXEC: //0x05 Read Home Monitor setting
+
+                fileName = folderName + Constant.HOME_MONITOR;
+                IOCommand(fileName, 1, packet);
+
+                if (bResponseArray == null) {
+                    bResponseArray = Constant.HOME_MONITORING;
                 }
                 break;
 
@@ -138,9 +149,9 @@ DeviceMode 11: Storage Mode
                 break;
 
             case ICD_CMD_READ_EPISODE_HEADER: //0x0B Read Episode Header
-                if(deviceMode==0){
+                if (deviceMode == 0) {
                     break;
-                }else{
+                } else {
                     episode_test = new EpisodeHeader(deviceMode, testCaseId);
                     bResponseArray = episode_test.getbReturnData();
                 }
@@ -153,7 +164,7 @@ DeviceMode 11: Storage Mode
                 li_Local.process(packet);
 
                 bResponseArray = li_Local.getbRetrunData();
-                if (bResponseArray == null){
+                if (bResponseArray == null) {
                     bResponseArray = Constant.PATIENT_LEAD_INFO;
                 }
                 break;
@@ -162,8 +173,8 @@ DeviceMode 11: Storage Mode
                 fileName = folderName + Constant.SERIAL_NUMBER;
                 IOCommand(fileName, 1, packet);
 
-                if(bResponseArray==null)
-                bResponseArray = Constant.DEVICE_SERIAL_NUMBER;
+                if (bResponseArray == null)
+                    bResponseArray = Constant.DEVICE_SERIAL_NUMBER;
 
                 break;
 
@@ -225,7 +236,7 @@ DeviceMode 11: Storage Mode
                 fileName = folderName + Constant.TACHY_MODE_ONOFF;
                 IOCommand(fileName, 1, packet);
 
-                if(bResponseArray==null){
+                if (bResponseArray == null) {
                     bResponseArray = Constant.READ_TACHY_MODE_ONOFF;
                 }
 
@@ -240,14 +251,14 @@ DeviceMode 11: Storage Mode
             case ICD_CMD_RETRIEVE_RATE_HISTOGRAM: //0x1B RETRIEVE RATE HISTOGRAM
 
 //                bResponseArray = Constant.RETRIEVE_RATE_HISTOGRAM;
-                RateHistogramLast histogram = new RateHistogramLast(deviceMode,testCaseId);
+                RateHistogramLast histogram = new RateHistogramLast(deviceMode, testCaseId);
                 bResponseArray = histogram.getbReturnData();
                 break;
 
             case ICD_CMD_RETRIEVE_RATE_HISTOGRAM_LIFETIME: //0x1C RETRIEVE RATE HISTOGRAM LIFETIME
 
 //                bResponseArray = Constant.RETRIEVE_RATE_HISTOGRAM_LIFETIME;
-                RateHistogramLife histogramLifeTime = new RateHistogramLife(deviceMode,testCaseId);
+                RateHistogramLife histogramLifeTime = new RateHistogramLife(deviceMode, testCaseId);
                 bResponseArray = histogramLifeTime.getbReturnData();
                 break;
 
@@ -260,7 +271,7 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_MANUAL_INTRINSIC_MEASUREMENT: //0x22 Intrinsic Measurement
 
-                IntrinsicMeasure intrinsic = new IntrinsicMeasure(deviceMode,testCaseId);
+                IntrinsicMeasure intrinsic = new IntrinsicMeasure(deviceMode, testCaseId);
                 bResponseArray = intrinsic.getbReturnData();
 
                 break;
@@ -270,8 +281,8 @@ DeviceMode 11: Storage Mode
                 fileName = folderName + Constant.GLOBAL_CONSTANT;
                 IOCommand(fileName, 1, packet);
 
-                if(bResponseArray==null)
-                bResponseArray = Constant.READ_GLOBAL_CONSTANTS;
+                if (bResponseArray == null)
+                    bResponseArray = Constant.READ_GLOBAL_CONSTANTS;
 
                 break;
 
@@ -279,7 +290,7 @@ DeviceMode 11: Storage Mode
                 fileName = folderName + Constant.TACHY_SVT_DETECTION;
                 IOCommand(fileName, 1, packet);
 
-                if(bResponseArray==null){
+                if (bResponseArray == null) {
                     bResponseArray = Constant.READ_TACHY_SVT_DETECTION;
                 }
                 break;
@@ -327,7 +338,7 @@ DeviceMode 11: Storage Mode
             case ICD_CMD_READ_BRADY_COUNTERS: //0x2F Read Brady COUNTERS
 
 //                bResponseArray = Constant.READ_BRADY_COUNTERS;
-                DeviceCounter counter = new DeviceCounter(deviceMode,testCaseId);
+                DeviceCounter counter = new DeviceCounter(deviceMode, testCaseId);
                 bResponseArray = counter.getbReturnData();
                 break;
 
@@ -414,7 +425,7 @@ DeviceMode 11: Storage Mode
                 break;
 
             case ICD_CMD_MEASURE_BATTERY_VOLTAGE: // 0x51 Measure battery voltage
-                BatteryVoltage battery = new BatteryVoltage(deviceMode,testCaseId);
+                BatteryVoltage battery = new BatteryVoltage(deviceMode, testCaseId);
                 bResponseArray = battery.getbReturnData();
 
                 break;
@@ -435,7 +446,7 @@ DeviceMode 11: Storage Mode
                 fileName = folderName + Constant.TACHY_THERAPY_PARAMETER;
                 IOCommand(fileName, 1, packet);
 
-                if(bResponseArray==null){
+                if (bResponseArray == null) {
                     bResponseArray = Constant.READ_TACHY_THERAPY_PARAMETER;
                 }
 
@@ -459,12 +470,19 @@ DeviceMode 11: Storage Mode
 
                 break;
 
+            case ICD_CMD_SET_SENSITIVITY_PARAM: //0x5F Set Home Monitor
+
+                fileName = folderName + Constant.HOME_MONITOR;
+                IOCommand(fileName, 2, packet);
+
+
+                break;
+
             case ICD_CMD_READ_SINGLE_EPISODE: //0x64 Read Single Episode
                 int index = packet.getpayload()[0];
-                if(deviceMode==0){
+                if (deviceMode == 0) {
                     bLongResponseArray = null;
-                }
-                else{
+                } else {
                     bLongResponseArray = episode_test.getEpisodeList().get(index);
                 }
                 break;
@@ -584,7 +602,7 @@ DeviceMode 11: Storage Mode
                 // Android sends you a keep alive signal.
                 // No response needed.
                 //System.out.println(DataConvert.bytesToHex(receivedBytes));
-                if(deviceMode==11){
+                if (deviceMode == 11) {
                     // if in Storage Mode
                     bResponseArray = Constant.STORAGE_MODE_STATUS;
                 }
@@ -592,24 +610,24 @@ DeviceMode 11: Storage Mode
                 break;
 
             case ICD_CMD_SAFETY_CORE_PARAM: // 0x87 Safty Core Parameter
-                if(packet.getpayload().length==4){ // Retrieve
+                if (packet.getpayload().length == 4) { // Retrieve
                     fileName = folderName + Constant.SAFETYCORE_BRADY;
                     IOCommand(fileName, 1, packet);
 
-                }else{ // Program
+                } else { // Program
                     byte[] payload = packet.getpayload();
-                    byte[] newPayload = new byte[payload.length-4];
-                    System.arraycopy(payload, 1, newPayload, 0, payload.length-4);
+                    byte[] newPayload = new byte[payload.length - 4];
+                    System.arraycopy(payload, 1, newPayload, 0, payload.length - 4);
                     packet.setPayload(newPayload);
                     byte[] CRC32 = new byte[4];
-                    CRC32 = DataConvert.calculateCRC32(newPayload,0,newPayload.length);
+                    CRC32 = DataConvert.calculateCRC32(newPayload, 0, newPayload.length);
                     packet.setCrc32(CRC32);
 
                     fileName = folderName + Constant.SAFETYCORE_BRADY;
                     IOCommand(fileName, 2, packet);
                 }
 
-                if(bResponseArray==null){
+                if (bResponseArray == null) {
                     bResponseArray = Constant.SAFTY_CORE_PARAMETERS;
                 }
 
@@ -618,7 +636,7 @@ DeviceMode 11: Storage Mode
             case ICD_CMD_READ_BATTERY_DETAIL: // 0x88 Read Battery Detail
 
 //                bResponseArray = Constant.READ_BATTERY_DETAIL;
-                BatteryDetail detail = new BatteryDetail(deviceMode,testCaseId);
+                BatteryDetail detail = new BatteryDetail(deviceMode, testCaseId);
                 bResponseArray = detail.getbReturnData();
                 break;
 
@@ -694,15 +712,15 @@ DeviceMode 11: Storage Mode
      * @param mode     mode 1 == Read; mode 2 == Write
      */
     private void IOCommand(String fileName, int mode, DecodingPacket packet) {
-        switch (mode){
+        switch (mode) {
             // Read
-            case 1:{
+            case 1: {
                 encodingPacket = new EncodingPacket(packet, false, fileName);
                 bResponseArray = encodingPacket.getPacketData();
                 break;
             }
             // Write
-            case 2:{
+            case 2: {
                 PacketManager.serialize(packet, fileName);
                 encodingPacket = new EncodingPacket(packet, true, fileName);
                 bResponseArray = encodingPacket.getPacketData();
@@ -710,7 +728,7 @@ DeviceMode 11: Storage Mode
             }
             // The programmer requests an action from the device
             // which only needs to respond with an ACK (Acknowledgment)
-            case 3:{
+            case 3: {
                 encodingPacket = new EncodingPacket(packet, true, fileName);
                 bResponseArray = encodingPacket.getPacketData();
                 break;

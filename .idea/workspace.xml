@@ -11,13 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParseData/EncodingPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/Data/ECGData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/Data/ECGData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceTest/PaceImpedance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceTest/PaceImpedance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceTest/ShockImpedance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceTest/ShockImpedance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/DeviceTest/Temperature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/DeviceTest/Temperature.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +60,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
@@ -94,13 +87,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StartServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="StartServer" />
-      <module name="TCP_Server" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TCPServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Controller.TCPServer" />
       <module name="TCP_Server" />
@@ -114,6 +100,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.StartServer" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.TCPServer" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.StartServer" />
@@ -161,6 +152,8 @@
       <workItem from="1696264497140" duration="1473000" />
       <workItem from="1696291131182" duration="1923000" />
       <workItem from="1696351816544" duration="3969000" />
+      <workItem from="1696437236623" duration="4200000" />
+      <workItem from="1696463396826" duration="2165000" />
     </task>
     <servers />
   </component>

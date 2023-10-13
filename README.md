@@ -15,8 +15,11 @@ This project is intended for use solely by authorized individuals or entities, a
 By accessing or using this project, you agree to abide by the above terms.
 
 ### TCP Server-Client Interaction and Data Processing Workflow
+- There are 2 ways of deploying the server:
+  1. Remote Server: 43.153.84.250(Sillicon Valley, California)
+  2. Local Server: localhost
 - Start
-- TCP Server Listens on port 8888
+- TCP Server Listens on port 8888(Command Channel) and port 8889(ECG Channel)
 - Client Connects -> Server creates new Thread (Classical BIO Model)
 - Thread Creates Controller.ICDDevice instance
 - Two types of Incoming data, one is testing environment configuration, another is real data from programmer

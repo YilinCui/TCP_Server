@@ -1,0 +1,9 @@
+version: '3.1'
+
+services:
+  springboot:
+    image: yilinnyu/tcp:server
+    container_name: server-container
+    ports:
+      - "8888:8888"
+      - "8889:8889"

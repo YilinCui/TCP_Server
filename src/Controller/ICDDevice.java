@@ -22,19 +22,7 @@ import java.util.List;
 
 public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     /*
-Non-testing mode (deviceMode = 0): In this mode, device data, such as parameter data that can be programmed, is processed through local serialization and deserialization IO. If the local data does not exist, the default value is returned. Non-programmable data all return random values (like Device Log, Episode, etc.)
-
-Espresso testing script mode 1 (deviceMode = 1): Fuzz testing + Full random: After Espresso gets the data, it parses it locally and then compares it with the actual UI data. All returned data are completely randomly without any rules.
-
-Espresso testing script mode 2 (deviceMode = 2): Fuzz testing + Semi-random: After Espresso gets the data, it parses it locally and then compares it with the actual UI data. All returned data are randomly within a reasonable range.
-
-Espresso testing script mode 3 (deviceMode = 3): Regression testing. Predefined data and expected test results: Espresso does not need to parse the data locally. Each Testcase will predefine the expected data and results. Espresso should directly compare whether the result is correct or not.
-
-Espresso testing script mode 4 (deviceMode = 4): Integration testing. The interaction of multiple modules. For example, pop-up testing.
-
-Stress/Performance testing (deviceMode = 5): Test the programmer's performance when faced with a large amount of garbage/illegal data.
 DeviceMode 11: Storage Mode
-
      */
     private int deviceMode = 5;
     private int testCaseId = 1;
@@ -63,15 +51,12 @@ DeviceMode 11: Storage Mode
 
     private void initializeDevice() {
         bp_Local = new BradyParameter();
-        // Device Log Randomized Generating.
         resetlog_Local = new DeviceResetLog();
         tachylog_local = new DeviceTachyLog();
         faultlog_Local = new DeviceFaultLog();
         chargeLog_local = new DeviceChargeLog();
         li_Local = new LeadInfo(folderName);
     }
-
-    // export/save to local XML document
 
     /**
      * Process the message sent from Android APP
@@ -94,7 +79,6 @@ DeviceMode 11: Storage Mode
         if (iCommandId != ICD_CMD_BLE_IN_SESSION) {
             System.out.println("Received: " + packet);
         }
-        // Initialize variable
 
         // Switch cases
         switch (iCommandId) {
@@ -180,7 +164,6 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_DAILY_MMT_HEADER: //0x0E Read Daily Measurement Header
 
-//                bResponseArray = Constant.READ_DAILY_MEASUREMENT_HEADER;
                 DailyMeasurementHeader header = new DailyMeasurementHeader(deviceMode, testCaseId);
                 bResponseArray = header.getbReturnData();
                 break;
@@ -197,14 +180,8 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_TACHY_LOG: //0x10 Read Tachy Log
 
-                // use sequenceNumber as testCase indicator
                 DeviceTachyLog tachyLog = new DeviceTachyLog(deviceMode, testCaseId);
-                //DeviceTachyLog tachyLog = new DeviceTachyLog(1, 0);
                 bResponseArray = tachyLog.getbReturnData();
-
-                //bResponseArray = tachylog_local.getbReturnData();
-
-                //bResponseArray = Constant.READ_TACHY_LOG;
 
                 break;
 
@@ -227,9 +204,6 @@ DeviceMode 11: Storage Mode
                 DeviceFaultLog faultLog = new DeviceFaultLog(deviceMode, testCaseId);
                 bResponseArray = faultLog.getbReturnData();
 
-
-                //bResponseArray = Constant.READ_DEVICE_FAULT_LOG;
-
                 break;
 
             case ICD_CMD_READ_TACHY_MODE: //0x15 Read Tachy Mode OnOff
@@ -250,14 +224,12 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_RETRIEVE_RATE_HISTOGRAM: //0x1B RETRIEVE RATE HISTOGRAM
 
-//                bResponseArray = Constant.RETRIEVE_RATE_HISTOGRAM;
                 RateHistogramLast histogram = new RateHistogramLast(deviceMode, testCaseId);
                 bResponseArray = histogram.getbReturnData();
                 break;
 
             case ICD_CMD_RETRIEVE_RATE_HISTOGRAM_LIFETIME: //0x1C RETRIEVE RATE HISTOGRAM LIFETIME
 
-//                bResponseArray = Constant.RETRIEVE_RATE_HISTOGRAM_LIFETIME;
                 RateHistogramLife histogramLifeTime = new RateHistogramLife(deviceMode, testCaseId);
                 bResponseArray = histogramLifeTime.getbReturnData();
                 break;
@@ -303,7 +275,6 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_PACE_THRESHOLD_LOG: //0x29 Read Pace Threshold Log
 
-//                bResponseArray = Constant.READ_PACE_THRESHOLD_LOG;
                 PaceThreshold testLog = new PaceThreshold(deviceMode, testCaseId);
                 bResponseArray = testLog.getbReturnData();
 
@@ -312,13 +283,11 @@ DeviceMode 11: Storage Mode
             case ICD_CMD_READ_LAST_MEASUREMENTS: //0x2A Read Most Recent Measurement
 
                 MostRecentMeasurement mostRecentMeasurement = new MostRecentMeasurement(deviceMode, testCaseId);
-//                bResponseArray = Constant.READ_MOST_RECENT_MEASUREMENT;
                 bResponseArray = mostRecentMeasurement.getbReturnData();
                 break;
 
             case ICD_CMD_READ_GLOBAL_COUNTERS: //0x2B Read Global COUNTERS
 
-//                bResponseArray = Constant.READ_GLOBAL_COUNTERS;
                 TherapyOverview overview = new TherapyOverview(deviceMode, testCaseId);
                 bResponseArray = overview.getbReturnData();
                 break;
@@ -337,20 +306,14 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_BRADY_COUNTERS: //0x2F Read Brady COUNTERS
 
-//                bResponseArray = Constant.READ_BRADY_COUNTERS;
                 DeviceCounter counter = new DeviceCounter(deviceMode, testCaseId);
                 bResponseArray = counter.getbReturnData();
                 break;
 
             case ICD_CMD_READ_BATTERY_LOG: //0x30 Read Battery Log
 
-                // use sequenceNumber as testCase indicator
                 DeviceBatteryLog batteryLog = new DeviceBatteryLog(deviceMode, testCaseId);
-                //DeviceBatteryLog batteryLog = new DeviceBatteryLog(1, 2);
                 bResponseArray = batteryLog.getbReturnData();
-
-
-                //bResponseArray = Constant.READ_BATTERY_LOG;
 
                 break;
 
@@ -601,7 +564,6 @@ DeviceMode 11: Storage Mode
             case ICD_CMD_BLE_IN_SESSION: // 0x80
                 // Android sends you a keep alive signal.
                 // No response needed.
-                //System.out.println(DataConvert.bytesToHex(receivedBytes));
                 if (deviceMode == 11) {
                     // if in Storage Mode
                     bResponseArray = Constant.STORAGE_MODE_STATUS;
@@ -635,7 +597,6 @@ DeviceMode 11: Storage Mode
 
             case ICD_CMD_READ_BATTERY_DETAIL: // 0x88 Read Battery Detail
 
-//                bResponseArray = Constant.READ_BATTERY_DETAIL;
                 BatteryDetail detail = new BatteryDetail(deviceMode, testCaseId);
                 bResponseArray = detail.getbReturnData();
                 break;

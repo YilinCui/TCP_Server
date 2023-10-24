@@ -14,7 +14,7 @@ import java.nio.ByteOrder;
 public class Main {
     public static final int EPOCH_TIME_20210101= 1609459200;
     public static void main(String[] args) {
-        String hexData = "4B 36 2A 05 00 00 00 BA 8C C2 04 1C 10 FF 0F FF 0F 00 00 B6 0A 3C 01 EE FE EE FE FF 7F 00 00 C0 9B 1E 05 C0 9B 1E 05 C7 96 C2 04 C7 96 C2 04 B2 75 1E 05 1B 99 1E 05 B2 75 1E 05 B4 01 00 00 04 00 00 00 A4 9C B6 9F 1C DF 44 21";
+        String hexData = "00 00 00 00 00 05 04 05 1E 00 00 00 00 00 02 02 04 05 6E 00 00 00 0A 01 08 0A AA 00 00 01 A0 00 01 00 41 00 00 00 B8 0B 78 00 1E 00 00 00 02 00 68 00 00 00";
         System.out.println("数据长度: " + getDataLength(hexData));
 
     }

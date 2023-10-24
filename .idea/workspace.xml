@@ -11,6 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.jar" beforeDir="false" afterPath="$PROJECT_DIR$/server.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +82,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.StartServer">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="TCP_Server" />
@@ -107,8 +110,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TCPServer" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TCPServer" />
       </list>
     </recent_temporary>
   </component>
@@ -155,6 +158,12 @@
       <workItem from="1696463396826" duration="11974000" />
       <workItem from="1696869454733" duration="3194000" />
       <workItem from="1697231878750" duration="602000" />
+      <workItem from="1697647196299" duration="1319000" />
+      <workItem from="1697668305651" duration="205000" />
+      <workItem from="1697819751843" duration="87000" />
+      <workItem from="1697820130298" duration="10000" />
+      <workItem from="1697836571018" duration="10000" />
+      <workItem from="1698078987536" duration="6031000" />
     </task>
     <servers />
   </component>

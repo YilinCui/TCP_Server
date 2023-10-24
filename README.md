@@ -1,3 +1,13 @@
+# How to deploy the docker
+1. Install the docker.
+2. Double click the build_server.bat, it will run the "docker build" command to build up the image of Virtual-Device on your machine.
+3. After the docker image build is done, double click the start_here.bat. It will run the docker image based on the yml file.
+
+# What if you have modified the code and try to rebuild the environment?
+1. Delete the server.jar file
+2. Export your code to server.jar.
+3. Repeat the "How to deploy the docker" step. Remember to delete previous docker container/image.
+
 # TCP_Server(Virtual Device)
 This virtual device is based on TCP communication protocol for our Android app. This project is authorized by Singular Medical (Irvine, USA).
 

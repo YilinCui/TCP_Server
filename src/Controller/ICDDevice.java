@@ -34,7 +34,6 @@ DeviceMode 11: Storage Mode
     private byte[][] bLongResponseArray;
     private String folderName;
     private EncodingPacket encodingPacket;
-    public BradyParameter bp_Local;
     public DeviceResetLog resetlog_Local;
     public DeviceFaultLog faultlog_Local;
     public DeviceTachyLog tachylog_local;
@@ -50,7 +49,6 @@ DeviceMode 11: Storage Mode
     }
 
     private void initializeDevice() {
-        bp_Local = new BradyParameter();
         resetlog_Local = new DeviceResetLog();
         tachylog_local = new DeviceTachyLog();
         faultlog_Local = new DeviceFaultLog();

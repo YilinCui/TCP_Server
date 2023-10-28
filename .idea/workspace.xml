@@ -12,10 +12,12 @@
     <list default="true" id="eb0f9670-4463-43ea-ae52-0562ed9bead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.jar" beforeDir="false" afterPath="$PROJECT_DIR$/server.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ICDDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ICDDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/BradyParameter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pgdata/HomeMonitoring.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FilesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FilesHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device31/HomeMonitor.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device32/AlertParameter.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LocalData/Device32/LeadInfo.per" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pgdata/LeadInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +168,8 @@
       <workItem from="1697820130298" duration="10000" />
       <workItem from="1697836571018" duration="10000" />
       <workItem from="1698078987536" duration="7845000" />
-      <workItem from="1698252031907" duration="2153000" />
+      <workItem from="1698252031907" duration="3056000" />
+      <workItem from="1698432006785" duration="1101000" />
     </task>
     <servers />
   </component>

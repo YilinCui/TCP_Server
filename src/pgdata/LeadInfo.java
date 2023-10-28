@@ -40,8 +40,6 @@ public class LeadInfo {
         bRetrunData = encodingPacket.getPacketData();
 
         if(bRetrunData!=null){
-            //System.out.println(DataConvert.bytesToHex(bRetrunData));
-            //System.arraycopy(bRetrunData, 0, packetHeader, 0, 3);
             System.arraycopy(bRetrunData, 3, Manufacturer, 0, 16);
             System.arraycopy(bRetrunData, 19, ModelNumber, 0, 16);
             System.arraycopy(bRetrunData, 35, SerialNumber, 0, 16);

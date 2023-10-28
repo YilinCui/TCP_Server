@@ -1,9 +1,8 @@
 package Controller;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Comparator;
 
 public interface FilesHandler {
@@ -37,17 +36,25 @@ public interface FilesHandler {
         }
     }
 
-    static void deleteFile(String filePath){
-        Path path = Paths.get(filePath);
-        if (Files.exists(path)) {
-            try{
-                Files.delete(path);
-            } catch (Exception e){
-                System.out.println("Deleting file operation failed!!");
-            }
+    public static void deleteDirectoryRecursively(String dirPath) {
+        System.out.println("删除本地LocalData目录");
+        Path path = Paths.get(dirPath);
+        try {
+            Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                    Files.delete(file);
+                    return FileVisitResult.CONTINUE;
+                }
 
-        } else {
-            System.out.println(filePath + " non-exists!!");
+                @Override
+                public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                    Files.delete(dir);
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+        } catch (IOException e) {
+            System.out.println("删目录的时候出问题了！目录为空！");
         }
     }
 }

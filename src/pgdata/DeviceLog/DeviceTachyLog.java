@@ -36,48 +36,9 @@ public class DeviceTachyLog extends BaseLog {
         private byte recordMode; // 3 modes in total
 
         public TachyLog(int deviceMode, int testCaseId){
-
             timestamp = new byte[4];
-            recordMode = RandomData.generateRandomByte(2); // 3 modes in total
-            recordReason = RandomData.generateRandomByte(4); //5 reasons
-
-            if(deviceMode==0){
-                // default
-
-            }else if(deviceMode==1){
-                if(testCaseId==0){
-                    recordMode = 0x00; // 3 modes in total
-                    recordReason = 0x00; //5 reasons
-                }else if(testCaseId==1){
-
-                }else if(testCaseId==2){
-                    recordReason = 0x00; //5 reasons
-                }else if(testCaseId==3){
-                    recordMode = 0x00; // 3 modes in total
-                    recordReason = RandomData.generateRandomByte(4); //5 reasons
-                }
-            }else if(deviceMode==2){
-
-                switch (testCaseId){
-                    case 0->{
-                        recordMode = 0x00; // 3 modes in total
-                        recordReason = 0x01; //5 reasons
-                    }
-                    case 1->{
-                        recordMode = 0x01; // 3 modes in total
-                        recordReason = 0x02; //5 reasons
-                    }
-                    case 2->{
-                        recordMode = 0x02; // 3 modes in total
-                        recordReason = 0x03; //5 reasons
-                    }
-                    case 3->{
-                        recordMode = 0x02; // 3 modes in total
-                        recordReason = 0x04; //5 reasons
-                    }
-                }
-            }
-
+            recordMode = (byte)(deviceMode%3);
+            recordReason = (byte) (testCaseId%5);
         }
 
         public byte[] getTachyLog(){

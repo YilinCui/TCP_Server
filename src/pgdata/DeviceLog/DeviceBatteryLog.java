@@ -29,63 +29,9 @@ public class DeviceBatteryLog extends BaseLog {
         // Other: NA
         private byte[] batteryStatus = new byte[]{0x00, 0x01, 0x02, 0x03, 0x04};
         public BatteryLog(int deviceMode, int testCaseId){
-
-            if(deviceMode==0){
-                timestamp = RandomData.getTimePassedInSeconds();
-                while (oldStatus == newStatus){
-                    oldStatus = RandomData.getRandomByteFromArray(batteryStatus);
-                    newStatus = RandomData.getRandomByteFromArray(batteryStatus);
-                }
-            }else if(deviceMode==1){
-                if(testCaseId==0){
-                    timestamp = RandomData.getTimePassedInSeconds();
-                    while (oldStatus == newStatus){
-                        oldStatus = RandomData.getRandomByteFromArray(batteryStatus);
-                        newStatus = RandomData.getRandomByteFromArray(batteryStatus);
-                    }
-                }else if(testCaseId==1){
-                    timestamp = RandomData.getTimePassedInSeconds();
-                    oldStatus = 0x00;
-                    newStatus = 0x00;
-                }else if(testCaseId==2){
-                    // timestamp is empty
-                    while (oldStatus == newStatus){
-                        oldStatus = RandomData.getRandomByteFromArray(batteryStatus);
-                        newStatus = RandomData.getRandomByteFromArray(batteryStatus);
-                    }
-                } else if(testCaseId==3){
-                    // ListView should be all empty
-                }
-            }else if(deviceMode==2){
-                timestamp = new byte[4];
-                switch (testCaseId){
-                    case 0:{
-                        oldStatus = 0x01;
-                        newStatus = 0x01;
-                        break;
-                    }
-                    case 1:{
-                        oldStatus = 0x02;
-                        newStatus = 0x02;
-                        break;
-                    }
-                    case 2:{
-                        oldStatus = 0x03;
-                        newStatus = 0x03;
-                        break;
-                    }
-                    case 3:{
-                        oldStatus = 0x04;
-                        newStatus = 0x04;
-                        break;
-                    }
-                    case 4:{
-                        oldStatus = 0x05;
-                        newStatus = 0x05;
-                        break;
-                    }
-                }
-            }
+            timestamp = RandomData.getTimePassedInSeconds(0,0,0);
+            oldStatus = batteryStatus[deviceMode%batteryStatus.length];
+            newStatus = batteryStatus[testCaseId%batteryStatus.length];
         }
 
         public byte[] getBatteryLog(){

@@ -51,11 +51,6 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
             add(0x67);
         }};
 
-        // Set of command jumps out a lot during test
-        private HashSet<Integer> annoyingCommandSet = new HashSet<>() {{
-//           add(0x65);
-//           add(0x67);
-        }};
         private static int globalClientID = 0;
 
         public ClientHandler(Socket clientSocket) {
@@ -68,15 +63,10 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
         @Override
         public void run() {
             try {
-                // Disable Nagle's Algorithm
-//                clientSocket.setTcpNoDelay(true);
-
                 ICDDevice myDevice = new ICDDevice(clientID++);
                 InputStream inputStream = clientSocket.getInputStream();
                 OutputStream outputStream = clientSocket.getOutputStream();
 
-//                byte[] buffer = new byte[1024];
-//                int bytes;
                 while (true) {
                     byte[] headerBuffer = new byte[3];
                     int bytesRead = inputStream.read(headerBuffer, 0, 3);  // Read the 3-byte header
@@ -130,8 +120,7 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                             byte[] TCPServerResponse = myDevice.getResponse();
                             if (TCPServerResponse != null) {
                                 outputStream.write(TCPServerResponse);
-                                if (!annoyingCommandSet.contains((int) TCPServerResponse[2]))
-                                    System.out.println("Sent to client: " + DataConvert.byteDataToHexString(TCPServerResponse) + "\n");
+                                System.out.println("Sent to client: " + DataConvert.byteDataToHexString(TCPServerResponse) + "\n");
                             }
                         } else {
                             // 1 to many relationship
@@ -141,7 +130,6 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                                     outputStream.write(response);
                                     // flush the packet to handle TCP packet stickiness
                                     outputStream.flush();
-                                    //if(!annoyingCommandSet.contains((int)response[2]))
                                     System.out.println("Sent to client: " + DataConvert.byteDataToHexString(response) + "\n");
                                 }
                             }
@@ -160,16 +148,5 @@ public class TCPServer implements ICDCommandDefinitions, FilesHandler {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static void main(String[] args) throws IOException {
-        Thread serverThread = new Thread(() -> {
-            try {
-                new TCPServer(8888).start();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        serverThread.start();
     }
 }

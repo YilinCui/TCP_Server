@@ -41,7 +41,6 @@ public class EncodingPacket implements ICDCommandDefinitions {
                 constructPacket();
             }catch (NullPointerException c) {
                 System.out.println("Can't find the file you looking for!" + file_name + ". Sending back default value...");
-//                c.printStackTrace();
                 data = null;
             }
         }else{

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Every Device connected to TCP Server would instantiate an ICDDevice
  * packet will be delivered as following logic TCP Server -> ICDDevice -> Modules -> process -> return to ICDDevice -> TCP Server -> TCP Client
- * Send packet to seperate Class to handle if we wish to fake the data.
+ * Send packet to seperate Class to handle if we wish to mock the data.
  * Otherwise, use ICDCommand method directly for simple I/O
  */
 
@@ -24,8 +24,11 @@ public class ICDDevice implements ICDCommandDefinitions, FilesHandler {
     /*
 DeviceMode 11: Storage Mode
      */
+    //PS: this deviceMode is not the real "DeviceMode" in firmware.
+    //这里的deviceMode只是个identifier，和testcaseId组合使用，来传递测试案例编号等信息
     private int deviceMode = 5;
     private int testCaseId = 1;
+    // todo: deviceStatus. There should be a variable to record the status of the Device.
 
     private int chargeLogCnt = 1;
     private int patienInfoIndex = 1;
@@ -86,6 +89,7 @@ DeviceMode 11: Storage Mode
                 deviceMode = receivedBytes[1] & 0xFF;
                 testCaseId = receivedBytes[3] & 0xFF;
                 System.out.println("Testing configurations parameters received! deviceMode is: " + deviceMode + ", testCaseId is: " + testCaseId);
+                break;
 
             case ICD_CMD_EXIT_STORAGE: //0x01 Exit the storage mode
                 if (deviceMode == 11) {

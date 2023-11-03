@@ -15,7 +15,6 @@ public class EpisodeHeader extends BaseLog {
     private byte latestEpisode;
     private byte[] EpisodeCount;
     private byte[] supplement = new byte[3];
-    private byte[] CRC32;
     private int episodesNum;
     private int testCaseId;
     private int deviceMode;
@@ -28,7 +27,7 @@ public class EpisodeHeader extends BaseLog {
     private void initialEpisode(int deviceMode, int testCaseId){
         this.testCaseId = testCaseId;
         this.deviceMode = deviceMode;
-        //episodesNum = RandomData.getRandomNumberInRange(0,32);
+        //将Episode数量设为10
         episodesNum = 0x0A;
         packetHeader = new byte[]{0x17, 0x07, 0x0B};
 

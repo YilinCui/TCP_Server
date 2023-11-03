@@ -26,48 +26,10 @@ public class DeviceFaultLog extends BaseLog {
         private byte faultId;
         private byte status;
         public FaultLog(int deviceMode, int testCaseId){
-            timestamp = RandomData.getTimePassedInSeconds();
-            faultCount = RandomData.generateRandomBytes(2);
-            faultId = RandomData.generateRandomByte(34);
-            status = RandomData.generateRandomByte();
-            if(deviceMode==0){
-                // default
-            }else if (deviceMode==1){
-                switch (testCaseId){
-                    case 0:{
-                        // ListView should be Empty
-                        faultCount = new byte[2];
-                        faultId = 0x00;
-                        status = 0x00;
-                        break;
-                    }
-                    case 1:{
-                        // ListView should have contents
-                        timestamp = RandomData.getTimePassedInSeconds(0,0,0);
-                        break;
-                    }
-                    case 2:{
-                        // ListView should be Empty
-                        faultId = 0x00;
-                        break;
-                    }
-                    case 3:{
-                        // ListView should be Empty
-                        timestamp = RandomData.getTimePassedInSeconds(1,1,1);
-                        faultCount = new byte[2];
-                        break;
-                    }
-                    case 4:{
-                        // ListView should have contents
-                        timestamp = RandomData.getTimePassedInSeconds(2,2,2);
-                        status = 0x00;
-                        break;
-
-                    }
-                }
-            }else if (deviceMode==2){
-                faultId = (byte) testCaseId;
-            }
+            timestamp = RandomData.getTimePassedInSeconds(0,0,0);
+            faultId = (byte)(deviceMode);
+            faultCount = RandomData.generateByteArray(2,deviceMode*111);
+            status = (byte)(testCaseId*3);
         }
 
         public byte[] getFaultLog(){
@@ -86,6 +48,4 @@ public class DeviceFaultLog extends BaseLog {
             buffer.put(log.getFaultLog());
         }
     }
-
-
 }

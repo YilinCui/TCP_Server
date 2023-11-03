@@ -77,14 +77,10 @@ public class DeviceResetLog extends BaseLog {
      */
     private class ResetLog{
         private byte[] DeviceIdList = new byte[]{0x00, 0x54, 0x14, 0x50}; // M1, M2, M3, BLE
-
         private byte deviceId;
         private byte resetReason;
         private byte[] timestamp;
         private byte[] operataionIdLog;
-        public ResetLog(){
-
-        }
 
         public ResetLog(int deviceMode, int testCaseId){
             deviceId = DeviceIdList[RandomData.generateRandomByte(3)];
